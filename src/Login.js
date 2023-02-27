@@ -3,7 +3,7 @@ import Footer from './Footer';
 import { Link } from 'react-router-dom';
 const Login = () => {
     return (
-
+        
         <div class="login-box">
             <h2>Login</h2>
             <form>
