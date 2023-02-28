@@ -13,10 +13,9 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path='/'>
-              <Login />
+            <Navbar />
             </Route>
             <Route exact path='/login'>
-              <Navbar />
               <Login />
             </Route>
             <Route exact path='/admin'>
