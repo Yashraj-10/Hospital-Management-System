@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import StickyHeadTable from './AdminTable';
 
 const AdminDashboard = () => {
 
@@ -14,6 +15,9 @@ const AdminDashboard = () => {
                 <input type="text" placeholder='Search here' onChange={handleChange} value={searchInput} className="searchTerm"></input>
                 <button type="submit" className="searchButton">Go</button>
                 <button className="aduser">Add User</button>
+            </div>
+            <div className="admind_table">
+                <StickyHeadTable />
             </div>
         </div>
      );

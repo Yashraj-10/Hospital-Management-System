@@ -16,6 +16,7 @@ function App() {
             <Navbar />
             </Route>
             <Route exact path='/login'>
+              <Navbar />
               <Login />
             </Route>
             <Route exact path='/admin'>

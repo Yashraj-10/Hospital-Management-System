@@ -251,8 +251,7 @@ body{
 }
 
 .admind {
-  margin-left: 10%;
-  display: flex;
+  margin-left: 20%;
 }
 
 .admind_header {
@@ -284,8 +283,19 @@ body{
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
-  cursor: pointer;
   font-size: 20px;
+}
+
+.searchButton:hover {
+  width: 40px;
+  height: 35px;
+  border: 1px solid #00b4cc;
+  background: #fff;
+  text-align: center;
+  color: #00b4cc;
+  border-radius: 0 5px 5px 0;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .aduser {
@@ -295,6 +305,18 @@ body{
   height: 32px;
   background: #00b4cc;
   color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.aduser:hover {
+  margin-left: 10%;
+  width: 120px;
+  margin-top: 3px;
+  height: 32px;
+  background: #fff;
+  color: #00b4cc;
   border: 0;
   padding: 8px;
   border-radius: 8px;
@@ -319,4 +341,12 @@ body{
 }
 .forget label a:hover{
   text-decoration: underline;
+}
+
+.admind_table {
+  margin-top: 8%;
+  width: 80%;
+  height: 100%;
+  border-collapse: collapse;
+  text-align: left;
 }
