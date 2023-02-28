@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from './Footer';
 import { Link } from 'react-router-dom';
 const Login = () => {
     return (
-        
+        <>
+        <header><h1>Name of hospital</h1></header>
         <div class="login-box">
             <h2>Login</h2>
             <form>
@@ -23,15 +23,15 @@ const Login = () => {
                     />
                     <label>Password</label>
                 </div>
+                <div class="forget">
+                    <label for=""><input type="checkbox" />Remember Me  <Link to="##">Forgot Password ?</Link></label>
+                </div>
                 <Link to="#">
-                    {/* <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span> */}
-                    Submit
+                    Log in
                 </Link>
             </form>
         </div>
+        </>
     );
 }
 

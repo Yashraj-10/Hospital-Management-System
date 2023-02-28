@@ -10,11 +10,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <h2 className='hospital-name'>Hospital Management System</h2> */}
         <div className="container">
           <Switch>
             <Route exact path='/'>
-              
+              <Login />
             </Route>
             <Route exact path='/login'>
               <Navbar />
@@ -27,8 +26,6 @@ function App() {
             <Route exact path='/about'>
               <About />
             </Route>
-
-
           </Switch>
         </div>
       </div>

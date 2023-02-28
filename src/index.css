@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Verdana:wght@300;400;500;600;700&display=swap');
 /* base styles */
 * {
-  margin: 0;
   font-family: "Verdana";
   color: #333;
 }
@@ -153,7 +152,6 @@ body{
   color: #ffffff;
   font-size: 20px;
   text-decoration: none;
-  text-transform: uppercase;
   overflow: hidden;
   transition: .5s;
   margin-top: 40px;
@@ -250,4 +248,75 @@ body{
   background: linear-gradient(360deg, transparent, #0d2f31);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
+}
+
+.admind {
+  margin-left: 10%;
+  display: flex;
+}
+
+.admind_header {
+  margin-top: 6%;
+  position: center;
+  display: flex;
+}
+
+.searchTerm {
+  width: 520px;
+  border: 3px solid #00b4cc;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: #00b4cc;
+}
+
+.searchButton {
+  width: 40px;
+  height: 35px;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.aduser {
+  margin-left: 10%;
+  width: 120px;
+  margin-top: 3px;
+  height: 32px;
+  background: #00b4cc;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.forget{
+  margin: -15px 0 -35px ;
+  font-size: .9em;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;  
+}
+
+.forget label input{
+  margin-right: 3px;
+  
+}
+.forget label a{
+  color: #fff;
+  text-decoration: none;
+}
+.forget label a:hover{
+  text-decoration: underline;
 }
