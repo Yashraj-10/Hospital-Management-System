@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import StickyHeadTable from './AdminTable';
+import './Admdb.css';
 
 const AdminDashboard = () => {
 

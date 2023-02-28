@@ -6,6 +6,10 @@ import Navbar from './Navbar';
 import About from './about';
 import Navbar2 from './Navbar2';
 import AdminDashboard from './AdminDashboard';
+import DataEntry from './DataEntry';
+import Register from './Register';
+import Doctor from './Doctor';
+
 function App() {
   return (
     <Router>
@@ -25,6 +29,15 @@ function App() {
             </Route>
             <Route exact path='/about'>
               <About />
+            </Route>
+            <Route exact path='/dataent'>
+              <DataEntry />
+            </Route>
+            <Route exact path='/register'>
+              <Register />
+            </Route>
+            <Route exact path='/doctor'>
+              <Doctor />
             </Route>
           </Switch>
         </div>
