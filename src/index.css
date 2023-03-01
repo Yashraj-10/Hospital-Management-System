@@ -12,7 +12,7 @@ body{
   padding: 0;
   font-family: sans-serif;
   background: linear-gradient(#609c88, #042142);
-  background-image: url(./img1.avif);
+  background-image: url(./images/img1.avif);
   background-repeat: no-repeat;
   background-size: cover;
   /* background-position: center; */

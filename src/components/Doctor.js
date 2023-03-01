@@ -1,4 +1,4 @@
-import './doctor.css';
+import '../styles/doctor.css';
 const Doctor = () => {
     return ( 
         <div>

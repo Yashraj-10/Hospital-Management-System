@@ -1,4 +1,4 @@
-import './register.css';
+import '../styles/register.css';
 import React, { useState } from 'react';
 const Register = () => {
     const [firstName, setFirstName] = useState('');
