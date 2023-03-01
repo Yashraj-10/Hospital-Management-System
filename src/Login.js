@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 const Login = () => {
     return (
         
-        <div class="login-box">
+        <div className='login-box'>
             <h2>Login</h2>
             <form>
-                <div class="user-box">
+                <div className='user-box'>
                     <input
                         type="text"
                         name=""
@@ -14,7 +14,7 @@ const Login = () => {
                     />
                     <label>Username</label>
                 </div>
-                <div class="user-box">
+                <div className='user-box'>
                     <input
                         type="password"
                         name=""
@@ -23,10 +23,10 @@ const Login = () => {
                     <label>Password</label>
                 </div>
                 <Link to="#">
+                    {/* <span></span>
                     <span></span>
                     <span></span>
-                    <span></span>
-                    <span></span>
+                    <span></span> */}
                     Log In
                 </Link>
             </form>

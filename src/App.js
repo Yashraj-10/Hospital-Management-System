@@ -7,8 +7,8 @@ import About from './about';
 import Navbar2 from './Navbar2';
 import AdminDashboard from './AdminDashboard';
 import DataEntry from './DataEntry';
-import Register from './Register';
 import Doctor from './Doctor';
+import Register from './Register';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path='/'>
-            <Navbar />
+              <Navbar />
             </Route>
             <Route exact path='/login'>
               <Navbar />
@@ -30,14 +30,17 @@ function App() {
             <Route exact path='/about'>
               <About />
             </Route>
-            <Route exact path='/dataent'>
+            <Route exact path='/dataentry'>
+              <Navbar2 />
               <DataEntry />
             </Route>
-            <Route exact path='/register'>
-              <Register />
-            </Route>
             <Route exact path='/doctor'>
+              <Navbar2 />
               <Doctor />
+            </Route>
+            <Route exact path='/register'>
+              <Navbar2 />
+              <Register />
             </Route>
           </Switch>
         </div>
