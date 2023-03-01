@@ -51,7 +51,6 @@ body{
   justify-content: space-between;
   align-items: center;
   padding: 0 2rem;
-  /* background-color: #fff; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1;
   position: fixed;
@@ -60,6 +59,15 @@ body{
   right: 0;
   height: 60px;
   /* background: linear-gradient(#beebdc, #8aafda); */
+}
+
+.navbar2 button {
+  background: #dd0000;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .footer {
@@ -155,7 +163,6 @@ body{
   transition: .5s;
   margin-top: 40px;
   letter-spacing: 3px;
-  /* background-color: #26837e; */
   background: #49383c;
   color: rgb(247, 245, 245);
   border-radius: 5px;
@@ -248,4 +255,3 @@ body{
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
 }
-
