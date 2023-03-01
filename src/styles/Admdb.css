@@ -1,5 +1,5 @@
 .admind_header {
-  margin-top: 6%;
+  margin-top: 2%;
   margin-left: 17.9%;
   position: center;
   display: flex;
@@ -17,7 +17,7 @@
 }
 
 .searchTerm:focus {
-  color: #00b4cc;
+  color: #0f0202;
 }
 
 .searchButton {
@@ -44,7 +44,7 @@
 }
 
 .aduser {
-  margin-left: 21.5%;
+  margin-left: 21.8%;
   width: 120px;
   margin-top: 3px;
   height: 32px;

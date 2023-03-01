@@ -1,4 +1,4 @@
-import './register.css';
+import '../styles/register.css';
 import React, { useState } from 'react';
 const Register = () => {
     const [firstName, setFirstName] = useState('');
@@ -11,7 +11,6 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // TODO: Implement form submission logic
     };
     return (
         <div className="form-container">

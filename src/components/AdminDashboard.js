@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import StickyHeadTable from './AdminTable';
-import './Admdb.css';
+import '../styles/Admdb.css';
 
 const AdminDashboard = () => {
 
@@ -9,6 +9,7 @@ const AdminDashboard = () => {
         e.preventDefault();
         setSearchInput(e.target.value);
     };
+
     let no_dbas = 0;
     let no_doctors = 0;
     let no_fds = 0;
@@ -23,6 +24,7 @@ const AdminDashboard = () => {
             <div>
                 <div class="dropdown">
                     <select className="dropbtn">
+                        <option className='dropdown-content' value="All">All</option>
                         <option className='dropdown-content' value="DBA">DBA</option>
                         <option className='dropdown-content' value="Doctor">Doctor</option>
                         <option className='dropdown-content' value="FD">FD</option>
