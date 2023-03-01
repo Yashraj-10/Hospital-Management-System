@@ -30,7 +30,7 @@ function App() {
             <Route exact path='/about'>
               <About />
             </Route>
-            <Route exact path='/dataent'>
+            <Route exact path='/dataentry'>
               <DataEntry />
             </Route>
             <Route exact path='/register'>

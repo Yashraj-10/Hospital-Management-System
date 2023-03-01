@@ -7,10 +7,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'usrcode', label: 'Type', minWidth: 100 },
+  { 
+    id: 'name', 
+    label: 'Name', 
+    minWidth: 170 
+  },
+  { 
+    id: 'usrcode', 
+    label: 'Type', 
+    minWidth: 100 
+  },
   {
     id: 'usrname',
     label: 'Username',
@@ -18,25 +29,31 @@ const columns = [
   },
   {
     id: 'psswd',
-    label: 'Password',
-    minWidth: 170
+    label: '',
   },
   {
     id: 'del',
-    label: 'Delete',
-    minWidth: 170
+    label: '',
   }
 ];
 
-function createData(name, usrcode, usrname, psswd) {
-
-  return { name, usrcode, usrname, psswd, del: 'delete'};
+function createData(name, usrcode, usrname) {
+  return { name, usrcode, usrname};
 }
 
 const rows = [
-  createData('India', 'IN', 'ind_45', '3287263'),
-  createData('China', 'CN', 'chn_18', '9596961'),
-  createData('Italy', 'IT', 'ita_7', '301340'),
+  createData('Nirbhay', 'DBA', 'jnv_45'),
+  createData('Pranil', 'Dr', 'puchhi_18'),
+  createData('Vikas', 'FD', 'basti_7'),
+  createData('Nirbhay', 'DBA', 'jnv_45'),
+  createData('Pranil', 'Dr', 'puchhi_18'),
+  createData('Vikas', 'FD', 'basti_7'),
+  createData('Nirbhay', 'DBA', 'jnv_45'),
+  createData('Pranil', 'Dr', 'puchhi_18'),
+  createData('Vikas', 'FD', 'basti_7'),
+  createData('Nirbhay', 'DBA', 'jnv_45'),
+  createData('Pranil', 'Dr', 'puchhi_18'),
+  createData('Vikas', 'FD', 'basti_7'),
 ];
 
 export default function StickyHeadTable() {
@@ -53,8 +70,8 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
+    <Paper sx={{ width: '90%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 480 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -78,9 +95,13 @@ export default function StickyHeadTable() {
                       const value = row[column.id];
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
+                          {
+                            column.id === 'psswd' ? <Button variant="contained">Reset Password</Button> :
+                            column.id === 'del' ? <IconButton aria-label="delete"><DeleteIcon /></IconButton> :
+                            column.format && typeof value === 'number'
                             ? column.format(value)
-                            : value}
+                            : value
+                          }
                         </TableCell>
                       );
                     })}
