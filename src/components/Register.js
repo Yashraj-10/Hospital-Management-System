@@ -8,9 +8,11 @@ const Register = () => {
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
     const [sex, setSex] = useState(null);
+    const [emailId, setEmailId] = useState('');
+    const [conditions, setConditions] = useState(['']);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
     };
     return (
@@ -45,10 +47,25 @@ const Register = () => {
 
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
+                        Email Id:
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input
+                            type="email"
+                            value={emailId}
+                            required
+                            onChange={(e) => setEmailId(e.target.value)} />
+                    </div>
+                </div>
+
+                <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
                         Date of Birth:
                     </label>
                     <div className="vikasRegCol2">
-                        <input type="date" className='vikasRegDOB' value={dateOfBirth} required onChange={(e) => setDateOfBirth(e.target.value)} />
+                        <input type="date"
+                            max="2030-12-31"
+                            className='vikasRegDOB' value={dateOfBirth} required onChange={(e) => setDateOfBirth(e.target.value)} />
                     </div>
                 </div>
 
@@ -61,6 +78,7 @@ const Register = () => {
                             <select
                                 value={sex}
                                 onChange={(e) => setSex(e.target.value)}
+                                required
                             >
                                 <option value="null">Select</option>
                                 <option value="Male">Male</option>
@@ -102,6 +120,18 @@ const Register = () => {
                             value={address2}
                             required
                             onChange={(e) => setAddress2(e.target.value)} />
+                    </div>
+                </div>
+                <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        Prevailing Conditions (if any):
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input
+                            type="text"
+                            value={conditions}
+                            required
+                            onChange={(e) => setConditions(e.target.value)} />
                     </div>
                 </div>
                 <div className="vikasRegButton">

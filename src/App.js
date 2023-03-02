@@ -9,6 +9,7 @@ import AdminDashboard from './components/AdminDashboard';
 import DataEntry from './components/DataEntry';
 import Doctor from './components/Doctor';
 import Register from './components/Register';
+import FrontDesk from './components/FrontDesk';
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
             <Route exact path='/register'>
               <Navbar2 />
               <Register />
+            </Route>
+            <Route exact path='/frontdesk'>
+              <Navbar2 />
+              <FrontDesk />
             </Route>
           </Switch>
         </div>

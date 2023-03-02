@@ -1,181 +1,147 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import '../styles/register.css';
 import '../styles/DataEnt.css';
-export default function FormPropsTextFields() {
+import React, { useState } from 'react';
+const DataEntry = () => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [address1, setAddress1] = useState('');
+    const [address2, setAddress2] = useState('');
+    const [sex, setSex] = useState(null);
+    const [emailId, setEmailId] = useState('');
+    const [conditions, setConditions] = useState(['']);
+
+    const handleSubmit = (e) => {
+        // e.preventDefault();
+
+    };
     return (
-        <div className="dataent">
-            <Box
-                component="form"
-                sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <div>
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="Name"
-                        defaultValue=""
-                    />
-                    <TextField
-                        disabled
-                        id="outlined-disabled"
-                        label="Disabled"
-                        defaultValue="Hello World"
-                    />
-                    <TextField
-                        id="outlined-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                    />
-                    <TextField
-                        id="outlined-read-only-input"
-                        label="Read Only"
-                        defaultValue="Hello World"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                    />
-                    <TextField
-                        id="outlined-number"
-                        label="Number"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                    <TextField id="outlined-search" label="Search field" type="search" />
-                    <TextField
-                        id="outlined-helperText"
-                        label="Helper text"
-                        defaultValue="Default Value"
-                        helperText="Some important text"
-                    />
-                </div>
-                <div>
-                    <TextField
-                        required
-                        id="filled-required"
-                        label="Required"
-                        defaultValue="Hello World"
-                        variant="filled"
-                    />
-                    <TextField
-                        disabled
-                        id="filled-disabled"
-                        label="Disabled"
-                        defaultValue="Hello World"
-                        variant="filled"
-                    />
-                    <TextField
-                        id="filled-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        variant="filled"
-                    />
-                    <TextField
-                        id="filled-read-only-input"
-                        label="Read Only"
-                        defaultValue="Hello World"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                        variant="filled"
-                    />
-                    <TextField
-                        id="filled-number"
-                        label="Number"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        variant="filled"
-                    />
-                    <TextField
-                        id="filled-search"
-                        label="Search field"
-                        type="search"
-                        variant="filled"
-                    />
-                    <TextField
-                        id="filled-helperText"
-                        label="Helper text"
-                        defaultValue="Default Value"
-                        helperText="Some important text"
-                        variant="filled"
-                    />
-                </div>
-                <div>
-                    <TextField
-                        required
-                        id="standard-required"
-                        label="Required"
-                        defaultValue="Hello World"
-                        variant="standard"
-                    />
-                    <TextField
-                        disabled
-                        id="standard-disabled"
-                        label="Disabled"
-                        defaultValue="Hello World"
-                        variant="standard"
-                    />
-                    <TextField
-                        id="standard-password-input"
-                        label="Password"
-                        type="password"
-                        autoComplete="current-password"
-                        variant="standard"
-                    />
-                    <TextField
-                        id="standard-read-only-input"
-                        label="Read Only"
-                        defaultValue="Hello World"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                        variant="standard"
-                    />
-                    <TextField
-                        id="standard-number"
-                        label="Number"
-                        type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        variant="standard"
-                    />
-                    <TextField
-                        id="standard-search"
-                        label="Search field"
-                        type="search"
-                        variant="standard"
-                    />
-                    <TextField
-                        id="standard-helperText"
-                        label="Helper text"
-                        defaultValue="Default Value"
-                        helperText="Some important text"
-                        variant="standard"
-                    />
-                </div>
-            </Box>
-            <Button
-  variant="contained"
-  component="label"
->
-  Upload File
-  <input
-    type="file"
-    hidden
-  />
-</Button>
+        <div className='vikasDataEntFormContainer'>
+            <div className='vikasRegFormContainer'>
+                <div className='vikasRegHead'>Patient Data Entry</div>
+                <form onSubmit={handleSubmit} className='vikasRegForm'>
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            First Name:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input
+                                type="text"
+                                value={firstName}
+                                required
+                                onChange={(e) => setFirstName(e.target.value)} />
+                        </div>
+                    </div>
+
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Last Name:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input
+                                type="text"
+                                value={lastName}
+                                required
+                                onChange={(e) => setLastName(e.target.value)} />
+                        </div>
+                    </div>
+
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Email Id:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input
+                                type="email"
+                                value={emailId}
+                                required
+                                onChange={(e) => setEmailId(e.target.value)} />
+                        </div>
+                    </div>
+
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Date of Birth:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input type="date" className='vikasRegDOB' value={dateOfBirth} required onChange={(e) => setDateOfBirth(e.target.value)} />
+                        </div>
+                    </div>
+
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Gender:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <div className="RegSex">
+                                <select
+                                    value={sex}
+                                    onChange={(e) => setSex(e.target.value)}
+                                    required
+                                >
+                                    <option value="null">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Phone Number:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input type="tel" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} />
+                        </div>
+                    </div>
+
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Address Line 1:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input
+                                type="text"
+                                value={address1}
+                                required
+                                onChange={(e) => setAddress1(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Address Line 2:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input
+                                type="text"
+                                value={address2}
+                                required
+                                onChange={(e) => setAddress2(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Prevailing Conditions (if any):
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input
+                                type="text"
+                                value={conditions}
+                                required
+                                onChange={(e) => setConditions(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className="vikasRegButton">
+                        <button type="submit" >Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
+
     );
 }
+
+export default DataEntry;
