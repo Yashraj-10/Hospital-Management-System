@@ -95,3 +95,39 @@
         0 0 1px #042142,
         0 0 1px #042142;
 }
+
+.vikasRegCol2 .vikasAdmitTextBox{
+    margin-left: 25px;
+    width: 200px;
+    align-items: left;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.vikasAdmitFormContainer{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 100px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.vikasAdmitFormContainer .vikasRegCol1{
+    margin-left: 100px;
+}
+
+.admitRoomType{
+    width: 200px;
+    align-items: left;
+    padding: 10px;
+    text-align: center;
+    margin-left:15px;
+}

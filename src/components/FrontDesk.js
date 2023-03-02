@@ -22,7 +22,7 @@ import { useHistory } from "react-router-dom";
 
 const images = [
     {
-        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSllpv2xcO3NmndnL2wz3Yxd17CWKIzDHllefn30_9MD5XFCD8KwAsFaMVezE_Wv_rxNhg&usqp=CAU',
+        url: 'https://media.istockphoto.com/id/1286945372/photo/gloved-hand-holds-clipboard-and-pen-and-fills-out-patient-registration-form.jpg?s=612x612&w=0&k=20&c=5TgIOGCOnsSbkQt6S5cDm1oYlCHMJ4bBnjtzI7osYSI=',
         title: 'Patient Registration',
         width: '20%',
     },

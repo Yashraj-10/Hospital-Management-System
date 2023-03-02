@@ -13,6 +13,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         // e.preventDefault();
+        console.log(firstName);
 
     };
     return (
@@ -135,7 +136,7 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="vikasRegButton">
-                    <button type="submit" >Submit</button>
+                    <button type="submit" onClick={handleSubmit} >Submit</button>
                 </div>
             </form>
         </div>
