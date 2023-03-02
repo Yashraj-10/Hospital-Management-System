@@ -1,13 +1,12 @@
 import React from 'react';
-import Footer from './Footer';
 import { Link } from 'react-router-dom';
 const Login = () => {
     return (
-
-        <div class="login-box">
+        
+        <div className='login-box'>
             <h2>Login</h2>
             <form>
-                <div class="user-box">
+                <div className='user-box'>
                     <input
                         type="text"
                         name=""
@@ -15,7 +14,7 @@ const Login = () => {
                     />
                     <label>Username</label>
                 </div>
-                <div class="user-box">
+                <div className='user-box'>
                     <input
                         type="password"
                         name=""
@@ -28,7 +27,7 @@ const Login = () => {
                     <span></span>
                     <span></span>
                     <span></span> */}
-                    Submit
+                    Log In
                 </Link>
             </form>
         </div>

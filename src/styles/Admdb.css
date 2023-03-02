@@ -1,0 +1,95 @@
+.admind_header {
+  margin-top: 2%;
+  margin-left: 17.9%;
+  position: center;
+  display: flex;
+}
+
+.searchTerm {
+  width: 520px;
+  border: 3px solid #00b4cc;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: #0f0202;
+}
+
+.searchButton {
+  width: 40px;
+  height: 35px;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  font-size: 20px;
+}
+
+.searchButton:hover {
+  width: 40px;
+  height: 35px;
+  border: 1px solid #00b4cc;
+  background: #fff;
+  text-align: center;
+  color: #00b4cc;
+  border-radius: 0 5px 5px 0;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.aduser {
+  margin-left: 21.8%;
+  width: 120px;
+  margin-top: 3px;
+  height: 60px;
+  background: #04ac1b;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.aduser:hover {
+  background: #fff;
+  color: #00b4cc;
+  cursor: pointer;
+}
+
+.admind_table {
+  float: left;
+  margin-top: 3.5%;
+  margin-left: 10%;
+  width: 70%;
+  height: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.usr_cards{
+  float: left;
+  margin-top: 3.5%;
+}
+
+.usr_types {
+  margin-left: 5%;
+  width: 150px;
+  margin-top: 2%;
+  height: 100px;
+  background: #00b4cc;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.dropdown {
+  float: left;
+  margin-left: 2%;
+}
