@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
 import StickyHeadTable from './AdminTable';
 import '../styles/Admdb.css';
+
 import CheckboxesGroup from './AdminFilter';
 import { useHistory } from 'react-router-dom';
 
 const AdminDashboard = () => {
 
     const [searchInput, setSearchInput] = useState("");
+
     const history = useHistory();
     const handleChange = (e) => {
         e.preventDefault();
         setSearchInput(e.target.value);
     };
+
     const handleAddUser = (e) => {
         e.preventDefault();
         history.push('/adduser');

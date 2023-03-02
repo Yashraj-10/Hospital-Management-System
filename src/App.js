@@ -9,7 +9,11 @@ import AdminDashboard from './components/AdminDashboard';
 import DataEntry from './components/DataEntry';
 import Doctor from './components/Doctor';
 import Register from './components/Register';
+import FrontDesk from './components/FrontDesk';
+import Admit from './components/Admit';
+import Discharge from './components/Discharge';
 import AdminAddUser from './components/AdminAddUser';
+
 
 function App() {
   return (
@@ -43,6 +47,18 @@ function App() {
               <Navbar2 />
               <Register />
             </Route>
+            <Route exact path='/frontdesk'>
+              <Navbar2 />
+              <FrontDesk />
+            </Route>
+            <Route exact path='/admit'>
+              <Navbar2 />
+              <Admit />
+            </Route>
+            <Route exact path='/discharge'>
+              <Navbar2 />
+              <Discharge />
+              </Route>
             <Route exact path='/adduser'>
               <Navbar2 />
               <AdminAddUser />
