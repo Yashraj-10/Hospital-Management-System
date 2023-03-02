@@ -8,6 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
+import FormDialogTreatment from './DoctorTreatmentPopup';
+import FormDialogDrug from './DoctorDrugPopup';
 
 const columns = [
   { 
@@ -98,8 +100,8 @@ export default function StickyHeadTable() {
                         <TableCell key={column.id} align={column.align}>
                           {
                             column.id === 'name' ? <Button>{value}</Button> :
-                            column.id === 'adddrugs' ? <Button variant="contained">Add Drugs</Button> :
-                            column.id === 'addtreatments' ? <Button variant="contained">Add Treatment</Button> :
+                            column.id === 'adddrugs' ? <FormDialogDrug /> :
+                            column.id === 'addtreatments' ? <FormDialogTreatment /> :
                             column.format && typeof value === 'number' ? column.format(value) : value
                           }
                         </TableCell>
