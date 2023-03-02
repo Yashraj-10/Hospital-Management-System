@@ -149,7 +149,7 @@ body{
   font-size: 12px;
 }
 
-.login-box form a{
+.login-box form .yashrajButton{
   position: relative;
   display: inline-block;
   padding: 12px 50px;
@@ -169,9 +169,9 @@ body{
               0 0 1px #042142;
 }
 
-.login-box a:hover{
-  background: #23eed3;
-  color: rgb(36, 163, 11);
+.login-box .yashrajButton:hover{
+  background: #000080;
+  color: rgb(0, 247, 255);
   border-radius: 5px;
   box-shadow: 0 0 3px #042142,
               0 0 3px #042142,
@@ -179,7 +179,7 @@ body{
               0 0 3px #042142;
 }
 
-.login-box a span{
+.login-box .yashrajButton span{
   position: absolute;
   display: block;
 }
