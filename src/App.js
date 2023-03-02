@@ -1,14 +1,15 @@
 import './App.css';
-import Login from './Login';
+import Login from './components/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Footer from './Footer';
-import Navbar from './Navbar';
-import About from './about';
-import Navbar2 from './Navbar2';
-import AdminDashboard from './AdminDashboard';
-import DataEntry from './DataEntry';
-import Doctor from './Doctor';
-import Register from './Register';
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
+import About from './components/about';
+import Navbar2 from './components/Navbar2';
+import AdminDashboard from './components/AdminDashboard';
+import DataEntry from './components/DataEntry';
+import Doctor from './components/Doctor';
+import Register from './components/Register';
+import AdminAddUser from './components/AdminAddUser';
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
             <Route exact path='/register'>
               <Navbar2 />
               <Register />
+            </Route>
+            <Route exact path='/adduser'>
+              <Navbar2 />
+              <AdminAddUser />
             </Route>
           </Switch>
         </div>

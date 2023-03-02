@@ -10,9 +10,7 @@ const Footer = () => {
                 }}> About us </Link>
                 </div>
             </div>
-
         </div>
-
     );
 }
 
