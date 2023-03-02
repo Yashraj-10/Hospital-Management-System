@@ -8,54 +8,55 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-
-//no IE 11 support
+import FormDialogTreatment from './DoctorTreatmentPopup';
+import FormDialogDrug from './DoctorDrugPopup';
 
 const columns = [
   { 
     id: 'name', 
     label: 'Name', 
-    minWidth: 170 
-  },
-  { 
-    id: 'usrcode', 
-    label: 'Type', 
-    minWidth: 100 
+    minWidth: 150
   },
   {
-    id: 'usrname',
-    label: 'Username',
-    minWidth: 170
+    id: 'age',
+    label: 'Age',
+    format: (value) => value.toFixed(0),
   },
   {
-    id: 'psswd',
+    id: 'condition', 
+    label: 'Conditions', 
+    minWidth: 150
+  },
+  {
+    id: 'drugs',
+    label: 'Drugs',
+    minWidth: 150
+  },
+  {
+    id: 'adddrugs',
     label: '',
+    minWidth: 150
   },
   {
-    id: 'del',
+    id: 'treatments',
+    label: 'Treatments',
+    minWidth: 150
+  },
+  {
+    id: 'addtreatments',
     label: '',
+    minWidth: 150
   }
 ];
 
-function createData(name, usrcode, usrname) {
-  return { name, usrcode, usrname};
+function createData(name, age, condition, drugs, treatments, adddrugs, addtreatments) {
+    return { name, age, condition, drugs, adddrugs, treatments, addtreatments};
 }
 
 const rows = [
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
+  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
+  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
+  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
 ];
 
 export default function StickyHeadTable() {
@@ -98,11 +99,10 @@ export default function StickyHeadTable() {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'psswd' ? <Button variant="contained">Reset Password</Button> :
-                            column.id === 'del' ? <IconButton aria-label="delete"><DeleteIcon /></IconButton> :
-                            column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value
+                            column.id === 'name' ? <Button>{value}</Button> :
+                            column.id === 'adddrugs' ? <FormDialogDrug /> :
+                            column.id === 'addtreatments' ? <FormDialogTreatment /> :
+                            column.format && typeof value === 'number' ? column.format(value) : value
                           }
                         </TableCell>
                       );

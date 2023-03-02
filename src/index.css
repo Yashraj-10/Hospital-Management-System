@@ -17,8 +17,6 @@ body{
   background-size: cover;
   /* background-position: center; */
   height: 50%;
-  
-  
 }
 .hospital-name {
   color: black;
@@ -28,7 +26,6 @@ body{
 .test-font{
   color: rgb(19, 15, 5);
 }
-
 
 /* Navbar */
 .navbar {

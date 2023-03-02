@@ -12,6 +12,8 @@ import Register from './components/Register';
 import FrontDesk from './components/FrontDesk';
 import Admit from './components/Admit';
 import Discharge from './components/Discharge';
+import AdminAddUser from './components/AdminAddUser';
+
 
 function App() {
   return (
@@ -45,7 +47,6 @@ function App() {
               <Navbar2 />
               <Register />
             </Route>
-
             <Route exact path='/frontdesk'>
               <Navbar2 />
               <FrontDesk />
@@ -58,6 +59,10 @@ function App() {
               <Navbar2 />
               <Discharge />
               </Route>
+            <Route exact path='/adduser'>
+              <Navbar2 />
+              <AdminAddUser />
+            </Route>
           </Switch>
         </div>
       </div>
