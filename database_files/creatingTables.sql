@@ -105,4 +105,6 @@ CREATE TABLE IF NOT EXISTS test_appointment (
     FOREIGN KEY (patient_id) REFERENCES Patients(patient_id)
 );
 
+-- Demo
 
+INSERT INTO Users (user_id, name, ph_number, password, type, address) VALUES ('F1234', 'Vikas', '911234567890', 'asdfghjkl', 'F', 'Delhi');
