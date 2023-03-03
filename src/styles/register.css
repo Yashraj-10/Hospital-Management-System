@@ -63,7 +63,6 @@
     border-radius: 5px;
     outline: none;
     text-align: center;
-    text-transform: uppercase;
 }
 
 .vikasRegHead {
@@ -105,7 +104,6 @@
     border-radius: 5px;
     outline: none;
     text-align: center;
-    text-transform: uppercase;
 }
 
 .vikasAdmitFormContainer{
@@ -131,3 +129,179 @@
     text-align: center;
     margin-left:15px;
 }
+
+/* add test results container extra css */
+.vikasTestResultsContainer{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 100px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.vikasTestResultsContainer .vikasRegCol1{
+    margin-left: 40px;
+}
+
+.vikasTestResultsContainer .vikasRegCol1 {
+    width: 30%;
+    text-align: left;
+}
+
+.vikasTestResultsContainer .vikasATRSelectBox{
+    width: 322px;
+    align-items: left;
+    padding: 10px;
+    text-align: center;
+    margin-left:25px;
+}
+
+.vikasTestResultsContainer .vikasRegCol2 input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+}
+
+.vikasTestResultsContainer .vikasATRCommentBox{
+    width: 300px;
+    align-items: left;
+    padding: 10px;
+    text-align: center;
+    margin-left:25px;
+    outline: none;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.vikasTestResultsContainer button[type="submit"] {
+    position: relative;
+    display: inline-block;
+    padding: 12px 50px;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    background: #49383c;
+    color: rgb(247, 245, 245);
+    border-radius: 5px;
+    height: 50px;
+    /* margin-left: 100px; */
+    box-shadow: 0 0 1px #042142,
+        0 0 1px #042142,
+        0 0 1px #042142,
+        0 0 1px #042142;
+}
+
+.vikasRegCol3{
+    width: 302px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    align-items: center;
+    margin-left: 22px;
+}
+
+/* Add treatment Container extra css */
+.vikasAddTreatmentContainer{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 100px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+}
+.vikasAddTreatmentContainer .vikasRegCol2 input{
+    width: 400px;
+}
+.tagContainer {
+    /* display: flex; */
+    overflow: scroll;
+    width: 100%;
+    padding-left: 14px;
+    /* border: 1px grey solid; */
+    border-radius: 5px;
+    color: black
+  }
+  
+  .tagContainer input {
+    width: 95%;
+    /* min-width: 50%; */
+    border: 1px solid grey;
+    /* border-radius: 5px; */
+    padding: 14px;
+    padding-left: 14px;
+    
+  }
+  
+  .tag {
+    /* display: flex; */
+    align-items: center;
+    margin: 7px 0;
+    margin-right: 10px;
+    padding: 0 10px;
+    padding-right: 5px;
+    /* border: 1px solid rgb(51, 219, 219); */
+    /* border-radius: 5px; */
+    background-color: rgb(27, 160, 201);
+    border-bottom: 1px solid black;
+    white-space: nowrap;
+    color: white;
+  }
+  
+  .tag button {
+    display: flex;
+    padding: 6px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    color: white;
+  }
+  .verticalTag{
+    display: flex;
+    align-items: center;
+    margin: 7px 0;
+    margin-right: 10px;
+    margin-left: 20px;
+    padding: 0 10px;
+    padding-right: 5px;
+    white-space: nowrap;
+    color: white;
+  }
+  .vikasDeleteTag{
+    /* display: flex; */
+    padding: 6px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    color: rgb(233, 16, 16);
+  }
+
+  .tagRow{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  }
+  .tagCol{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  }

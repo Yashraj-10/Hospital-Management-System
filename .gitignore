@@ -26,3 +26,10 @@ yarn-error.log*
 /backend/env
 /backend/.env
 /backend/__pycache__
+
+ReactREADME.md
+
+/backend/__pycache__
+/backend/env
+
+Tags.js

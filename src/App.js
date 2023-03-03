@@ -12,6 +12,12 @@ import Register from './components/Register';
 import FrontDesk from './components/FrontDesk';
 import Admit from './components/Admit';
 import Discharge from './components/Discharge';
+import AdminAddUser from './components/AdminAddUser';
+import TodaysApmts from './components/DoctorAppointments';
+import PatientDetails from './components/PatientDetails';
+import AddTestResults from './components/AddTestResults';
+import AddTreatment from './components/AddTreatment';
+import Tags from './components/Tags';
 
 function App() {
   return (
@@ -21,6 +27,7 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Navbar />
+              <Login />
             </Route>
             <Route exact path='/login'>
               <Navbar />
@@ -45,7 +52,6 @@ function App() {
               <Navbar2 />
               <Register />
             </Route>
-
             <Route exact path='/frontdesk'>
               <Navbar2 />
               <FrontDesk />
@@ -58,6 +64,27 @@ function App() {
               <Navbar2 />
               <Discharge />
               </Route>
+            <Route exact path='/adduser'>
+              <Navbar2 />
+              <AdminAddUser />
+            </Route>
+            <Route exact path='/todays_apmts'>
+              <Navbar2 />
+              <TodaysApmts />
+            </Route>
+            
+            <Route exact path='/patient_details'>
+              <Navbar2 />
+              <PatientDetails />
+            </Route>
+            <Route exact path='/addtestresults'>
+              <Navbar2 />
+              <AddTestResults />
+            </Route>
+            <Route exact path='/addtreatments'>
+              <Navbar2 />
+              <AddTreatment />
+            </Route>
           </Switch>
         </div>
       </div>

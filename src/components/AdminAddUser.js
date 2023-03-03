@@ -1,31 +1,29 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
-const Register = () => {
+const AdminAddUser = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [Type, setType] = useState('');
+    const [email, setEmail] = useState('');
+    const [doctype, setDoctype] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
-    const [sex, setSex] = useState('');
-    const [emailId, setEmailId] = useState('');
-    const [conditions, setConditions] = useState(['']);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(firstName);
-        console.log(lastName);
-        console.log(dateOfBirth);
-        console.log(phoneNumber);
-        console.log(address1);
-        console.log(address2);
-        console.log(emailId);
-        console.log(conditions);
-
     };
+
+    const [isDoctor, setIsDoctor] = useState(false);
+    const emailandtype = (e,value) => {
+        console.log(value);
+        if(value === "Doctor") setIsDoctor(true);
+        else setIsDoctor(false);
+    };
+    
     return (
         <div className='vikasRegFormContainer'>
-            <div className='vikasRegHead'>Patient Registration</div>
+            <div className='vikasRegHead'>User Registration</div>
             <form onSubmit={handleSubmit} className='vikasRegForm'>
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
@@ -52,51 +50,54 @@ const Register = () => {
                             onChange={(e) => setLastName(e.target.value)} />
                     </div>
                 </div>
-
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
-                        Email Id:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input
-                            type="email"
-                            value={emailId}
-                            required
-                            onChange={(e) => setEmailId(e.target.value)} />
-                    </div>
-                </div>
-
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Date of Birth:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input type="date"
-                            max="2030-12-31"
-                            className='vikasRegDOB' value={dateOfBirth} required onChange={(e) => setDateOfBirth(e.target.value)} />
-                    </div>
-                </div>
-
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Gender:
+                        Type of User:
                     </label>
                     <div className="vikasRegCol2">
                         <div>
                             <select
-                                value={sex}
-                                onChange={(e) => setSex(e.target.value)}
+                                value={Type}
+                                onChange={(e) => setType(e.target.value)}
                                 required
+                                onClick={(e) => emailandtype(e,Type)}
                             >
                                 <option value="null">Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                                <option value="DBA">DBA</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="DE">DE</option>
+                                <option value="FD">FD</option>
                             </select>
                         </div>
                     </div>
                 </div>
-
+                {isDoctor && <div>
+                    <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        E-mail:
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input
+                            type="text"
+                            value={email}
+                            required
+                            onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    </div>
+                    <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        Type of Doctor:
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input
+                            type="text"
+                            value={doctype}
+                            required
+                            onChange={(e) => setDoctype(e.target.value)} />
+                    </div>
+                    </div>
+                </div>}
+                
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Phone Number:
@@ -130,23 +131,13 @@ const Register = () => {
                             onChange={(e) => setAddress2(e.target.value)} />
                     </div>
                 </div>
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Prevailing Conditions (if any):
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input
-                            type="text"
-                            value={conditions}
-                            onChange={(e) => setConditions(e.target.value)} />
-                    </div>
-                </div>
                 <div className="vikasRegButton">
                     <button type="submit" onClick={handleSubmit} >Submit</button>
                 </div>
             </form>
         </div>
+
     );
 }
 
-export default Register;
+export default AdminAddUser;

@@ -6,18 +6,20 @@ const Admit = () => {
     const [admitDate, setadmitDate] = useState('');
     const [admitTime, setadmitTime] = useState('');
     // const [roomNo, setroomNo] = useState('');
-    const [roomType, setroomType] = useState(null);
-
-    const handleSubmit = (e) => {
-
-        // e.preventDefault();
+    const [roomType, setroomType] = useState('');
+    const handleAdmitSubmit = (e) => {
+        e.preventDefault();
         console.log(patientID);
+        console.log(admitDate);
+        console.log(admitTime);
+        // console.log(roomNo); 
+        console.log(roomType);
 
     };
     return (
         <div className='vikasAdmitFormContainer'>
             <div className='vikasRegHead'>Admit Patient</div>
-            <form onSubmit={handleSubmit} className='vikasRegForm'>
+            <form onSubmit={handleAdmitSubmit} className='vikasRegForm'>
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Patient ID:
@@ -31,28 +33,7 @@ const Admit = () => {
                             onChange={(e) => setpatientID(e.target.value)} />
                     </div>
                 </div>
-
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Admit Date:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input type="date"
-                            max="2030-12-31"
-                            className='vikasAdmitTextBox' value={admitDate} required onChange={(e) => setadmitDate(e.target.value)} />
-                    </div>
-                </div>
-
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Admit Time:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input type="time"
-                            className='vikasAdmitTextBox' value={admitTime} required onChange={(e) => setadmitTime(e.target.value)} />
-                    </div>
-                </div>
-
+                
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Room Type:
@@ -77,6 +58,29 @@ const Admit = () => {
                         </div>
                     </div>
                 </div>
+
+                <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        Admit Date:
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input type="date"
+                            max="2030-12-31"
+                            className='vikasAdmitTextBox' value={admitDate} required onChange={(e) => setadmitDate(e.target.value)} />
+                    </div>
+                </div>
+
+                <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        Admit Time:
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input type="time"
+                            className='vikasAdmitTextBox' value={admitTime} required onChange={(e) => setadmitTime(e.target.value)} />
+                    </div>
+                </div>
+
+                
         
                 {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
@@ -113,7 +117,7 @@ const Admit = () => {
                     </div>
                 </div> */}
                 <div className="vikasRegButton">
-                    <button type="submit" onClick={handleSubmit} >Admit</button>
+                    <button type="submit" onClick={handleAdmitSubmit} >Admit</button>
                 </div>
             </form>
         </div>
