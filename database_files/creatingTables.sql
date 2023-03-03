@@ -108,3 +108,16 @@ CREATE TABLE IF NOT EXISTS test_appointment (
 -- Demo
 
 INSERT INTO Users (user_id, name, ph_number, password, type, address) VALUES ('F1234', 'Vikas', '911234567890', 'asdfghjkl', 'F', 'Delhi');
+
+-- new insertions
+INSERT INTO Patients VALUES ('P1', 'Nirbhay', '2018-04-24 10:47', 'abc', 'gaya', 'bawasir');
+INSERT INTO Test VALUES ('T1', 'Bawasir Operation');
+INSERT INTO test_appointment(test_appointment_result_id, test_id, patient_id, start_time, end_time, test_status, report_link, result, comment) VALUES ('LK112', 'T1', 'P1', '2018-04-24 10:47','2018-04-24 10:53',NULL,NULL,NULL,NULL);
+
+
+
+-- new insertions
+INSERT INTO Patients VALUES ('P2', 'Astitva', '2018-04-24 10:47', 'abc', 'purnia', 'fever');
+INSERT INTO Users VALUES ('User2', 'Strange', '9112', 'strange', 'D', 'New york'); 
+INSERT INTO Doctors VALUES ('D1', 'OPD', 'Strange@','User2');
+INSERT INTO doc_appointment VALUES ('APP1', 'D1', 'P2', '2018-04-24 10:47', '2018-04-24 10:47', 'P', 'Fever', '.');
