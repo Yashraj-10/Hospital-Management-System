@@ -72,9 +72,11 @@ function App() {
               <Navbar2 />
               <TodaysApmts />
             </Route>
+            
             <Route exact path='/patient_details'>
               <Navbar2 />
               <PatientDetails />
+            </Route>
             <Route exact path='/addtestresults'>
               <Navbar2 />
               <AddTestResults />

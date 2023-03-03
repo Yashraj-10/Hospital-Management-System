@@ -6,8 +6,6 @@ import Typography from '@mui/material/Typography';
 import '../styles/frontDesk.css';
 import { useHistory } from "react-router-dom";
 
-const handleSubmit = (e) => {
-        e.preventDefault();
 const images = [
     {
         url: 'https://media.istockphoto.com/id/512298876/photo/blood-test-blood-samples-on-a-laboratory-form.jpg?s=612x612&w=0&k=20&c=jAIbqNGEfh58Zz8TB86yr1-0cg8W6zp6iRPnxQ3mSNA=',
@@ -21,6 +19,7 @@ const images = [
     },
     
 ];
+
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     marginRight: '5%',
@@ -91,10 +90,10 @@ const DataEntry = () => {
     const history = useHistory();
     const handleClick = (event, chooseOp) => {
         if(chooseOp === 'Add Test Results'){
-            history.push('/addtestresults');
+            history.push('/addTestResults');
         }
         else if(chooseOp === 'Add Treatments'){
-            history.push('/addtreatments');
+            history.push('/addTreatments');
         }
     }
 
