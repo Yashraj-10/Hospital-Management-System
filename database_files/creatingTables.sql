@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS Users (
     ph_number CHAR(12) NOT NULL,
     password VARCHAR(255) NOT NULL,
     type CHAR(1) NOT NULL,
+    access_token VARCHAR(1000),
+    access_token_expiry TIMESTAMP,
     address VARCHAR(255) NOT NULL,
     PRIMARY KEY (user_id)
 );
@@ -51,7 +53,7 @@ CREATE TABLE IF NOT EXISTS Admit (
     patient_id CHAR(10) NOT NULL,
     room_no VARCHAR(5) NOT NULL,
     admit_date TIMESTAMP NOT NULL,
-    discharge_date TIMESTAMP NOT NULL,
+    discharge_date TIMESTAMP,
     PRIMARY KEY (patient_id, room_no),
     FOREIGN KEY (patient_id) REFERENCES Patients(patient_id),
     FOREIGN KEY (room_no) REFERENCES Room(room_no)
@@ -82,9 +84,9 @@ CREATE TABLE IF NOT EXISTS doc_appointment (
     patient_id CHAR(10) NOT NULL,
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
-    appointment_status CHAR(1) NOT NULL,
-    symptoms VARCHAR(255) NOT NULL,
-    treatment VARCHAR(255) NOT NULL,
+    appointment_status CHAR(1),
+    symptoms VARCHAR(255),
+    treatment VARCHAR(255),
     PRIMARY KEY (doc_appointment_id),
     FOREIGN KEY (doc_id) REFERENCES Doctors(doc_id)
 );
