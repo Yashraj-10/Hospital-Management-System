@@ -1,12 +1,10 @@
 .vikasRegFormContainer {
-
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     margin-top: 70px;
-    margin-bottom: 100px;
     max-width: 600px;
     font-family: 'Roboto', sans-serif;
 }

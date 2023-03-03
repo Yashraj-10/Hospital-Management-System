@@ -39,23 +39,23 @@ const AdminDashboard = () => {
                     <StickyHeadTable />
                 </div>
                 <div className="usr_cards">
-                    <div className="usr_types">
+                    <div className="usr_types_dba">
                         <h3>DBAs</h3>
                         <h4>{no_dbas}</h4>
                     </div>
                     <br />
-                    <div className="usr_types">
+                    <div className="usr_types_fd">
+                        <h3>FDOs</h3>
+                        <h4>{no_fds}</h4>
+                    </div>
+                    <br />
+                    <div className="usr_types_doctor">
                         <h3>Doctors</h3>
                         <h4>{no_doctors}</h4>
                     </div>
                     <br />
-                    <div className="usr_types">
-                        <h3>Front desks</h3>
-                        <h4>{no_fds}</h4>
-                    </div>
-                    <br />
-                    <div className="usr_types">
-                        <h3>Data entrys</h3>
+                    <div className="usr_types_de">
+                        <h3>DEOs</h3>
                         <h4>{no_des}</h4>
                     </div>
                 </div>

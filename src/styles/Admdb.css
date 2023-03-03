@@ -80,16 +80,57 @@
   margin-top: 3.5%;
 }
 
-.usr_types {
+.usr_cards h3{
+  color: #ff0000;
+  font-size: 20px;
+}
+
+.usr_types_doctor {
   margin-left: 5%;
-  width: 150px;
+  width: 200%;
   margin-top: 2%;
-  height: 100px;
-  background: #00b4cc;
-  color: #fff;
+  height: 12%;
   border: 0;
   padding: 8px;
   border-radius: 8px;
+  background-image: url('https://media.istockphoto.com/id/1189309997/photo/online-medical-consultation-doctor-working-on-laptop-computer-in-clinic-office-copy-space.jpg?s=612x612&w=0&k=20&c=UecDHUyVWwPVAsiCt3cRjtX8cBi6gW8KsgngpNmK47k=');
+  background-size: cover;
+}
+
+.usr_types_dba {
+  margin-left: 5%;
+  width: 200%;
+  margin-top: 2%;
+  height: 12%;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background-image: url('https://media.istockphoto.com/id/1301406644/photo/server-support-and-management-it-technician-working-on-laptop-in-data-center-server-room-copy.jpg?s=612x612&w=0&k=20&c=qBmJAXz50MNat2YWDsW0Wre3sEjUtUkGzKBpyZlYWbo=');
+  background-size: cover;
+}
+
+.usr_types_fd {
+  margin-left: 5%;
+  width: 200%;
+  margin-top: 2%;
+  height: 12%;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background-image: url('https://media.istockphoto.com/id/1154220680/photo/blur-abstract-background-of-patients-register-at-reception-desk-in-hospital-blurry-nurse.jpg?s=612x612&w=0&k=20&c=L_7jgMmKtl-CRbpfRrtMNQVANC9RRB_UByTtolLPsDk=');
+  background-size: cover;
+}
+
+.usr_types_de {
+  margin-left: 5%;
+  width: 200%;
+  margin-top: 2%;
+  height: 12%;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  background-image: url('https://media.istockphoto.com/id/1006940992/photo/medical-blur-background-customer-reception-or-patient-service-counter-office-lobby-in.jpg?s=612x612&w=0&k=20&c=ISB35Aqovb4KkZeya9Szk5z2OXY0Uj3L1sQKAWuBysA=');
+  background-size: cover;
 }
 
 .dropdown {
