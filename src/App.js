@@ -13,7 +13,9 @@ import FrontDesk from './components/FrontDesk';
 import Admit from './components/Admit';
 import Discharge from './components/Discharge';
 import AdminAddUser from './components/AdminAddUser';
-
+import AddTestResults from './components/AddTestResults';
+import AddTreatment from './components/AddTreatment';
+import Tags from './components/Tags';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Navbar />
+              <Login />
             </Route>
             <Route exact path='/login'>
               <Navbar />
@@ -62,6 +65,18 @@ function App() {
             <Route exact path='/adduser'>
               <Navbar2 />
               <AdminAddUser />
+            </Route>
+            <Route exact path='/addtestresults'>
+              <Navbar2 />
+              <AddTestResults />
+            </Route>
+            <Route exact path='/addtreatments'>
+              <Navbar2 />
+              <AddTreatment />
+            </Route>
+
+            <Route exact path='/test'>
+              <Tags />
             </Route>
           </Switch>
         </div>
