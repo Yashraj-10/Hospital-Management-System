@@ -10,7 +10,7 @@ const Admit = () => {
 
     const handleSubmit = (e) => {
 
-        // e.preventDefault();
+        e.preventDefault();
         console.log(patientID);
 
     };

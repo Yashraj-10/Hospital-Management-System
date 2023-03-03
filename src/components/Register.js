@@ -12,7 +12,7 @@ const Register = () => {
     const [conditions, setConditions] = useState(['']);
 
     const handleSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log(firstName);
 
     };

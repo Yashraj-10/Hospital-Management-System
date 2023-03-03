@@ -3,14 +3,24 @@ import React, { useState } from 'react';
 const AdminAddUser = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [Type, setType] = useState('');
+    const [email, setEmail] = useState('');
+    const [doctype, setDoctype] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
-    const [Type, setType] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault();
     };
+
+    const [isDoctor, setIsDoctor] = useState(false);
+    const emailandtype = (e,value) => {
+        console.log(value);
+        if(value === "Doctor") setIsDoctor(true);
+        else setIsDoctor(false);
+    };
+    
     return (
         <div className='vikasRegFormContainer'>
             <div className='vikasRegHead'>User Registration</div>
@@ -45,11 +55,12 @@ const AdminAddUser = () => {
                         Type of User:
                     </label>
                     <div className="vikasRegCol2">
-                        <div className="RegSex">
+                        <div>
                             <select
                                 value={Type}
                                 onChange={(e) => setType(e.target.value)}
                                 required
+                                onClick={(e) => emailandtype(e,Type)}
                             >
                                 <option value="null">Select</option>
                                 <option value="DBA">DBA</option>
@@ -60,7 +71,33 @@ const AdminAddUser = () => {
                         </div>
                     </div>
                 </div>
-
+                {isDoctor && <div>
+                    <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        E-mail:
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input
+                            type="text"
+                            value={email}
+                            required
+                            onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    </div>
+                    <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        Type of Doctor:
+                    </label>
+                    <div className="vikasRegCol2">
+                        <input
+                            type="text"
+                            value={doctype}
+                            required
+                            onChange={(e) => setDoctype(e.target.value)} />
+                    </div>
+                    </div>
+                </div>}
+                
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Phone Number:
