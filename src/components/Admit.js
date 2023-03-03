@@ -7,7 +7,6 @@ const Admit = () => {
     const [admitTime, setadmitTime] = useState('');
     // const [roomNo, setroomNo] = useState('');
     const [roomType, setroomType] = useState('');
-
     const handleAdmitSubmit = (e) => {
         e.preventDefault();
         console.log(patientID);

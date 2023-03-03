@@ -13,6 +13,8 @@ import FrontDesk from './components/FrontDesk';
 import Admit from './components/Admit';
 import Discharge from './components/Discharge';
 import AdminAddUser from './components/AdminAddUser';
+import TodaysApmts from './components/DoctorAppointments';
+import PatientDetails from './components/PatientDetails';
 import AddTestResults from './components/AddTestResults';
 import AddTreatment from './components/AddTreatment';
 import Tags from './components/Tags';
@@ -66,6 +68,13 @@ function App() {
               <Navbar2 />
               <AdminAddUser />
             </Route>
+            <Route exact path='/todays_apmts'>
+              <Navbar2 />
+              <TodaysApmts />
+            </Route>
+            <Route exact path='/patient_details'>
+              <Navbar2 />
+              <PatientDetails />
             <Route exact path='/addtestresults'>
               <Navbar2 />
               <AddTestResults />
@@ -73,10 +82,6 @@ function App() {
             <Route exact path='/addtreatments'>
               <Navbar2 />
               <AddTreatment />
-            </Route>
-
-            <Route exact path='/test'>
-              <Tags />
             </Route>
           </Switch>
         </div>
