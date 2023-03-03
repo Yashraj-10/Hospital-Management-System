@@ -7,13 +7,20 @@ const Register = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
-    const [sex, setSex] = useState(null);
+    const [sex, setSex] = useState('');
     const [emailId, setEmailId] = useState('');
     const [conditions, setConditions] = useState(['']);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(firstName);
+        console.log(lastName);
+        console.log(dateOfBirth);
+        console.log(phoneNumber);
+        console.log(address1);
+        console.log(address2);
+        console.log(emailId);
+        console.log(conditions);
 
     };
     return (
@@ -75,7 +82,7 @@ const Register = () => {
                         Gender:
                     </label>
                     <div className="vikasRegCol2">
-                        <div className="RegSex">
+                        <div>
                             <select
                                 value={sex}
                                 onChange={(e) => setSex(e.target.value)}
@@ -131,7 +138,6 @@ const Register = () => {
                         <input
                             type="text"
                             value={conditions}
-                            required
                             onChange={(e) => setConditions(e.target.value)} />
                     </div>
                 </div>

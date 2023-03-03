@@ -15,7 +15,9 @@ import Discharge from './components/Discharge';
 import AdminAddUser from './components/AdminAddUser';
 import TodaysApmts from './components/DoctorAppointments';
 import PatientDetails from './components/PatientDetails';
-
+import AddTestResults from './components/AddTestResults';
+import AddTreatment from './components/AddTreatment';
+import Tags from './components/Tags';
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Navbar />
+              <Login />
             </Route>
             <Route exact path='/login'>
               <Navbar />
@@ -72,6 +75,13 @@ function App() {
             <Route exact path='/patient_details'>
               <Navbar2 />
               <PatientDetails />
+            <Route exact path='/addtestresults'>
+              <Navbar2 />
+              <AddTestResults />
+            </Route>
+            <Route exact path='/addtreatments'>
+              <Navbar2 />
+              <AddTreatment />
             </Route>
           </Switch>
         </div>
