@@ -101,9 +101,6 @@ function App() {
               <AddTreatment />
               <Footer />
             </Route>
-            <Route exact path='*'>
-              <NotFound />
-            </Route>
             <Route exact path='/scheduleappointment'>
               <Navbar2 />
               <ScheduleAppointment />
@@ -111,6 +108,9 @@ function App() {
             <Route exact path='/scheduletest'>
               <Navbar2 /> 
               <ScheduleTest />
+            </Route>
+            <Route exact path='*'>
+              <NotFound />
             </Route>
           </Switch>
         </div>
