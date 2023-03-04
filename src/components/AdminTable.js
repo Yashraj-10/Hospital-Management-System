@@ -7,9 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import FormDialogReset from './ResetPasswordPopup';
 
 //no IE 11 support
 
@@ -73,7 +73,7 @@ export default function StickyHeadTable() {
 
   return (
     <Paper sx={{ width: '90%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 480 }}>
+      <TableContainer sx={{ maxHeight: 535 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -98,7 +98,7 @@ export default function StickyHeadTable() {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'psswd' ? <Button variant="contained">Reset Password</Button> :
+                            column.id === 'psswd' ? <FormDialogReset /> :
                             column.id === 'del' ? <IconButton aria-label="delete"><DeleteIcon /></IconButton> :
                             column.format && typeof value === 'number'
                             ? column.format(value)

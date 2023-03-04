@@ -7,57 +7,39 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Button from '@mui/material/Button';
-import FormDialogTreatment from './DoctorTreatmentPopup';
-import FormDialogDrug from './DoctorDrugPopup';
-import { useHistory } from 'react-router-dom';
+import '../styles/DocApmts.css';
 
 const columns = [
   { 
     id: 'name', 
-    label: 'Name', 
+    label: 'Doctor Name', 
     minWidth: 150
   },
   {
-    id: 'age',
-    label: 'Age',
-    format: (value) => value.toFixed(0),
-  },
-  {
-    id: 'condition', 
-    label: 'Conditions', 
+    id: 'date',
+    label: 'Date',
     minWidth: 150
   },
   {
-    id: 'drugs',
-    label: 'Drugs',
-    minWidth: 150
-  },
-  {
-    id: 'adddrugs',
-    label: '',
+    id: 'symptoms',
+    label: 'Symptoms',
     minWidth: 150
   },
   {
     id: 'treatments',
     label: 'Treatments',
     minWidth: 150
-  },
-  {
-    id: 'addtreatments',
-    label: '',
-    minWidth: 150
   }
 ];
 
-function createData(name, age, condition, drugs, treatments, adddrugs, addtreatments) {
-    return { name, age, condition, drugs, adddrugs, treatments, addtreatments};
+function createData(name, date, symptoms, treatments) {
+    return { name, date, symptoms, treatments};
 }
 
 const rows = [
-  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
-  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
-  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
+  createData('Nirbhay','40/2/13', 'bawasir', 'bad'),
+  createData('Pranil','16/8/10', 'pregnancy', 'bad'),
+  createData('Vikas','20/5/12', 'food poisoning', 'bad'),
 ];
 
 export default function StickyHeadTable() {
@@ -73,14 +55,10 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
-  const history = useHistory();
-  const handlePatientDetails = () => {
-    history.push('/patient_details');
-  }
-
   return (
-    <Paper sx={{ width: '90%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 480 }}>
+    <Paper className='astitvaApmtsTable'>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 200 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -105,9 +83,6 @@ export default function StickyHeadTable() {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'name' ? <Button onClick={handlePatientDetails}>{value}</Button> :
-                            column.id === 'adddrugs' ? <FormDialogDrug /> :
-                            column.id === 'addtreatments' ? <FormDialogTreatment /> :
                             column.format && typeof value === 'number' ? column.format(value) : value
                           }
                         </TableCell>
@@ -120,7 +95,7 @@ export default function StickyHeadTable() {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[5, 10, 20]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
@@ -128,6 +103,7 @@ export default function StickyHeadTable() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+    </Paper>
     </Paper>
   );
 }

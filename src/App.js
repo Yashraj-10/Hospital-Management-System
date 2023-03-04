@@ -17,7 +17,7 @@ import TodaysApmts from './components/DoctorAppointments';
 import PatientDetails from './components/PatientDetails';
 import AddTestResults from './components/AddTestResults';
 import AddTreatment from './components/AddTreatment';
-import Tags from './components/Tags';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -28,67 +28,83 @@ function App() {
             <Route exact path='/'>
               <Navbar />
               <Login />
+              <Footer />
             </Route>
             <Route exact path='/login'>
               <Navbar />
               <Login />
+              <Footer />
             </Route>
             <Route exact path='/admin'>
               <Navbar2 />
               <AdminDashboard />
+              <Footer />
             </Route>
             <Route exact path='/about'>
               <About />
+              <Footer />
             </Route>
             <Route exact path='/dataentry'>
               <Navbar2 />
               <DataEntry />
+              <Footer />
             </Route>
             <Route exact path='/doctor'>
               <Navbar2 />
               <Doctor />
+              <Footer />
             </Route>
             <Route exact path='/register'>
               <Navbar2 />
               <Register />
+              <Footer />
             </Route>
             <Route exact path='/frontdesk'>
               <Navbar2 />
               <FrontDesk />
+              <Footer />
             </Route>
             <Route exact path='/admit'>
               <Navbar2 />
               <Admit />
+              <Footer />
             </Route>
             <Route exact path='/discharge'>
               <Navbar2 />
               <Discharge />
+              <Footer />
               </Route>
             <Route exact path='/adduser'>
               <Navbar2 />
               <AdminAddUser />
+              <Footer />
             </Route>
             <Route exact path='/todays_apmts'>
               <Navbar2 />
               <TodaysApmts />
+              <Footer />
             </Route>
-            
             <Route exact path='/patient_details'>
               <Navbar2 />
               <PatientDetails />
+              <Footer />
             </Route>
             <Route exact path='/addtestresults'>
               <Navbar2 />
               <AddTestResults />
+              <Footer />
             </Route>
             <Route exact path='/addtreatments'>
               <Navbar2 />
               <AddTreatment />
+              <Footer />
+            </Route>
+            <Route exact path='*'>
+              <NotFound />
             </Route>
           </Switch>
         </div>
       </div>
-      <Footer />
     </Router>
   );
 }
