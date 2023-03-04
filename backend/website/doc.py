@@ -210,7 +210,6 @@ def get_patient_details():
     search_string = args.get('search_string')
     # return [doc_id, search_string]
 
-    
 
     return_list = []
 
@@ -264,16 +263,17 @@ def get_patient_details():
             return jsonify(return_list), 200
         
         # it may be search string or data may not exist
-        cur.execute("SELECT patient_id, patient_name, dob, conditions FROM patients WHERE patient_name LIKE \'%"+search_string+"%\';")
+        # correct this
+        cur.execute("SELECT patients.patient_id, patients.patient_name, patients.dob, patients.conditions, doc_appointment.doc_appointment_id FROM patients JOIN doc_appointment ON (patients.patient_name LIKE \'%"+search_string+"%\' AND patients.patient_id = doc_appointment.patient_id);")
         data = cur.fetchall()
 
         if len(data) == 0:
-            return jsonify(message="No Entries Found"), 200
+            return jsonify(), 200
 
 
         for row in data:
             dictn={}
-            dictn.update({"patient_id":row[0], "patient_name":row[1], "age":age(row[2]), "conditions": row[3]})
+            dictn.update({"patient_id":row[0], "patient_name":row[1], "age":age(row[2]), "conditions": row[3], "doc_appointment_id":row[4]})
             return_list.append(dictn)
 
             conn.close()

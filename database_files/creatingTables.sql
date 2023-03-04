@@ -108,6 +108,15 @@ CREATE TABLE IF NOT EXISTS test_appointment (
     FOREIGN KEY (patient_id) REFERENCES Patients(patient_id)
 );
 
+-- Table 11
+CREATE TABLE IF NOT EXISTS ids (
+    doc INT NOT NULL,
+    dba INT NOT NULL,
+    fdo INT NOT NULL,
+    deo INT NOT NULL,
+    PRIMARY KEY(doc, dba, fdo, deo)
+);
+
 -- Demo
 
 

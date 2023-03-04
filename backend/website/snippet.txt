@@ -5,7 +5,7 @@ from auth import check_token
 # snipped to be added to every endpoint
     access_token = req['access_token']
 
-    val = check_token(access_token, ['doc'])
+    val, current_user_id = check_token(access_token, ['doc'])
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
