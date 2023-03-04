@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Patients (
     dob TIMESTAMP NOT NULL,
     email VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    conditions VARCHAR(255) NOT NULL,
+    conditions VARCHAR(255),
     PRIMARY KEY (patient_id)
 );
 
