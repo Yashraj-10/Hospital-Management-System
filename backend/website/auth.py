@@ -15,25 +15,27 @@ def get_db_connection():
 
 
 def check_token(access_token, authorized_users):
+    current_user_id = ''
     if access_token is None or access_token == "" or access_token is Undefined:
-        return 401
+        return 401, current_user_id
     
     # now we have received something in access token
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT access_token_expiry, type FROM users WHERE access_token = \'"+access_token+"\'")
+    cur.execute("SELECT access_token_expiry, type, user_id FROM users WHERE access_token = \'"+access_token+"\'")
     data = cur.fetchall()
 
     if len(data) != 1:
-        return 401
+        return 401, current_user_id
 
     # now check the token expiry of the user
     temp = data[0]
     user_type = temp[1]
+    current_user_id = temp[2]
 
     if datetime.now() > temp[0]:
         # token expired
-        return 440 # redirect to the login page
+        return 69, current_user_id   # redirect to the login page
 
 
     # token not expired and user is hence known
@@ -50,18 +52,18 @@ def check_token(access_token, authorized_users):
         conn.commit()
         conn.close()
 
-        return 1
+        return 1, current_user_id
 
     else:
         conn.close()
-        return 403  # access forbidden to you
+        return 403, current_user_id # access forbidden to you
 
 
 @auth.route('/profile', methods=['GET'])
 def my_profile():
     res = request.get_json()
     access_token = res['access_token']
-    out = check_token(access_token, ['doc'])
+    out, cur = check_token(access_token, ['doc'])
     return str(out)
 
 

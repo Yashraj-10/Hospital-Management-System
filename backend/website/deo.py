@@ -16,7 +16,7 @@ def add_treatment():
 
 
     # snipped to be added to every endpoint
-    access_token = req['access_token']
+    access_token, current_user_id = req['access_token']
 
     val = check_token(access_token, ['deo', 'doc'])
     if val == 401:
@@ -55,7 +55,7 @@ def add_test_result():
 
 
     # snipped to be added to every endpoint
-    access_token = req['access_token']
+    access_token, current_user_id = req['access_token']
 
     val = check_token(access_token, ['deo', 'doc'])
     if val == 401:
