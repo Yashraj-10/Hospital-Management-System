@@ -17,7 +17,8 @@ const AdminAddUser = () => {
     const [address2, setAddress2] = useState('');
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        console.log(firstName, lastName, Type, email, doctype, phoneNumber, address1, address2);
     };
 
     const [isDoctor, setIsDoctor] = useState(false);

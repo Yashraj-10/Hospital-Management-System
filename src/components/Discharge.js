@@ -6,8 +6,9 @@ const Discharge = () => {
     const [amount, setamount] = useState('');
     const handleSubmit = (e) => {
 
-        e.preventDefault();
+        // e.preventDefault();
         console.log(patientID);
+        console.log(amount);
         
 
     };

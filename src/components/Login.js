@@ -10,7 +10,7 @@ const Login = () => {
     const history = useHistory();
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         console.log(user_id, password);
         // let ret_val = getLogin(e, user_id, password);
         // console.log(123)
