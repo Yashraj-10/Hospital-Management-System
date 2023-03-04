@@ -12,7 +12,7 @@ const AddTreatment = () => {
     // const [isPending, setIsPending] = useState(false);
 
     const handleAddTreatmentSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const treatment = { patientID, docAppointmentID, treatmentDate, tags };
         console.log(treatment);
         // setIsPending(true);
