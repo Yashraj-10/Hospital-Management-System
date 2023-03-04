@@ -14,7 +14,7 @@ body{
   background: linear-gradient(#609c88, #042142);
   background-image: url(./images/img1.avif);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 170%;
   /* background-position: center; */
   height: 50%;
 }
@@ -45,17 +45,27 @@ body{
 
 .navbar2 {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   padding: 0 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 60px;
+  /* font-size: small; */
   /* background: linear-gradient(#beebdc, #8aafda); */
+}
+.navbar2 .vikasHName {
+  /* text-align: center; */
+  font-size: larger;
+  margin-left: 2%;
+  font-weight: 1000;
+  text-transform: uppercase;
+  color: #195a09;
+
 }
 
 .navbar2 button {
@@ -65,6 +75,23 @@ body{
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+}
+/* .vikasHName{
+  text-align: center;
+  margin-left: 5%;
+  max-height: 60px;
+  font-size: 20px;
+  font-weight: 100;
+} */
+.vikasmyHome1{
+  margin-left: 85%;
+  position: relative ;
+  float: right;
+}
+.vikasmyHome2{
+  float: right;
+  position: relative;
+  margin-left: 30px;
 }
 
 .footer {
@@ -177,6 +204,7 @@ body{
               0 0 3px #042142,
               0 0 3px #042142,
               0 0 3px #042142;
+  cursor: pointer;
 }
 
 .login-box .yashrajButton span{

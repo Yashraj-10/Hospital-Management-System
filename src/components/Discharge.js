@@ -8,6 +8,7 @@ const Discharge = () => {
 
         // e.preventDefault();
         console.log(patientID);
+        console.log(amount);
         
 
     };

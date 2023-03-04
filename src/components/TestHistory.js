@@ -7,55 +7,45 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FormDialogReset from './ResetPasswordPopup';
-
-//no IE 11 support
+import Button from '@mui/material/Button';
+import '../styles/DocApmts.css';
 
 const columns = [
   { 
     id: 'name', 
-    label: 'Name', 
-    minWidth: 170 
-  },
-  { 
-    id: 'usrcode', 
-    label: 'Type', 
-    minWidth: 100 
+    label: 'Test Name', 
+    minWidth: 150
   },
   {
-    id: 'usrname',
-    label: 'Username',
-    minWidth: 170
+    id: 'date',
+    label: 'Date',
+    minWidth: 150
   },
   {
-    id: 'psswd',
-    label: '',
+    id: 'results',
+    label: 'Results',
+    minWidth: 150
   },
   {
-    id: 'del',
-    label: '',
-  }
+    id: 'comments',
+    label: 'Comments',
+    minWidth: 150
+  },
+  {
+    id: 'report',
+    label: 'Test Report',
+    minWidth: 150
+  },
 ];
 
-function createData(name, usrcode, usrname) {
-  return { name, usrcode, usrname};
+function createData(name, date, results, comments, report) {
+    return { name, date, results, comments, report};
 }
 
 const rows = [
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
+  createData('Nirbhay','40/2/13', 'bawasir', 'bad'),
+  createData('Pranil','16/8/10', 'pregnancy', 'bad'),
+  createData('Vikas','20/5/12', 'food poisoning', 'bad')
 ];
 
 export default function StickyHeadTable() {
@@ -72,8 +62,9 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper sx={{ width: '90%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 400 }}>
+    <Paper className='astitvaApmtsTable'>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 200 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -98,11 +89,8 @@ export default function StickyHeadTable() {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'psswd' ? <FormDialogReset /> :
-                            column.id === 'del' ? <IconButton aria-label="delete"><DeleteIcon /></IconButton> :
-                            column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value
+                            column.id === 'report' ? <Button variant="contained">View</Button> :
+                            column.format && typeof value === 'number' ? column.format(value) : value
                           }
                         </TableCell>
                       );
@@ -114,7 +102,7 @@ export default function StickyHeadTable() {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[5, 10, 20]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
@@ -122,6 +110,7 @@ export default function StickyHeadTable() {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
+    </Paper>
     </Paper>
   );
 }

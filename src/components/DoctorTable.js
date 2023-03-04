@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import FormDialogTreatment from './DoctorTreatmentPopup';
 import FormDialogDrug from './DoctorDrugPopup';
+import { useHistory } from 'react-router-dom';
 
 const columns = [
   { 
@@ -57,6 +58,15 @@ const rows = [
   createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
   createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
   createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
+  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
+  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
+  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
+  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
+  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
+  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
+  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
+  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
+  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
 ];
 
 export default function StickyHeadTable() {
@@ -72,9 +82,14 @@ export default function StickyHeadTable() {
     setPage(0);
   };
 
+  const history = useHistory();
+  const handlePatientDetails = () => {
+    history.push('/patient_details');
+  }
+
   return (
     <Paper sx={{ width: '90%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 480 }}>
+      <TableContainer sx={{ maxHeight: 400 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -99,7 +114,7 @@ export default function StickyHeadTable() {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'name' ? <Button>{value}</Button> :
+                            column.id === 'name' ? <Button onClick={handlePatientDetails}>{value}</Button> :
                             column.id === 'adddrugs' ? <FormDialogDrug /> :
                             column.id === 'addtreatments' ? <FormDialogTreatment /> :
                             column.format && typeof value === 'number' ? column.format(value) : value
