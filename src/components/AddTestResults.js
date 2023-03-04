@@ -8,11 +8,13 @@ const AddTestResults = () => {
     const [testResult, settestResult] = useState('');
 
     const handleATRSubmit = (e) => {
-        e.preventDefault();
-        console.log(patientID);
-        console.log(testAppointmetID);
-        console.log(testComment);
-        console.log(testResult);
+        // e.preventDefault();
+        // console.log(patientID);
+        // console.log(testAppointmetID);
+        // console.log(testComment);
+        // console.log(testResult);
+        const testResultsData = {patientID, testAppointmetID, testComment, testResult};
+        console.log(testResultsData);
     };
 
     return (

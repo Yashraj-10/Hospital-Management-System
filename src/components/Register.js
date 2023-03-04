@@ -12,15 +12,10 @@ const Register = () => {
     const [conditions, setConditions] = useState(['']);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(firstName);
-        console.log(lastName);
-        console.log(dateOfBirth);
-        console.log(phoneNumber);
-        console.log(address1);
-        console.log(address2);
-        console.log(emailId);
-        console.log(conditions);
+        // e.preventDefault();
+
+        const patientData = {firstName, lastName, dateOfBirth, phoneNumber, address1, address2, emailId, conditions};
+        console.log(patientData);
 
     };
     return (
@@ -102,7 +97,7 @@ const Register = () => {
                         Phone Number:
                     </label>
                     <div className="vikasRegCol2">
-                        <input type="tel" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} />
+                        <input type="number" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} />
                     </div>
                 </div>
 

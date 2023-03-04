@@ -17,6 +17,8 @@ import TodaysApmts from './components/DoctorAppointments';
 import PatientDetails from './components/PatientDetails';
 import AddTestResults from './components/AddTestResults';
 import AddTreatment from './components/AddTreatment';
+import ScheduleAppointment from './components/ScheduleAppointment';
+import ScheduleTest from './components/ScheduleTest';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -101,6 +103,14 @@ function App() {
             </Route>
             <Route exact path='*'>
               <NotFound />
+            </Route>
+            <Route exact path='/scheduleappointment'>
+              <Navbar2 />
+              <ScheduleAppointment />
+            </Route>
+            <Route exact path='/scheduletest'>
+              <Navbar2 /> 
+              <ScheduleTest />
             </Route>
           </Switch>
         </div>

@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
+
 import { useHistory } from 'react-router-dom';
+// import NavbarLogo from './NavbarLogo';
 const Navbar2 = () => {
     const history = useHistory();
     const handleMyHome = () => {
@@ -8,14 +9,15 @@ const Navbar2 = () => {
     return (
         <nav className="navbar2">
             <div className="vikasHName">
-                <p>XYZ Hospital</p>
+                {/* <NavbarLogo /> */}
+                Azad Hospital
             </div>
             <div className='vikasmyHome1'>
-                <button onClick={handleMyHome}>Home</button>
+                <button onClick={handleMyHome}>Logout</button>
             </div>
-            <div className='vikasmyHome2'>
+            {/* <div className='vikasmyHome2'>
                 <Link to="/login"><button >Logout</button></Link>
-            </div>
+            </div> */}
         </nav>
     );
 }
