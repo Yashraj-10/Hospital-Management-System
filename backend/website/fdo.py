@@ -27,6 +27,18 @@ def generate_test_appointment_result_id():
 
     return 'TAR' + str(val+1)
 
+def generate_doc_appointment_id():
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT count(*) FROM doc_appointment;")
+    val = cur.fetchone()[0]
+
+    conn.commit()
+    conn.close()
+
+    return 'DA' + str(val+1)
+
 def generate_patient_id():
     conn = get_db_connection()
     cur = conn.cursor()
@@ -197,7 +209,7 @@ def test_appointment():
 
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("INSERT INTO test_appointment (test_appointment_result_id, test_id, patient_id, start_time, end_time, test_status, report_link, result, comment) VALUES (%s, %s, %s, %s, %s, NULL, NULL, NULL, NULL);", (test_appointment_result_id, test_id, patient_id, start_time, end_time))
+    cur.execute("INSERT INTO test_appointment (test_appointment_result_id, test_id, patient_id, start_time, end_time, test_status, report_link, result, comment) VALUES (%s, %s, %s, %s, %s, %s, NULL, NULL, NULL);", (test_appointment_result_id, test_id, patient_id, start_time, end_time, "0"))
 
     conn.commit()
     conn.close()
@@ -282,13 +294,111 @@ def test_appointment_slots():
 
     return jsonify(list), 200
 
-# @fdo.route('/doc_appointment', methods=['POST'])
-# def doc_appointment():
+@fdo.route('/doc_appointment', methods=['POST'])
+def doc_appointment():
+    # token = request.headers.get('Authorization')
+    # if check_token(token) == 0:
+    #     return jsonify({"message": "Invalid token"}), 401
 
+    # if token.startswith('FDO') == False:
+    #     return jsonify({"message": "Unauthorized"}), 401
 
-# @fdo.route('/doc_appointment/dates', methods=['GET'])
-# def doc_appointment_dates():
+    data = request.get_json()               # request contains patient_id, doc_id and start_time and symptoms
+    doc_appointment_id = generate_doc_appointment_id()
+    patient_id = data['patient_id']
+    doc_id = data['doc_id']
+    start_time = str(data['start_time'])
+    symptoms = data['symptoms']
 
+    giventime = datetime.datetime.strptime(start_time, '%Y-%m-%d %H:%M:%S')
+    end_time = giventime + datetime.timedelta(minutes=15)
 
-# @fdo.route('/doc_appointment/slots', methods=['GET'])
-# def doc_appointment_slots():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("INSERT INTO doc_appointment (doc_appointment_id, doc_id, patient_id, start_time, end_time, appointment_status, symptoms, treatment) VALUES (%s, %s, %s, %s, %s, %s, %s, NULL);", (doc_appointment_id, doc_id, patient_id, start_time, end_time, "0", symptoms))
+    
+    conn.commit()
+    conn.close()
+
+    return jsonify({"message": "Doctor appointment booked successfully", "doc_appointment_id": doc_appointment_id}), 200
+
+@fdo.route('/doc_appointment/dates', methods=['GET'])
+def doc_appointment_dates():
+    # token = request.headers.get('Authorization')
+    # if check_token(token) == 0:
+    #     return jsonify({"message": "Invalid token"}), 401
+
+    # if token.startswith('FDO') == False:
+    #     return jsonify({"message": "Unauthorized"}), 401
+
+    args = request.args
+    doc_id = args['doc_id']
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    cur.execute("SELECT DISTINCT doc_date FROM doc_slots WHERE doc_id = %s AND doc_date >= %s;", (doc_id, datetime.date.today()))
+    val = cur.fetchall()
+
+    list=[]
+    for i in val:
+        list.append({"date":i[0].strftime('%Y-%m-%d')})
+    
+    conn.close()
+
+    return jsonify(list), 200
+
+@fdo.route('/doc_appointment/slots', methods=['GET'])
+def doc_appointment_slots():
+    # same as /test_appointment/slots but slots are of 15 mins
+    # token = request.headers.get('Authorization')
+    # if check_token(token) == 0:
+    #     return jsonify({"message": "Invalid token"}), 401
+
+    # if token.startswith('FDO') == False:
+    #     return jsonify({"message": "Unauthorized"}), 401
+
+    args = request.args
+    doc_id = args['doc_id']
+    doc_date = reqDate_to_SQLdate(args['date'])
+    doc_date_begin = str(doc_date) + " 00:00:00"
+    doc_date_end = str(doc_date) + " 23:59:59"
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    uniqueSet = {}
+
+    cur.execute("SELECT doc_slot FROM doc_slots WHERE doc_id = %s AND doc_date = %s", (doc_id, doc_date))
+    allSlots = cur.fetchall()
+    for mid in allSlots:
+        slots = mid[0].split(',')
+        for slot in slots:
+            n1 = int(slot[0:4])
+            n2 = int(slot[4:8])
+            while n1 < n2:
+                uniqueSet[n1] = 1
+                n1 += 15
+                if n1%100 >= 60:
+                    n1 += 40
+
+    cur.execute("SELECT start_time FROM doc_appointment WHERE doc_id = %s AND start_time >= %s AND start_time <= %s", (doc_id, doc_date_begin, doc_date_end))
+    bookedSlots = cur.fetchall()
+    for mid in bookedSlots:
+        midx = str(mid[0])
+        bookedSlot = midx[11]+midx[12]+midx[14]+midx[15]
+        n1 = int(bookedSlot[0:4])
+        uniqueSet[n1] = 0
+
+    list=[]
+    for slot in uniqueSet:
+        if uniqueSet[slot] == 1:
+            start = str(slot)
+            end = str(slot+15)
+            if int(end)%100 >= 60:
+                end = str(int(end)+40)
+            list.append({"slot":start+"-"+end})
+
+    conn.close()
+
+    return jsonify(list), 200
