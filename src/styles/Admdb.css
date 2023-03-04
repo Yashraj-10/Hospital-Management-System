@@ -5,6 +5,11 @@
   display: flex;
 }
 
+.admind_footer {
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
 .searchTerm {
   margin-top: 5%;
   width: 520px;
