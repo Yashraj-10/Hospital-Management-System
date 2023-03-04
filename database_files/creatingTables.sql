@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS Patients (
     email VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
     conditions VARCHAR(255),
+    gender VARCHAR(6),
+    ph_number CHAR(12),
     PRIMARY KEY (patient_id)
 );
 
@@ -54,7 +56,7 @@ CREATE TABLE IF NOT EXISTS Admit (
     room_no VARCHAR(5) NOT NULL,
     admit_date TIMESTAMP NOT NULL,
     discharge_date TIMESTAMP,
-    PRIMARY KEY (patient_id, room_no),
+    PRIMARY KEY (patient_id, admit_date),
     FOREIGN KEY (patient_id) REFERENCES Patients(patient_id),
     FOREIGN KEY (room_no) REFERENCES Room(room_no)
 );
