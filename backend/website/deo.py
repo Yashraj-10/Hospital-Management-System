@@ -2,23 +2,33 @@ import os
 import string
 import psycopg2
 from flask import Flask, request, jsonify, Blueprint
+from auth import check_token, get_db_connection
 
 deo = Blueprint('deo', __name__)
 
-def get_db_connection():
-    conn = psycopg2.connect(host='127.0.0.1', database='hms', user="postgres", password="jarhasy", port=5432)
-    return conn
 
-def check_token(access_token):
-    pass
-
-
-# allow only data entry operator
+# allow only data entry operator and doc
 @deo.route('/add_test_result', methods=['POST'])
 def add_treatment():
     # request contains test_appointment_request_id
     # report_link, result, comment
-    req = request.get_json()        
+    req = request.get_json()   
+
+
+    # snipped to be added to every endpoint
+    access_token = req['access_token']
+
+    val = check_token(access_token, ['deo', 'doc'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 69
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    # snippet over
+
+
     conn = get_db_connection()
     cur = conn.cursor()
 
@@ -42,6 +52,22 @@ def add_treatment():
 @deo.route('add_treatment', methods=["POST"])
 def add_test_result():
     req = request.get_json()
+
+
+    # snipped to be added to every endpoint
+    access_token = req['access_token']
+
+    val = check_token(access_token, ['deo', 'doc'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 69
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    # snippet over
+
+    
     # we obtain doc_appointment_id and treatment in the string
     conn = get_db_connection()
     cur = conn.cursor()
