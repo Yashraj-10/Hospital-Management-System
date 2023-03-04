@@ -34,9 +34,10 @@ body{
   align-items: center;
   padding: 0 2rem;
   /* background-color: #fff; */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   z-index: 1;
   position: fixed;
+  opacity: 1;
   top: 0;
   left: 0;
   right: 0;
@@ -48,7 +49,7 @@ body{
   /* justify-content: space-between; */
   align-items: center;
   padding: 0 2rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgb(61, 60, 60);
   z-index: 1;
   position: absolute;
   top: 0;
@@ -279,4 +280,9 @@ body{
   background: linear-gradient(360deg, transparent, #0d2f31);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
+}
+
+.about-us{
+ margin-bottom: 8%;
+
 }
