@@ -6,10 +6,10 @@ CREATE TABLE IF NOT EXISTS Users (
     name VARCHAR(100) NOT NULL,
     ph_number CHAR(12) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    type CHAR(1) NOT NULL,
+    type CHAR(3) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     access_token VARCHAR(1000),
     access_token_expiry TIMESTAMP,
-    address VARCHAR(255) NOT NULL,
     PRIMARY KEY (user_id)
 );
 
@@ -107,6 +107,16 @@ CREATE TABLE IF NOT EXISTS test_appointment (
     FOREIGN KEY (patient_id) REFERENCES Patients(patient_id)
 );
 
+--Table 11
+CREATE TABLE IF NOT EXISTS ids (
+    doc INT NOT NULL,
+    dba INT NOT NULL,
+    fdo INT NOT NULL,
+    deo INT NOT NULL,
+    PRIMARY KEY(doc, dba, fdo, deo)
+);
+
 -- Demo
 
 INSERT INTO Users (user_id, name, ph_number, password, type, address) VALUES ('F1234', 'Vikas', '911234567890', 'asdfghjkl', 'F', 'Delhi');
+INSERT INTO Users (user_id, name, ph_number, password, type, address) VALUES ('DBA1', 'Yashraj', '910987654321', 'asdfghjkl', 'DBA', 'Delhi');
