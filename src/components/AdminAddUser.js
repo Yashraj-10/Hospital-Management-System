@@ -1,5 +1,11 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
 const AdminAddUser = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -20,6 +26,13 @@ const AdminAddUser = () => {
         if(value === "Doctor") setIsDoctor(true);
         else setIsDoctor(false);
     };
+    const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
     
     return (
         <div className='vikasRegFormContainer'>
@@ -131,6 +144,29 @@ const AdminAddUser = () => {
                             onChange={(e) => setAddress2(e.target.value)} />
                     </div>
                 </div>
+                <div className="vikasRegRow">
+                    <label className='vikasRegCol1'>
+                        Password:
+                    </label>
+                    <div >
+                    <Input
+                        id="standard-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        endAdornment={
+                            <InputAdornment position="end">
+                            <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
+                            >
+                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                            </InputAdornment>
+                        }
+                    />
+                    </div>
+                </div>
+          
                 <div className="vikasRegButton">
                     <button type="submit" onClick={handleSubmit} >Submit</button>
                 </div>

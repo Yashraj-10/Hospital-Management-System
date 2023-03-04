@@ -14,7 +14,7 @@ body{
   background: linear-gradient(#609c88, #042142);
   background-image: url(./images/img1.avif);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 170%;
   /* background-position: center; */
   height: 50%;
 }

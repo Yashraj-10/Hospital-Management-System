@@ -20,10 +20,10 @@ const AdminDashboard = () => {
         history.push('/adduser');
     };
 
-    let no_dbas = 0;
-    let no_doctors = 0;
-    let no_fds = 0;
-    let no_des = 0;
+    let no_dbas = 220;
+    let no_doctors = 475;
+    let no_fds = 280;
+    let no_des = 160;
     return ( 
         <div>
             <div className="admind_header">
@@ -39,24 +39,28 @@ const AdminDashboard = () => {
                     <StickyHeadTable />
                 </div>
                 <div className="usr_cards">
-                    <div className="usr_types">
+                    <div className="usr_types_dba">
                         <h3>DBAs</h3>
-                        <h4>{no_dbas}</h4>
+                        <h2>{no_dbas}</h2>
                     </div>
                     <br />
-                    <div className="usr_types">
+                    <div className="usr_types_fd">
+                        <h3>FDOs</h3>
+                        <h2>{no_fds}</h2>
+                    </div>
+                    <br />
+                    <div className="usr_types_doctor">
                         <h3>Doctors</h3>
-                        <h4>{no_doctors}</h4>
+                        <h2>{no_doctors}</h2>
                     </div>
                     <br />
-                    <div className="usr_types">
-                        <h3>Front desks</h3>
-                        <h4>{no_fds}</h4>
+                    <div className="usr_types_de">
+                        <h3>DEOs</h3>
+                        <h2>{no_des}</h2>
                     </div>
-                    <br />
-                    <div className="usr_types">
-                        <h3>Data entrys</h3>
-                        <h4>{no_des}</h4>
+                    <div className="admind_footer">
+                        <br />
+                        <h3>Quantity</h3>
                     </div>
                 </div>
             </div>
