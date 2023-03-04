@@ -57,6 +57,15 @@ const rows = [
   createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
   createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
   createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
+  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
+  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
+  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
+  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
+  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
+  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
+  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
+  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
+  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
 ];
 
 export default function StickyHeadTable() {
@@ -74,7 +83,7 @@ export default function StickyHeadTable() {
 
   return (
     <Paper sx={{ width: '90%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 480 }}>
+      <TableContainer sx={{ maxHeight: 400 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

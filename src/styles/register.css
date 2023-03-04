@@ -93,6 +93,7 @@
         0 0 1px #042142,
         0 0 1px #042142,
         0 0 1px #042142;
+    cursor: pointer;
 }
 
 .vikasRegCol2 .vikasAdmitTextBox{
@@ -199,6 +200,7 @@
         0 0 1px #042142,
         0 0 1px #042142,
         0 0 1px #042142;
+    cursor: pointer;
 }
 
 .vikasRegCol3{
@@ -268,6 +270,7 @@
     background-color: unset;
     cursor: pointer;
     color: white;
+    cursor: pointer;
   }
   .verticalTag{
     display: flex;

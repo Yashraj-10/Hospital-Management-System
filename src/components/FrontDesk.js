@@ -114,9 +114,9 @@ const ImageMarked = styled('span')(({ theme }) => ({
 const FrontDesk = () => {
     const history = useHistory();
     const handleClick1 = (e, chooseOp) => {
-        // console.log(chooseOp);
+        
         if (chooseOp === 'Patient Registration') {
-            // console.log('routing to register');
+            
             history.push('/register');
         }
         if(chooseOp === 'Admit Patient'){
@@ -126,10 +126,10 @@ const FrontDesk = () => {
             history.push('/discharge');
         }
         if(chooseOp === 'Schedule Appointment'){
-            history.push('/scheduleAppointment');
+            history.push('/scheduleappointment');
         }
         if(chooseOp === 'Schedule Test'){
-            history.push('/scheduleTest');
+            history.push('/scheduletest');
         }
     }
 
