@@ -3,7 +3,7 @@ import os
 import psycopg2
 from flask import Flask, request, jsonify, Blueprint
 from datetime import datetime, date
-from auth import check_token, get_db_connection
+from .auth import check_token, get_db_connection
 
 doc = Blueprint('doc', __name__)
 
@@ -62,16 +62,31 @@ def get_patient_entire_info(patient_id, cur, pat_info):
 
         tests.append(dictn)
 
+    # also return the admit history of the patient
+    cur.execute("SELECT room_no, admit_date, discharge_date FROM Admit WHERE patient_id = \'"+patient_id+"\';")
+
+    data = cur.fetchall()
+    admit_history = []
+    for rows in data:
+        dictn = {}
+        ad_time = rows[1].strftime('%Y-%m-%d %H:%M:%S')
+        dictn.update({"room_no":rows[0], "admit_date" : ad_time})
+        if rows[2]:
+            dis_time = rows[2].strftime('%Y-%m-%d %H:%M:%S')
+            dictn.update({"discharge_time" : dis_time})
+            
+        admit_history.append(dictn)
+
+
     # try to make it better
     list_return.append({
         "prev_appointments" : appointments,
         "patient_info" : pat_info,
-        "prev_tests" : tests
-
+        "prev_tests" : tests,
+        "admit_history" : admit_history
     })
 
     return list_return
-
 
 
 def get_patients(doc_id, cur):
@@ -183,8 +198,8 @@ def get_patient_details():
     val = check_token(access_token, ['doc'])
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
-    elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+    elif val == 440:
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 

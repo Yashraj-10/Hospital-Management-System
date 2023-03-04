@@ -2,7 +2,7 @@ import os
 import string
 import psycopg2
 from flask import Flask, request, jsonify, Blueprint
-from auth import check_token, get_db_connection
+from .auth import check_token, get_db_connection
 
 deo = Blueprint('deo', __name__)
 
@@ -67,7 +67,7 @@ def add_test_result():
 
     # snippet over
 
-    
+
     # we obtain doc_appointment_id and treatment in the string
     conn = get_db_connection()
     cur = conn.cursor()

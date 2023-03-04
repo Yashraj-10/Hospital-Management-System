@@ -5,8 +5,6 @@ from flask import Flask, request, jsonify, Blueprint
 
 from flask_jwt_extended import JWTManager, create_access_token
 import psycopg2
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
 from datetime import datetime, timedelta
 
 auth = Blueprint('auth', __name__)
@@ -35,14 +33,14 @@ def check_token(access_token, authorized_users):
 
     if datetime.now() > temp[0]:
         # token expired
-        return 69 # redirect to the login page
+        return 440 # redirect to the login page
 
 
     # token not expired and user is hence known
     if user_type in authorized_users:
         # user is authenticated to use the endpoint
         # update the expiry time of the token
-        time_ex = datetime.now() + timedelta(minutes=1)
+        time_ex = datetime.now() + timedelta(minutes=100)
         new_expiry_time = time_ex.strftime('%Y-%m-%d %H:%M:%S')
 
 
@@ -90,7 +88,7 @@ def login():
     
 
     # save access_token in the user table along with expiration of 5 mins later
-    time_ex = datetime.now() + timedelta(minutes=1)
+    time_ex = datetime.now() + timedelta(minutes=100)
     new_expiry_time = time_ex.strftime('%Y-%m-%d %H:%M:%S')
 
 
@@ -105,7 +103,8 @@ def login():
     
 # routes for Database Administrators
 
-@auth.route('/logout', methods=['PUT'])
+@auth.route('/logout', methods=['POST'])
 def logout_user():
-    # we will only receive the access_token from the client
+    # delete the access token or update the expiry date
+    
     pass
