@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const AddTestResults = () => {
-    const [patientID, setpatientID] = useState('');
+    // const [patientID, setpatientID] = useState('');
     const [testAppointmetID, settestAppointmetID] = useState('');
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
@@ -26,7 +26,7 @@ const AddTestResults = () => {
         <div className="vikasTestResultsContainer">
             <div className="vikasRegHead">Add Test Results</div>
             <form onSubmit={handleATRSubmit} className='vikasRegForm'>
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Patient ID:
                     </label>
@@ -38,7 +38,7 @@ const AddTestResults = () => {
                             required
                             onChange={(e) => setpatientID(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Test Appointment ID:
@@ -65,6 +65,7 @@ const AddTestResults = () => {
                             <option value="null">Select</option>
                             <option value="Negative">Negative</option>
                             <option value="Positive">Positive</option>
+                            <option value="Positive">NA</option>
                         </select>
                     </div>
                 </div>

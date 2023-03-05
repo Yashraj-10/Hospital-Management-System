@@ -1,15 +1,23 @@
 
 import '../styles/register.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 const Discharge = () => {
     const [patientID, setpatientID] = useState('');
     const [amount, setamount] = useState('');
     const handleSubmit = (e) => {
 
         // e.preventDefault();
-        console.log(patientID);
-        console.log(amount);
+        const dischargeData = {patientID, amount};
+        console.log(dischargeData);
         
+        axios.post("/discharge", {patientID: patientID, amount: amount})
+        .then((response) => {
+            console.log(response);
+        }
+        , (error) => {
+            console.log(error);
+        })
 
     };
     return (

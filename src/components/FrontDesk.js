@@ -1,17 +1,3 @@
-/*
-Patient registration/discharge and doctor appointment/test scheduling – information about new
-patients need to be registered, appointments based on availability and priority should be scheduled,
-doctor should be notified about the appointments in a dashboard. For admitted patients a room
-should be assigned based on available room capacity. For discharged patients information should be
-preserved but room occupancy should be updated. The workflow should also support scheduling tests
-and treatments prescribed by doctors. (bonus point: using a calendar to schedule)
-1. register
-2. admit
-3. discharge
-4. schedule appointment
-5. schedule test
-*/
-
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';

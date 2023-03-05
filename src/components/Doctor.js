@@ -91,7 +91,7 @@ const Doctor = () => {
                 <button className="aduser" onClick={handleAddUser}>Today's appointments</button>
             </div>
             <div>
-                <div class="dropdown">
+                <div className="dropdownAge">
                     <CheckboxesGroup />
                 </div>
                 <div className="admind_table">
