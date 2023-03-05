@@ -29,7 +29,7 @@ const Login = () => {
             history.push("/frontdesk");
         }
         , (error) => {
-            console.log("NIkal Lawde");
+            console.log(error);
             history.push("/login");
         }
         )

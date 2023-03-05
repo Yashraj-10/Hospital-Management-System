@@ -1,5 +1,6 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 const Register = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -16,6 +17,14 @@ const Register = () => {
 
         const patientData = {firstName, lastName, dateOfBirth, phoneNumber, address1, address2, emailId, conditions};
         console.log(patientData);
+        
+        axios.post("/register", {firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, address1: address1, address2: address2, emailId: emailId, conditions: conditions})
+        .then((response) => {
+            console.log(response);
+        }
+        , (error) => {
+            console.log(error);
+        })
 
     };
     return (

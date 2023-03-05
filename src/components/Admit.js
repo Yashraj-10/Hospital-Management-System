@@ -1,6 +1,7 @@
 
 import '../styles/register.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 const Admit = () => {
     const [patientID, setpatientID] = useState('');
     const [admitDate, setadmitDate] = useState('');
@@ -9,12 +10,18 @@ const Admit = () => {
     const [roomType, setroomType] = useState('');
     const handleAdmitSubmit = (e) => {
         // e.preventDefault();
-        console.log(patientID);
-        console.log(admitDate);
-        console.log(admitTime);
-        // console.log(roomNo); 
-        console.log(roomType);
+        const admitData = {patientID, admitDate, admitTime, roomType};
+        console.log(admitData);
 
+        axios.post("/admit", {patientID: patientID, admitDate: admitDate, admitTime: admitTime, roomType: roomType})
+        .then((response) => {
+            console.log(response);
+        }
+        , (error) => {
+            console.log(error);
+        })
+
+        
     };
     return (
         <div className='vikasAdmitFormContainer'>
