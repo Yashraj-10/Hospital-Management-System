@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Users (
     name VARCHAR(100) NOT NULL,
     ph_number CHAR(12) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    type CHAR(3) NOT NULL,
+    type CHAR(1) NOT NULL,
     access_token VARCHAR(1000),
     access_token_expiry TIMESTAMP,
     address VARCHAR(255) NOT NULL,
