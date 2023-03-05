@@ -86,13 +86,13 @@ def get_user_type_count():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT count(*) FROM users WHERE users.type='DBA';")
+    cur.execute("SELECT count(*) FROM users WHERE users.type='dba';")
     val_dba = cur.fetchone()[0]
-    cur.execute("SELECT count(*) FROM users WHERE users.type='DEO';")
+    cur.execute("SELECT count(*) FROM users WHERE users.type='deo';")
     val_deo = cur.fetchone()[0]
-    cur.execute("SELECT count(*) FROM users WHERE users.type='FDO';")
+    cur.execute("SELECT count(*) FROM users WHERE users.type='fdo';")
     val_fdo = cur.fetchone()[0]
-    cur.execute("SELECT count(*) FROM users WHERE users.type='DOC';")
+    cur.execute("SELECT count(*) FROM users WHERE users.type='doc';")
     val_doc = cur.fetchone()[0]
 
     conn.close()
@@ -117,7 +117,7 @@ def get_dbas():
 
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='DBA';")
+    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='dba';")
     val = cur.fetchall()
     conn.close()
 
@@ -147,7 +147,7 @@ def get_deos():
 
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='DEO';")
+    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='deo';")
     val = cur.fetchall()
     conn.close()
 
@@ -177,7 +177,7 @@ def get_fdos():
 
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='FDO';")
+    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='fdo';")
     val = cur.fetchall()
     conn.close()
 
@@ -207,7 +207,7 @@ def get_docs():
 
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='DOC';")
+    cur.execute("SELECT user_id, name, ph_number, type, address FROM users WHERE users.type='doc';")
     val = cur.fetchall()
     conn.close()
 
@@ -326,6 +326,9 @@ def delete_user():
     req = request.get_json()
     user_id = req['user_id']
 
+    if user_id == current_user_id:
+        return jsonify(message = "Cannot delete self"), 403
+
     conn = get_db_connection()
     cur = conn.cursor()
     if user_id.startswith('DOC'):
@@ -365,6 +368,9 @@ def update_user_pass():
     req = request.get_json()
     user_id = req['user_id']
     password = req['password']
+
+    if user_id!=current_user_id:
+        return jsonify(message = "Cannot update password of other users"), 403
 
     conn = get_db_connection()
     cur = conn.cursor()

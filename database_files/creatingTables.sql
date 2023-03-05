@@ -3,7 +3,7 @@ CREATE DATABASE hms;
 
 -- Table 1
 CREATE TABLE IF NOT EXISTS Users (
-    user_id CHAR(10) NOT NULL ,
+    user_id VARCHAR(10) NOT NULL ,
     name VARCHAR(100) NOT NULL,
     ph_number CHAR(12) NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -11,24 +11,22 @@ CREATE TABLE IF NOT EXISTS Users (
     access_token VARCHAR(1000),
     access_token_expiry TIMESTAMP,
     address VARCHAR(255) NOT NULL,
-    access_token VARCHAR(1000),
-    access_token_expiry TIMESTAMP,
     PRIMARY KEY (user_id)
 );
 
 -- Table 2
 CREATE TABLE IF NOT EXISTS Doctors (
-    doc_id CHAR(10) NOT NULL ,
+    doc_id VARCHAR(10) NOT NULL ,
     docType VARCHAR(20) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    user_id CHAR(10) NOT NULL,
+    user_id VARCHAR(10) NOT NULL,
     PRIMARY KEY (doc_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 -- Table 3
 CREATE TABLE IF NOT EXISTS Patients (
-    patient_id CHAR(10) NOT NULL ,
+    patient_id VARCHAR(10) NOT NULL ,
     patient_name VARCHAR(100) NOT NULL,
     dob TIMESTAMP NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -55,7 +53,7 @@ CREATE TABLE IF NOT EXISTS Test (
 
 -- Table 6
 CREATE TABLE IF NOT EXISTS Admit (
-    patient_id CHAR(10) NOT NULL,
+    patient_id VARCHAR(10) NOT NULL,
     room_no VARCHAR(5) NOT NULL,
     admit_date TIMESTAMP NOT NULL,
     discharge_date TIMESTAMP,
@@ -66,7 +64,7 @@ CREATE TABLE IF NOT EXISTS Admit (
 
 -- Table 7
 CREATE TABLE IF NOT EXISTS doc_slots (
-    doc_id CHAR(10) NOT NULL,
+    doc_id VARCHAR(10) NOT NULL,
     doc_slot VARCHAR(100) NOT NULL,
     doc_date TIMESTAMP NOT NULL,
     PRIMARY KEY (doc_id, doc_date),
@@ -85,8 +83,8 @@ CREATE TABLE IF NOT EXISTS test_slots (
 -- Table 9
 CREATE TABLE IF NOT EXISTS doc_appointment (
     doc_appointment_id VARCHAR(10) NOT NULL,
-    doc_id CHAR(10) NOT NULL,
-    patient_id CHAR(10) NOT NULL,
+    doc_id VARCHAR(10) NOT NULL,
+    patient_id VARCHAR(10) NOT NULL,
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
     appointment_status CHAR(1),
@@ -100,12 +98,12 @@ CREATE TABLE IF NOT EXISTS doc_appointment (
 CREATE TABLE IF NOT EXISTS test_appointment (
     test_appointment_result_id VARCHAR(10) NOT NULL,
     test_id VARCHAR(10) NOT NULL,
-    patient_id CHAR(10) NOT NULL,
+    patient_id VARCHAR(10) NOT NULL,
     start_time TIMESTAMP NOT NULL,
     end_time TIMESTAMP NOT NULL,
     test_status CHAR(1),
     report_link VARCHAR(255),
-    result CHAR(1),
+    result TEXT,
     comment VARCHAR(255),
     PRIMARY KEY (test_appointment_result_id),
     FOREIGN KEY (test_id) REFERENCES Test(test_id),
@@ -160,12 +158,12 @@ INSERT INTO Patients VALUES ('P6', 'Black Panther','1980-03-4 10:47', 'abc', 'Wa
 INSERT INTO Patients VALUES ('P7', 'Black Widow', '1990-03-4 10:47', 'abc', 'Delhi', 'Accident');
 
 -- Doctors insertion
-INSERT INTO Users VALUES ('D1', 'Strange', '9112', 'abc', 'doc', 'New york'); 
-INSERT INTO Doctors VALUES ('D1', 'OPD', 'Strange@','D1');
-INSERT INTO Users VALUES ('D2', 'Hulk', '9112', 'abc', 'doc', 'Mumbai'); 
-INSERT INTO Doctors VALUES ('D2', 'Heart Surgeon', 'Hulk@','D2');
-INSERT INTO Users VALUES ('D3', 'Batman', '9112', 'abc', 'doc', 'Gotham'); 
-INSERT INTO Doctors VALUES ('D3', 'OPD', 'Batman@','D3');
+INSERT INTO Users VALUES ('DOC2', 'Strange', '9112', 'abc', 'doc', 'New york'); 
+INSERT INTO Doctors VALUES ('DOC2', 'OPD', 'Strange@','DOC2');
+INSERT INTO Users VALUES ('DOC4', 'Hulk', '9112', 'abc', 'doc', 'Mumbai'); 
+INSERT INTO Doctors VALUES ('DOC4', 'Heart Surgeon', 'Hulk@','DOC4');
+INSERT INTO Users VALUES ('DOC3', 'Batman', '9112', 'abc', 'doc', 'Gotham'); 
+INSERT INTO Doctors VALUES ('DOC3', 'OPD', 'Batman@','DOC3');
 
 -- fdo insertions
 INSERT INTO Users VALUES ('F1235', 'Rishi', '9112', 'abc', 'fdo', 'Aurangabad'); 
@@ -178,11 +176,11 @@ INSERT INTO Users VALUES ('F1236', 'Yashraj', '9112', 'abc', 'deo', 'Mumbai');
 INSERT INTO Users VALUES ('F1237', 'Aditya', '9112', 'Hulk', 'dba', 'Mumbai'); 
 
 -- Test insertions
-INSERT INTO Test VALUES ('T1', 'Bawasir Operation');
+INSERT INTO Test VALUES ('T1', 'X-Ray');
 INSERT INTO Test VALUES ('T2', 'Blood Test');
 INSERT INTO Test VALUES ('T3', 'CBC');
 INSERT INTO Test VALUES ('T4', 'Dengue');
-INSERT INTO Test VALUES ('T5', 'Sputum');
+INSERT INTO Test VALUES ('T5', 'MRI');
 
 -- appointment insertions
 INSERT INTO doc_appointment VALUES ('APP1', 'D1', 'P2', '2018-04-24 10:47', '2018-04-24 10:47', '1', 'Fever', '.');
@@ -228,7 +226,75 @@ INSERT INTO test_appointment VALUES ('TA4', 'T5', 'P5', '2018-04-24 10:47','2018
 INSERT INTO test_appointment VALUES ('TA5', 'T4', 'P6', '2018-04-24 10:47','2018-04-24 10:53','0',NULL,NULL, NULL);
 
 
+--- doc_slots
 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-05'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-07'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-09'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-11'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-13'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-15'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-17'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC2', '10001200,14001600', '2023-03-19'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC1', '10001200,13001400', '2023-03-05'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC1', '10001200,13001400', '2023-03-12'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC1', '10001200,13001400', '2023-03-19'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC1', '10001200,13001400', '2023-03-26'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC1', '10001200,13001400', '2023-04-03'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC1', '10001200,13001400', '2023-04-10'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC3', '15001900', '2023-03-06'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC3', '15001900', '2023-03-20'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC3', '15001900', '2023-04-04'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC3', '15001900', '2023-04-18'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC3', '15001900', '2023-05-02'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC3', '15001900', '2023-05-16'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC4', '09001200', '2023-03-06'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC4', '09001200', '2023-03-10'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC4', '09001200', '2023-03-14'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC4', '09001200', '2023-03-18'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC4', '09001200', '2023-03-22');
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC4', '09001200', '2023-03-26');
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC4', '09001200', '2023-03-30');   
 
+--- test_slots
 
-
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-05'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-07'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-09'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-11'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-13'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-15'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-17'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T2', '10001200,14001600', '2023-03-19'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T1', '10001200,13001400', '2023-03-05'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T1', '10001200,13001400', '2023-03-12'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T1', '10001200,13001400', '2023-03-19'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T1', '10001200,13001400', '2023-03-26'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T1', '10001200,13001400', '2023-04-03'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T1', '10001200,13001400', '2023-04-10'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T3', '15001900', '2023-03-06'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T3', '15001900', '2023-03-20'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T3', '15001900', '2023-04-04'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T3', '15001900', '2023-04-18'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T3', '15001900', '2023-05-02'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T3', '15001900', '2023-05-16'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T4', '09001200', '2023-03-06'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T4', '09001200', '2023-03-10'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T4', '09001200', '2023-03-14'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T4', '09001200', '2023-03-18'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T4', '09001200', '2023-03-22');
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T4', '09001200', '2023-03-26');
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T4', '09001200', '2023-03-30'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-05'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-06'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-07'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-08'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-09'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-10'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-11'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-12'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-13'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-14'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-15'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-16'); 
+INSERT INTO test_slots (test_id, test_slot, test_date) VALUES ('T5', '09001800', '2023-03-17');

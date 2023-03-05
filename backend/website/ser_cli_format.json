@@ -132,3 +132,195 @@ server:
         "patient_name": "Astitva"
     }
 ]
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+// DBA Data
+
+/users  //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "KGP",
+        "name": "Vikas Basti",
+        "ph_number": "8830475325  ",
+        "type": "doc",
+        "user_id": "DOC1"
+    },
+    {
+        "address": "Delhi",
+        "name": "Yashraj",
+        "ph_number": "916393746715",
+        "type": "dba",
+        "user_id": "DBA1"
+    },
+    {
+        "address": "Delhi",
+        "name": "Astitva",
+        "ph_number": "910987654321",
+        "type": "fdo",
+        "user_id": "FDO2"
+    }
+]
+
+/user_type_count    //-----------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+{
+    "DBA": 1,
+    "DEO": 0,
+    "DOC": 1,
+    "FDO": 1
+}
+
+/user/dba   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+{
+    "address": "Delhi",
+    "name": "Yashraj",
+    "ph_number": "916393746715",
+    "type": "dba",
+    "user_id": "DBA1"
+}
+
+/user/doc   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "New york",
+        "name": "Strange",
+        "ph_number": "919789874947",
+        "type": "doc",
+        "user_id": "DOC2"
+    },
+    {
+        "address": "Mumbai",
+        "name": "Hulk",
+        "ph_number": "918978558023",
+        "type": "doc",
+        "user_id": "DOC4"
+    },
+    {
+        "address": "Gotham",
+        "name": "Batman",
+        "ph_number": "918115639852",
+        "type": "doc",
+        "user_id": "DOC3"
+    },
+    {
+        "address": "KGP",
+        "name": "Vikas Basti",
+        "ph_number": "918830475325",
+        "type": "doc",
+        "user_id": "DOC1"
+    }
+]
+
+/user/deo   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "Kharagpur",
+        "name": "Rishi",
+        "ph_number": "911928754098",
+        "type": "deo",
+        "user_id": "DEO2"
+    }
+]
+
+/user/fdo   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "Delhi",
+        "name": "Astitva",
+        "ph_number": "910987654321",
+        "type": "fdo",
+        "user_id": "FDO2"
+    }
+]
+
+/user?search_string=    //----------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "KGP",
+        "name": "Vikas Basti",
+        "ph_number": "918830475325",
+        "type": "doc",
+        "user_id": "DOC1"
+    }
+]
+
+/users/add  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw",
+    "name": "Rishi",
+    "ph_number": "911928754098",
+    "type": "deo",
+    "password": "rajrishi",
+    "address": "Kharagpur"
+}
+server:
+{
+    "message": "User added successfully",
+    "user_id": "DEO2"
+}
+
+/users/delete  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw",
+    "user_id": "DEO1"
+}
+server:
+{
+    "message": "User deleted successfully"
+}
+
+/users/update_pass  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw",
+    "user_id": "DBA1",
+    "password": "jarhasy"
+}
+server:
+{
+    "message": "Password updated successfully"
+}
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+// FDO Data
+
