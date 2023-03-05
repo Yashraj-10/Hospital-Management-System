@@ -9,13 +9,13 @@ from datetime import datetime, timedelta
 
 auth = Blueprint('auth', __name__)
 
-# def get_db_connection():
-#     conn = psycopg2.connect(host=getenv('SUPABASE_HOST'), database=getenv("SUPABASE_DATABASE"), user=getenv("SUPABASE_USER"), password=getenv("SUPABASE_PASSWORD"), port=getenv('SUPABASE_PORT'))
-#     return conn
-
 def get_db_connection():
-    conn = psycopg2.connect(host='127.0.0.1', database='hms', user="postgres", password="jarhasy", port=5432)
+    conn = psycopg2.connect(host=getenv('SUPABASE_HOST'), database=getenv("SUPABASE_DATABASE"), user=getenv("SUPABASE_USER"), password=getenv("SUPABASE_PASSWORD"), port=getenv('SUPABASE_PORT'))
     return conn
+
+# def get_db_connection():
+#     conn = psycopg2.connect(host='127.0.0.1', database='hms', user="postgres", password="jarhasy", port=5432)
+#     return conn
 
 
 def check_token(access_token, authorized_users):

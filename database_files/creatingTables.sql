@@ -165,6 +165,9 @@ INSERT INTO Doctors VALUES ('DOC4', 'Heart Surgeon', 'Hulk@','DOC4');
 INSERT INTO Users VALUES ('DOC3', 'Batman', '9112', 'abc', 'doc', 'Gotham'); 
 INSERT INTO Doctors VALUES ('DOC3', 'OPD', 'Batman@','DOC3');
 
+INSERT INTO Users VALUES ('DOC4', 'Superman', '9112', 'abc', 'doc', 'Gotham'); 
+INSERT INTO Doctors VALUES ('DOC4', 'OPD', 'Batman@','DOC4');
+
 -- fdo insertions
 INSERT INTO Users VALUES ('F1235', 'Rishi', '9112', 'abc', 'fdo', 'Aurangabad'); 
 INSERT INTO Users VALUES ('F1234', 'Vikas', '911234567890', 'asdfghjkl', 'fdo', 'Delhi');
