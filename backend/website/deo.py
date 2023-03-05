@@ -81,7 +81,7 @@ def add_treatment():
 
 
 # allow doctor and data entry operator
-@deo.route('add_treatment', methods=["POST"])
+@deo.route('/add_treatment', methods=["POST"])
 def add_test_result():
     req = request.get_json()
 
