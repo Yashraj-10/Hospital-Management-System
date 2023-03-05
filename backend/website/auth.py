@@ -1,4 +1,4 @@
-import os
+from os import getenv
 from jinja2 import Undefined
 import psycopg2
 from flask import Flask, request, jsonify, Blueprint
@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 auth = Blueprint('auth', __name__)
 
 def get_db_connection():
-    conn = psycopg2.connect(host='127.0.0.1', database='hms', user="postgres", password="jarhasy", port=5432)
+    conn = psycopg2.connect(host=getenv('SUPABASE_HOST'), database=getenv("SUPABASE_DATABASE"), user=getenv("SUPABASE_USER"), password=getenv("SUPABASE_PASSWORD"), port=getenv('SUPABASE_PORT'))
     return conn
 
 

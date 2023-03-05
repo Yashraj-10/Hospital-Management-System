@@ -132,7 +132,7 @@ def get_fixed_appointments():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -209,7 +209,8 @@ def get_patient_details():
     doc_id = args.get('doc_id')
     search_string = args.get('search_string')
     # return [doc_id, search_string]
-
+    # return [current_user_id, doc_id]
+    current_user_id = current_user_id.replace(" ", "")
 
     return_list = []
 

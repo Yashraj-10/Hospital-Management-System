@@ -48,7 +48,7 @@ def get_users():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -77,7 +77,7 @@ def get_user_type_count():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -109,7 +109,7 @@ def get_dbas():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -139,7 +139,7 @@ def get_deos():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -169,7 +169,7 @@ def get_fdos():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -199,7 +199,7 @@ def get_docs():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -229,7 +229,7 @@ def get_user():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -242,7 +242,7 @@ def get_user():
     conn.close()
 
     args = request.args
-    searchString = args.get('searchString')
+    searchString = args.get('search_string')
 
     list=[]
 
@@ -271,7 +271,7 @@ def add_user():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -317,7 +317,7 @@ def delete_user():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -356,7 +356,7 @@ def update_user_pass():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 

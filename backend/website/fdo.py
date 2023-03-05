@@ -63,7 +63,7 @@ def add_patient():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -94,7 +94,7 @@ def admit():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -150,7 +150,7 @@ def discharge():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -189,7 +189,7 @@ def get_tests():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -219,7 +219,7 @@ def test_appointment():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -251,7 +251,7 @@ def test_appointment_dates():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -285,7 +285,7 @@ def test_appointment_slots():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -343,7 +343,7 @@ def doc_appointment():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -378,7 +378,7 @@ def doc_appointment_dates():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -411,7 +411,7 @@ def doc_appointment_slots():
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
