@@ -25,11 +25,11 @@ const Login = () => {
 
         axios.post("/login", {user_id: user_id, password: password})
         .then((response) => {
-            console.log(response);
+            console.log(response.data['access_token']);
             history.push("/frontdesk");
         }
         , (error) => {
-            console.log(error);
+            console.log("NIkal Lawde");
             history.push("/login");
         }
         )

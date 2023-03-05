@@ -1,8 +1,24 @@
 import os
 import psycopg2
+import smtplib
 from flask import Flask, request, jsonify, Blueprint
+from .auth import check_token, get_db_connection
+from .send_email import send_email
+from os.path import basename
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv()
 
 dba = Blueprint('dba', __name__)
+
+def generate_body_doctor(user_id,docType, password, name):
+    sub = "Access to Azad Hospital Website"
+    body = "Hello Mr./Mrs. "+name+",\nWe welcome you to Azad Hospital as a "+docType+" doctor and it is an honour for us to have you in our family. We have a information portal. You can access it with you doctor_id : "+user_id+" and password : "+password+".\nKindly reset your password for better security."
+
+    return sub, body
 
 def generate_user_id(type):
     conn = get_db_connection()
@@ -21,26 +37,22 @@ def generate_user_id(type):
 
     return type.upper() + str(val+1)
 
-def get_db_connection():
-    conn = psycopg2.connect(host='127.0.0.1', database='hms', user="postgres", password="jarhasy", port=5432)
-    return conn
-
-def check_token(token):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT count(*) FROM users WHERE access_token = %s", (token,))
-    val = cur.fetchone()[0]
-    conn.close()
-    return val
 
 @dba.route('/users', methods=['GET'])
 def get_users():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -57,12 +69,19 @@ def get_users():
 
 @dba.route('/user_type_count', methods=['GET'])
 def get_user_type_count():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -82,12 +101,19 @@ def get_user_type_count():
 
 @dba.route('/users/dba', methods=['GET'])
 def get_dbas():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -105,12 +131,19 @@ def get_dbas():
 
 @dba.route('/users/deo', methods=['GET'])
 def get_deos():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -128,12 +161,19 @@ def get_deos():
 
 @dba.route('/users/fdo', methods=['GET'])
 def get_fdos():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -151,12 +191,19 @@ def get_fdos():
 
 @dba.route('/users/doc', methods=['GET'])
 def get_docs():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -174,12 +221,19 @@ def get_docs():
 
 @dba.route('/user', methods=['GET'])
 def get_user():
-        # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -188,7 +242,7 @@ def get_user():
     conn.close()
 
     args = request.args
-    searchString = args.get('searchString')
+    searchString = args.get('search_string')
 
     list=[]
 
@@ -205,14 +259,23 @@ def get_user():
 
     return jsonify(list), 200
 
+
+# email the doctor about the addition
 @dba.route('/users/add', methods=['POST'])
 def add_user():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
     
     req = request.get_json()
     name = req['name']
@@ -228,7 +291,7 @@ def add_user():
     conn.commit()
     conn.close()
 
-    if type == 'DOC':
+    if type == 'doc':
         email = req['email']
         docType = req['docType'] 
 
@@ -238,16 +301,27 @@ def add_user():
         conn.commit()
         conn.close()
 
+        # email the doctor
+        subject, body = generate_body_doctor(user_id,docType, password, name)
+        # send_email([email],subject, body, [])
+
     return jsonify({"message": "User added successfully", "user_id":user_id}), 200
 
 @dba.route('/users/delete', methods=['DELETE'])
 def delete_user():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     req = request.get_json()
     user_id = req['user_id']
@@ -274,12 +348,19 @@ def delete_user():
 
 @dba.route('/users/update_pass', methods=['PUT'])
 def update_user_pass():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('DBA') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['dba', 'fda', 'doc', 'deo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     req = request.get_json()
     user_id = req['user_id']
@@ -299,3 +380,4 @@ def update_user_pass():
     conn.close()
 
     return jsonify({"message": "Password updated successfully"}), 200
+

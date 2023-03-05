@@ -1,6 +1,7 @@
 import os
 import psycopg2
 from flask import Flask, request, jsonify, Blueprint
+from .auth import check_token, get_db_connection
 import datetime
 
 fdo = Blueprint('fdo', __name__)
@@ -51,26 +52,22 @@ def generate_patient_id():
 
     return 'P' + str(val+1)
 
-def get_db_connection():
-    conn = psycopg2.connect(host='127.0.0.1', database='hms', user="postgres", password="jarhasy", port=5432)
-    return conn
-
-def check_token(token):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT count(*) FROM users WHERE access_token = %s", (token,))
-    val = cur.fetchone()[0]
-    conn.close()
-    return val
 
 @fdo.route('/add_patient', methods=['POST'])
 def add_patient():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     data = request.get_json()
     conn = get_db_connection()
@@ -89,12 +86,19 @@ def add_patient():
 
 @fdo.route('/admit', methods=['POST'])
 def admit():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     data = request.get_json()               # request contains patient_id, room_type and admit_date
     conn = get_db_connection()
@@ -138,12 +142,19 @@ def admit():
 
 @fdo.route('/discharge', methods=['POST'])
 def discharge():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     data = request.get_json()               # request contains patient_id and discahrge date is the current date
 
@@ -170,12 +181,19 @@ def discharge():
 
 @fdo.route('/tests', methods=['GET'])
 def get_tests():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     conn = get_db_connection()
     cur = conn.cursor()
@@ -193,12 +211,19 @@ def get_tests():
 
 @fdo.route('/test_appointment', methods=['POST'])
 def test_appointment():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     data = request.get_json()               # request contains patient_id, test_id and start_time
     test_appointment_result_id = generate_test_appointment_result_id()
@@ -218,12 +243,19 @@ def test_appointment():
 
 @fdo.route('/test_appointment/dates', methods=['GET'])
 def test_appointment_dates():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     args = request.args
     test_id = args['test_id']
@@ -245,12 +277,19 @@ def test_appointment_dates():
 
 @fdo.route('/test_appointment/slots', methods=['GET'])
 def test_appointment_slots():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     args = request.args
     test_id = args['test_id']
@@ -296,12 +335,19 @@ def test_appointment_slots():
 
 @fdo.route('/doc_appointment', methods=['POST'])
 def doc_appointment():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     data = request.get_json()               # request contains patient_id, doc_id and start_time and symptoms
     doc_appointment_id = generate_doc_appointment_id()
@@ -324,12 +370,19 @@ def doc_appointment():
 
 @fdo.route('/doc_appointment/dates', methods=['GET'])
 def doc_appointment_dates():
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     args = request.args
     doc_id = args['doc_id']
@@ -350,13 +403,19 @@ def doc_appointment_dates():
 
 @fdo.route('/doc_appointment/slots', methods=['GET'])
 def doc_appointment_slots():
-    # same as /test_appointment/slots but slots are of 15 mins
-    # token = request.headers.get('Authorization')
-    # if check_token(token) == 0:
-    #     return jsonify({"message": "Invalid token"}), 401
+    #######################################
+    req = request.get_json()
+    access_token = req['access_token']
 
-    # if token.startswith('FDO') == False:
-    #     return jsonify({"message": "Unauthorized"}), 401
+    val, current_user_id = check_token(access_token, ['fdo'])
+    if val == 401:
+        return jsonify(message = "Unidentified User"), 401
+    elif val == 69:
+        return jsonify(message = "User Session Expired"), 401
+    elif val == 403:
+        return jsonify(message = "Page Forbidden for user"), 403
+
+    ########################################
 
     args = request.args
     doc_id = args['doc_id']
