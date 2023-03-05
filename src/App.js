@@ -20,7 +20,9 @@ import AddTreatment from './components/AddTreatment';
 import ScheduleAppointment from './components/ScheduleAppointment';
 import ScheduleTest from './components/ScheduleTest';
 import NotFound from './components/NotFound';
-
+import Navbar3 from './components/Navbar3';
+import Navbar4 from './components/Navbar4';
+import Home from './components/Home';
 function App() {
   return (
     <Router>
@@ -29,30 +31,29 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Navbar />
-              <Login />
+              <Home />
               <Footer />
             </Route>
             <Route exact path='/login'>
-              <Navbar />
+              <Navbar4 />
               <Login />
               <Footer />
             </Route>
             <Route exact path='/admin'>
-              <Navbar2 />
+              <Navbar3 />
               <AdminDashboard />
               <Footer />
             </Route>
             <Route exact path='/about'>
               <About />
-              <Footer />
             </Route>
             <Route exact path='/dataentry'>
-              <Navbar2 />
+              <Navbar3 />
               <DataEntry />
               <Footer />
             </Route>
             <Route exact path='/doctor'>
-              <Navbar2 />
+              <Navbar3 />
               <Doctor />
               <Footer />
             </Route>
@@ -62,7 +63,7 @@ function App() {
               <Footer />
             </Route>
             <Route exact path='/frontdesk'>
-              <Navbar2 />
+              <Navbar3 />
               <FrontDesk />
               <Footer />
             </Route>

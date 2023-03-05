@@ -7,6 +7,7 @@
     margin-top: 70px;
     max-width: 600px;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
 }
 
 .vikasRegRow {
@@ -112,9 +113,9 @@
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     margin-top: 70px;
-    margin-bottom: 100px;
     max-width: 600px;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
 }
 
 .vikasAdmitFormContainer .vikasRegCol1{
@@ -137,9 +138,9 @@
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     margin-top: 70px;
-    margin-bottom: 100px;
     max-width: 600px;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
 }
 
 .vikasTestResultsContainer .vikasRegCol1{
@@ -217,9 +218,9 @@
     box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
     margin: 0 auto;
     margin-top: 70px;
-    margin-bottom: 100px;
     max-width: 600px;
     font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
 }
 .vikasAddTreatmentContainer .vikasRegCol2 input{
     width: 400px;

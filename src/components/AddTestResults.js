@@ -2,18 +2,16 @@ import '../styles/register.css';
 import React, { useState } from 'react';
 
 const AddTestResults = () => {
-    const [patientID, setpatientID] = useState('');
+    // const [patientID, setpatientID] = useState('');
     const [testAppointmetID, settestAppointmetID] = useState('');
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
+    const [reportfile, setReportfile] = useState('');
 
     const handleATRSubmit = (e) => {
         // e.preventDefault();
-        // console.log(patientID);
-        // console.log(testAppointmetID);
-        // console.log(testComment);
-        // console.log(testResult);
-        const testResultsData = {patientID, testAppointmetID, testComment, testResult};
+        // console.log(reportfile);
+        const testResultsData = { testAppointmetID, testComment, testResult, reportfile};
         console.log(testResultsData);
     };
 
@@ -21,7 +19,7 @@ const AddTestResults = () => {
         <div className="vikasTestResultsContainer">
             <div className="vikasRegHead">Add Test Results</div>
             <form onSubmit={handleATRSubmit} className='vikasRegForm'>
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Patient ID:
                     </label>
@@ -33,7 +31,7 @@ const AddTestResults = () => {
                             required
                             onChange={(e) => setpatientID(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Test Appointment ID:
@@ -60,6 +58,7 @@ const AddTestResults = () => {
                             <option value="null">Select</option>
                             <option value="Negative">Negative</option>
                             <option value="Positive">Positive</option>
+                            <option value="Positive">NA</option>
                         </select>
                     </div>
                 </div>
@@ -86,7 +85,9 @@ const AddTestResults = () => {
                     <div className="vikasRegCol3">
                     <input className="vikasATRUploadButton"
                         type="file"
-                        
+                        // accept="image/*"
+                        value={reportfile}
+                        onChange={(e) => setReportfile(e.target.value)}
                     />
                     </div>
                 </div>
