@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom';
-// import NavbarLogo from './NavbarLogo';
+import NavbarLogo from './NavbarLogo';
 import FormDialogReset from './ResetPasswordPopup';
 import '../styles/navbar3.css';
 const Navbar3 = () => {
@@ -9,6 +9,7 @@ const Navbar3 = () => {
     }
     return (
         <nav className='navbar3'>
+            <div className="logo"><NavbarLogo /></div>
             <div className='vikasHName2'>
                 {/* <NavbarLogo /> */}
                 Azad Hospital

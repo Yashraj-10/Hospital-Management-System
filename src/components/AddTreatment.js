@@ -1,5 +1,5 @@
 import '../styles/register.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const AddTreatment = () => {
     const [patientID, setpatientID] = useState('');
@@ -9,14 +9,23 @@ const AddTreatment = () => {
     const [input, setInput] = useState('');
     const [tags, setTags] = useState([]);
     const [isKeyReleased, setIsKeyReleased] = useState(false);
-    // const [isPending, setIsPending] = useState(false);
+    const [isPending, setIsPending] = useState(false);
 
     const handleAddTreatmentSubmit = (e) => {
         e.preventDefault();
+        console.log("Added Treatment");
         const treatment = { patientID, docAppointmentID, treatmentDate, tags };
         console.log(treatment);
-        // setIsPending(true);
+        setIsPending(true);
     };
+    useEffect(() => {
+        // console.log("useEffect");
+        setpatientID('');
+        setdocAppointmentID('');
+        settreatmentDate('');
+        setTags([]);
+        setIsPending(false);
+    }, [isPending]);
 
 
     const onChange = (e) => {

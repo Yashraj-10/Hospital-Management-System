@@ -9,8 +9,8 @@ const AddTestResults = () => {
     const [reportfile, setReportfile] = useState('');
 
     const handleATRSubmit = (e) => {
-        e.preventDefault();
-        console.log(reportfile);
+        // e.preventDefault();
+        // console.log(reportfile);
         const testResultsData = { testAppointmetID, testComment, testResult, reportfile};
         console.log(testResultsData);
     };
