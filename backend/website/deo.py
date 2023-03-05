@@ -81,15 +81,15 @@ def add_treatment():
 
 
 # allow doctor and data entry operator
-@deo.route('add_treatment', methods=["POST"])
+@deo.route('/add_treatment', methods=["POST"])
 def add_test_result():
     req = request.get_json()
 
 
     # snipped to be added to every endpoint
-    access_token, current_user_id = req['access_token']
+    access_token = req['access_token']
 
-    val = check_token(access_token, ['deo', 'doc'])
+    val, current_user_id = check_token(access_token, ['deo', 'doc'])
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
@@ -104,13 +104,17 @@ def add_test_result():
     conn = get_db_connection()
     cur = conn.cursor()
 
-    cur.execute("SELECT count(*) FROM doc_appointment WHERE doc_appointment_id = \'"+req['doc_appointment_id']+"\';")
-    val = cur.fetchone()[0]
+    cur.execute("SELECT doc_id FROM doc_appointment WHERE doc_appointment_id = \'"+req['doc_appointment_id']+"\';")
+    val = cur.fetchall()
 
-    if val != 1:
+    if len(val) != 1:
         conn.close()
         return jsonify(message="Invalid treatment Id"), 401
     
+    if current_user_id.replace(" ","") != val[0][0].replace(" ",""):
+        return jsonify(message="Can not add treatment"), 401 
+    
+
     # can simplify using fetchall()
     cur.execute("SELECT treatment FROM doc_appointment WHERE doc_appointment_id = \'"+req['doc_appointment_id']+"\';")
     treatment = cur.fetchone()[0]

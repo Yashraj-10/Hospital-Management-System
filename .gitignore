@@ -23,6 +23,9 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/Forms
+/backend/env
+/backend/.env
+/backend/__pycache__
 
 ReactREADME.md
 
@@ -30,3 +33,4 @@ ReactREADME.md
 /backend/env
 /backend/website/__pycache__
 /backend/check.py
+

@@ -5,7 +5,7 @@ CREATE DATABASE hms;
 CREATE TABLE IF NOT EXISTS Users (
     user_id VARCHAR(10) NOT NULL ,
     name VARCHAR(100) NOT NULL,
-    ph_number CHAR(12) NOT NULL,
+    ph_number VARCHAR(12) NOT NULL,
     password VARCHAR(255) NOT NULL,
     type CHAR(3) NOT NULL,
     access_token VARCHAR(1000),
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Patients (
     address VARCHAR(255) NOT NULL,
     conditions VARCHAR(255),
     gender VARCHAR(6),
-    ph_number CHAR(12),
+    ph_number VARCHAR(12),
     PRIMARY KEY (patient_id)
 );
 
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS doc_appointment (
     treatment VARCHAR(255),
     PRIMARY KEY (doc_appointment_id),
     FOREIGN KEY (doc_id) REFERENCES Doctors(doc_id),
-    FOREIGN KEY (patient_id) REFERENCES Patients(patient_id)
+    FOREIGN KEY (patient_id) REFERENCES Pateints(patient_id)
 );
 
 -- Table 10
@@ -165,6 +165,9 @@ INSERT INTO Users VALUES ('DOC4', 'Hulk', '9112', 'abc', 'doc', 'Mumbai');
 INSERT INTO Doctors VALUES ('DOC4', 'Heart Surgeon', 'Hulk@','DOC4');
 INSERT INTO Users VALUES ('DOC3', 'Batman', '9112', 'abc', 'doc', 'Gotham'); 
 INSERT INTO Doctors VALUES ('DOC3', 'OPD', 'Batman@','DOC3');
+
+INSERT INTO Users VALUES ('DOC4', 'Superman', '9112', 'abc', 'doc', 'Gotham'); 
+INSERT INTO Doctors VALUES ('DOC4', 'OPD', 'Batman@','DOC4');
 
 -- fdo insertions
 INSERT INTO Users VALUES ('F1235', 'Rishi', '9112', 'abc', 'fdo', 'Aurangabad'); 
