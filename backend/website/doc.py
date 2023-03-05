@@ -128,11 +128,11 @@ def get_fixed_appointments():
     # snipped to be added to every endpoint
     access_token = req['access_token']
 
-    val = check_token(access_token, ['doc'])
+    val, current_user_id= check_token(access_token, ['doc'])
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
     elif val == 69:
-        return jsonify(message = "User Session Expired"), 69
+        return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
@@ -142,7 +142,7 @@ def get_fixed_appointments():
     cur = conn.cursor()
     # return "SELECT count(*) FROM doctors WHERE doc_id = \'"+req['doc_id']+"\';"
 
-    cur.execute("SELECT count(*) FROM doctors WHERE doc_id = \'"+req['doc_id']+"\';")
+    cur.execute("SELECT count(*) FROM doctors WHERE doc_id = \'"+current_user_id+"\';")
     val = cur.fetchone()[0]
 
     if val != 1:
@@ -151,7 +151,7 @@ def get_fixed_appointments():
 
 
     # get all the appointments of the doctor for the day
-    cur.execute("SELECT start_time, end_time, patient_id, doc_appointment_id FROM doc_appointment WHERE doc_id = \'"+req['doc_id']+"\';")
+    cur.execute("SELECT start_time, end_time, patient_id, doc_appointment_id FROM doc_appointment WHERE doc_id = \'"+current_user_id+"\';")
     data = cur.fetchall()
     if len(data) == 0:
         return jsonify(message="No records found"), 200
@@ -172,7 +172,7 @@ def get_fixed_appointments():
         # x[0] is the date
         x = temp1.rsplit(" ")
 
-        if today[0] != x[0]:
+        if today[0] == x[0]:
             # get patient name from patient id
             cur.execute("SELECT patient_name FROM patients WHERE patient_id = \'"+row[2]+"\';")
             pat_name = cur.fetchone()[0]
@@ -195,34 +195,33 @@ def get_patient_details():
     # snipped to be added to every endpoint
     access_token = req['access_token']
 
-    val = check_token(access_token, ['doc'])
+    val, current_user_id = check_token(access_token, ['doc'])
     if val == 401:
         return jsonify(message = "Unidentified User"), 401
-    elif val == 440:
+    elif val == 69:
         return jsonify(message = "User Session Expired"), 401
     elif val == 403:
         return jsonify(message = "Page Forbidden for user"), 403
 
     # snippet over
 
+
     doc_id = args.get('doc_id')
     search_string = args.get('search_string')
     # return [doc_id, search_string]
+    # return [current_user_id, doc_id]
+    current_user_id = current_user_id.replace(" ", "")
 
     return_list = []
 
     if doc_id is not None:
+        if doc_id != current_user_id:
+            return jsonify(message = "Invalid Doctor Id"), 403
+
         # we want to get the patients treated by the doctor
         conn = get_db_connection()
         cur = conn.cursor()
 
-        cur.execute("SELECT count(*) FROM doctors WHERE doc_id = \'"+doc_id+"\';")
-        val = cur.fetchone()[0]
-
-        if val != 1:
-            conn.close()
-            return jsonify(message="Invalid Doctor Id"), 401
-        
         return_list = get_patients(doc_id, cur)
         conn.close()
         return jsonify(return_list), 200
@@ -242,6 +241,15 @@ def get_patient_details():
 
         if len(data) == 1:
             # it is patient_id
+
+
+            # doctor and patient must have an appointment in common
+            cur.execute("SELECT count(*) FROM doc_appointment WHERE patient_id = \'"+search_string+"\' AND doc_id = \'" + current_user_id+"\';")
+            val = cur.fetchone()[0]
+            if val == 0:
+                return jsonify(), 200
+
+
             temp = data[0]
             pat_info.update({"patient_id" : temp[0],
             "patient_name" : temp[1],
@@ -256,16 +264,17 @@ def get_patient_details():
             return jsonify(return_list), 200
         
         # it may be search string or data may not exist
-        cur.execute("SELECT patient_id, patient_name, dob, conditions FROM patients WHERE patient_name LIKE \'%"+search_string+"%\';")
+        # correct this
+        cur.execute("SELECT patients.patient_id, patients.patient_name, patients.dob, patients.conditions, doc_appointment.doc_appointment_id FROM patients JOIN doc_appointment ON (patients.patient_name LIKE \'%"+search_string+"%\' AND patients.patient_id = doc_appointment.patient_id);")
         data = cur.fetchall()
 
         if len(data) == 0:
-            return jsonify(message="No Entries Found"), 200
+            return jsonify(), 200
 
 
         for row in data:
             dictn={}
-            dictn.update({"patient_id":row[0], "patient_name":row[1], "age":age(row[2]), "conditions": row[3]})
+            dictn.update({"patient_id":row[0], "patient_name":row[1], "age":age(row[2]), "conditions": row[3], "doc_appointment_id":row[4]})
             return_list.append(dictn)
 
             conn.close()
@@ -276,3 +285,7 @@ def get_patient_details():
         return jsonify(message= "Invalid endpoint"), 401
 
 
+
+def get_db_connection():
+    conn = psycopg2.connect(host='127.0.0.1', database='hms', user="postgres", password="jarhasy", port=5432)
+    return conn

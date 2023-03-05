@@ -31,9 +31,6 @@ ReactREADME.md
 
 /backend/__pycache__
 /backend/env
-
-<<<<<<< HEAD
 /backend/website/__pycache__
-=======
-Tags.js
->>>>>>> 260e8faeadc353effba7ce5f4e44d0832b1d803f
+/backend/check.py
+
