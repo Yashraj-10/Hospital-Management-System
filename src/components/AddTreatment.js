@@ -1,5 +1,6 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const AddTreatment = () => {
     const [patientID, setpatientID] = useState('');
@@ -12,10 +13,15 @@ const AddTreatment = () => {
     // const [isPending, setIsPending] = useState(false);
 
     const handleAddTreatmentSubmit = (e) => {
-        // e.preventDefault();
         const treatment = { patientID, docAppointmentID, treatmentDate, tags };
         console.log(treatment);
-        // setIsPending(true);
+        axios.post("http://127.0.0.1:5000//add_treatment", {patientID : patientID, docAppointmentID : docAppointmentID, treatmentDate: treatmentDate, tags : tags})
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     };
 
 

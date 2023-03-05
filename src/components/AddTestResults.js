@@ -1,20 +1,25 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const AddTestResults = () => {
     const [patientID, setpatientID] = useState('');
     const [testAppointmetID, settestAppointmetID] = useState('');
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
+    const [reportfile, setReportfile] = useState('');
 
     const handleATRSubmit = (e) => {
-        // e.preventDefault();
-        // console.log(patientID);
-        // console.log(testAppointmetID);
-        // console.log(testComment);
-        // console.log(testResult);
-        const testResultsData = {patientID, testAppointmetID, testComment, testResult};
-        console.log(testResultsData);
+        
+        // const testResultsData = {patientID, testAppointmetID, testComment, testResult};
+        // console.log(testResultsData);
+        axios.post("http://127.0.0.1:5000//add_test_result", {patientID : patientID, testAppointmetID : testAppointmetID, testComment : testComment, testResult : testResult, reportfile : reportfile})
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     };
 
     return (
@@ -86,7 +91,8 @@ const AddTestResults = () => {
                     <div className="vikasRegCol3">
                     <input className="vikasATRUploadButton"
                         type="file"
-                        
+                        value={reportfile}
+                        onChange= {(e) => setReportfile(e.target.value)} 
                     />
                     </div>
                 </div>

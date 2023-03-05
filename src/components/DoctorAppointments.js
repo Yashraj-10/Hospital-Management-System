@@ -41,22 +41,23 @@ function createData(name, date, symptoms, status, treatments) {
     return { name, date, symptoms, status, treatments};
 }
 
-const rows = [
-  createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
-  createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
-  createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
-  createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
-  createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
-  createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
-  createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
-  createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
-  createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
-  createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
-  createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
-  createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
-];
+// const rows = [
+//   createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
+//   createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
+//   createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
+//   createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
+//   createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
+//   createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
+//   createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
+//   createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
+//   createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
+//   createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),
+//   createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
+//   createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
+// ];
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
+  const rows = props.appointments;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

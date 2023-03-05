@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 
 const columns = [
   { 
-    id: 'name', 
+    id: 'patient_name', 
     label: 'Name', 
     minWidth: 150
   },
@@ -24,13 +24,8 @@ const columns = [
     format: (value) => value.toFixed(0),
   },
   {
-    id: 'condition', 
+    id: 'conditions', 
     label: 'Conditions', 
-    minWidth: 150
-  },
-  {
-    id: 'drugs',
-    label: 'Drugs',
     minWidth: 150
   },
   {
@@ -39,7 +34,7 @@ const columns = [
     minWidth: 150
   },
   {
-    id: 'treatments',
+    id: 'treatment',
     label: 'Treatments',
     minWidth: 150
   },
@@ -50,26 +45,16 @@ const columns = [
   }
 ];
 
-function createData(name, age, condition, drugs, treatments, adddrugs, addtreatments) {
-    return { name, age, condition, drugs, adddrugs, treatments, addtreatments};
+function createData(name, age, condition, treatments, adddrugs, addtreatments) {
+    return { name, age, condition, adddrugs, treatments, addtreatments};
 }
 
-const rows = [
-  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
-  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
-  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
-  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
-  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
-  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
-  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
-  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
-  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
-  createData('Nirbhay',40, 'bawasir', 'paracetamol', 'surgery'),
-  createData('Pranil',16, 'pregnancy', 'paracetamol', 'surgery'),
-  createData('Vikas',20, 'food poisoning', 'paracetamol', 'surgery'),
-];
+// const rows = [
+  
+// ];
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
+  const rows = props.patients;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -111,10 +96,12 @@ export default function StickyHeadTable() {
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
+
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'name' ? <Button onClick={handlePatientDetails}>{value}</Button> :
+                            value === '' ? <p>{"—"}</p> :
+                            column.id === 'patient_name' ? <Button onClick={handlePatientDetails}>{value}</Button> :
                             column.id === 'adddrugs' ? <FormDialogDrug /> :
                             column.id === 'addtreatments' ? <FormDialogTreatment /> :
                             column.format && typeof value === 'number' ? column.format(value) : value
