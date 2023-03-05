@@ -121,7 +121,7 @@ const Register = () => {
                         <input
                             type="text"
                             value={address2}
-                            required
+                            // required
                             onChange={(e) => setAddress2(e.target.value)} />
                     </div>
                 </div>

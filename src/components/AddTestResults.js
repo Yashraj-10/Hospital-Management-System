@@ -6,14 +6,16 @@ const AddTestResults = () => {
     const [testAppointmetID, settestAppointmetID] = useState('');
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
+    const [reportfile, setReportfile] = useState('');
 
     const handleATRSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         // console.log(patientID);
         // console.log(testAppointmetID);
         // console.log(testComment);
         // console.log(testResult);
-        const testResultsData = {patientID, testAppointmetID, testComment, testResult};
+        console.log(reportfile);
+        const testResultsData = {patientID, testAppointmetID, testComment, testResult, reportfile};
         console.log(testResultsData);
     };
 
@@ -86,7 +88,9 @@ const AddTestResults = () => {
                     <div className="vikasRegCol3">
                     <input className="vikasATRUploadButton"
                         type="file"
-                        
+                        // accept="image/*"
+                        value={reportfile}
+                        onChange={(e) => setReportfile(e.target.value)}
                     />
                     </div>
                 </div>
