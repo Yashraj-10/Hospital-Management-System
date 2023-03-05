@@ -1,11 +1,14 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
 const Register = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState();
     const [address1, setAddress1] = useState('');
     const [address2, setAddress2] = useState('');
     const [sex, setSex] = useState('');
@@ -15,16 +18,16 @@ const Register = () => {
     const handleSubmit = (e) => {
         // e.preventDefault();
 
-        const patientData = {firstName, lastName, dateOfBirth, phoneNumber, address1, address2, emailId, conditions};
+        const patientData = { firstName, lastName, dateOfBirth, phoneNumber, address1, address2, emailId, conditions };
         console.log(patientData);
-        
-        axios.post("/register", {firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, address1: address1, address2: address2, emailId: emailId, conditions: conditions})
-        .then((response) => {
-            console.log(response);
-        }
-        , (error) => {
-            console.log(error);
-        })
+
+        // axios.post("/register", { firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, address1: address1, address2: address2, emailId: emailId, conditions: conditions })
+        //     .then((response) => {
+        //         console.log(response);
+        //     }
+        //         , (error) => {
+        //             console.log(error);
+        //         })
 
     };
     return (
@@ -76,7 +79,7 @@ const Register = () => {
                     </label>
                     <div className="vikasRegCol2">
                         <input type="date"
-                            max="2030-12-31"
+                            max= "2023-03-31"
                             className='vikasRegDOB' value={dateOfBirth} required onChange={(e) => setDateOfBirth(e.target.value)} />
                     </div>
                 </div>
@@ -106,7 +109,12 @@ const Register = () => {
                         Phone Number:
                     </label>
                     <div className="vikasRegCol2">
-                        <input type="number" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} />
+                        {/* <input type="number" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} /> */}
+                        <PhoneInput
+                            placeholder="Enter phone number"
+                            value={phoneNumber}
+                            required
+                            onChange={setPhoneNumber} />
                     </div>
                 </div>
 

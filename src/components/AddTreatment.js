@@ -12,7 +12,7 @@ const AddTreatment = () => {
     // const [isPending, setIsPending] = useState(false);
 
     const handleAddTreatmentSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         const treatment = { patientID, docAppointmentID, treatmentDate, tags };
         console.log(treatment);
         // setIsPending(true);
@@ -113,7 +113,7 @@ const AddTreatment = () => {
                                         {tag}
                                 </div>
                                 <div className="tagCol2">
-                                    <button className='vikasDeleteTag' onClick={() => deleteTag(index)}>Delete</button>
+                                    <button className='vikasDeleteTag' onClick={() => deleteTag(index)}>{index+1}</button>
                                 </div>
                             </div>
                         </div>

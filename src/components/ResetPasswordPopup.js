@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import { useState } from 'react';
 
 export default function FormDialogReset() {
   const [open, setOpen] = React.useState(false);
@@ -15,6 +16,12 @@ export default function FormDialogReset() {
   const handleClose = () => {
     setOpen(false);
   };
+  const [newpassword, setNewPassword] = useState('');
+  const handleReset = () => {
+    // alert('Reset Password');
+    console.log(newpassword);
+  };
+
 
   return (
     <div>
@@ -27,6 +34,8 @@ export default function FormDialogReset() {
             autoFocus
             margin="dense"
             id="password"
+            value = {newpassword}
+            onChange = {(e) => setNewPassword(e.target.value)}
             label="Enter New Password"
             type="email"
             fullWidth
@@ -35,7 +44,7 @@ export default function FormDialogReset() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Reset</Button>
+          <Button onClick={handleReset}>Reset</Button>
         </DialogActions>
       </Dialog>
     </div>

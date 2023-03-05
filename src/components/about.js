@@ -1,3 +1,8 @@
+import Aditya from '../images/Aditya.jpg';
+import Astitva from '../images/Astitva.png';
+import Vikas from '../images/vikas.png';
+import Yashraj from '../images/Yashraj.jpg';
+import Rishi from '../images/Rishi.png';
 const About = () => {
     return (
         <div className="about-us">
@@ -5,42 +10,42 @@ const About = () => {
             <div className="row">
 
                 <div className="column">
-                    <img src="https://media.istockphoto.com/id/1342708859/photo/portrait-of-a-male-doctor.jpg?b=1&s=170667a&w=0&k=20&c=dGL6uWE5oZAhJOkQ4sIIM832e_MnQ_ZHldhk885ndv8=" alt="doctor" />
+                    <img src={Aditya} alt="doctor" />
                     <div className="card-content">
-                        <h2>Dr. John Doe</h2>
-                        <p>Lorem ipsum </p>
+                        <h3>Aditya Choudhary</h3>
+                        <p>20CS10005 </p>
                     </div>
 
                 </div>
 
                 <div className="column">
-                    <img src="https://media.istockphoto.com/id/1342708859/photo/portrait-of-a-male-doctor.jpg?b=1&s=170667a&w=0&k=20&c=dGL6uWE5oZAhJOkQ4sIIM832e_MnQ_ZHldhk885ndv8=" alt="doctor" />
+                    <img src={Astitva} alt="doctor" />
                     <div className="card-content">
-                        <h2>Dr. John Doe</h2>
-                        <p>Lorem ipsum </p>
+                        <h3>Astitva</h3>
+                        <p>20CS30007</p>
                     </div>
                 </div>
 
 
                 <div className="column">
-                    <img src="https://media.istockphoto.com/id/1342708859/photo/portrait-of-a-male-doctor.jpg?b=1&s=170667a&w=0&k=20&c=dGL6uWE5oZAhJOkQ4sIIM832e_MnQ_ZHldhk885ndv8=" alt="doctor" />
+                    <img src={Vikas} alt="doctor" />
                     <div className="card-content">
-                        <h2>Dr. John Doe</h2>
-                        <p>Lorem ipsum </p>
+                        <h3>Vikas Vijaykumar Bastewad</h3>
+                        <p>20CS10073 </p>
                     </div>
                 </div>
                 <div className="column">
-                    <img src="https://media.istockphoto.com/id/1342708859/photo/portrait-of-a-male-doctor.jpg?b=1&s=170667a&w=0&k=20&c=dGL6uWE5oZAhJOkQ4sIIM832e_MnQ_ZHldhk885ndv8=" alt="doctor" />
+                    <img src={Yashraj} alt="doctor" />
                     <div className="card-content">
-                        <h2>Dr. John Doe</h2>
-                        <p>Lorem ipsum </p>
+                        <h3>Yashraj Singh</h3>
+                        <p>20CS10079 </p>
                     </div>
                 </div>
                 <div className="column">
-                    <img src="https://media.istockphoto.com/id/1342708859/photo/portrait-of-a-male-doctor.jpg?b=1&s=170667a&w=0&k=20&c=dGL6uWE5oZAhJOkQ4sIIM832e_MnQ_ZHldhk885ndv8=" alt="doctor" />
+                    <img src={Rishi} alt="doctor" />
                     <div className="card-content">
-                        <h2>Dr. John Doe</h2>
-                        <p>Lorem ipsum </p>
+                        <h3>Rishi Raj</h3>
+                        <p>20CS30040</p>
                     </div>
                 </div>
             </div>

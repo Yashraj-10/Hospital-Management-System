@@ -285,3 +285,7 @@ body{
 .about-us{
  margin-bottom: 8%;
 }
+.about-us img{
+ max-width: 300px;
+ max-height: 300px;
+}
