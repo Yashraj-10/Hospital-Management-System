@@ -91,7 +91,8 @@ CREATE TABLE IF NOT EXISTS doc_appointment (
     symptoms VARCHAR(255),
     treatment VARCHAR(255),
     PRIMARY KEY (doc_appointment_id),
-    FOREIGN KEY (doc_id) REFERENCES Doctors(doc_id)
+    FOREIGN KEY (doc_id) REFERENCES Doctors(doc_id),
+    FOREIGN KEY (patient_id) REFERENCES Pateints(patient_id)
 );
 
 -- Table 10
