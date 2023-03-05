@@ -324,3 +324,40 @@ server:
 //-------------------------------------------------------------------------------------------------------
 // FDO Data
 
+/add_patient  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "fdoeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAzMjQ4MiwianRpIjoiMTFmYmYzZTktODVmZi00M2U1LTlmMTEtODk4YWFlYjc0Yzk0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZETzIiLCJuYmYiOjE2NzgwMzI0ODIsImV4cCI6MTY3ODAzMzM4Mn0.0oEuQpFUCirgkVNpJcKVd13Fw_JsBWuZhmGOMpZ8sCE",
+    "patient_name": "Rishi Raj",
+    "ph_number": "919162839286",
+    "address": "KGP",
+    "conditions": "",
+    "dob": "2002-05-26",
+    "gender": "Male",
+    "email": "rishiraj45035@gmail.com"
+}
+server:
+{
+    "message": "Patient added successfully",
+    "patient_id": "P3"
+}
+
+/admit //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "fdoeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAzMjQ4MiwianRpIjoiMTFmYmYzZTktODVmZi00M2U1LTlmMTEtODk4YWFlYjc0Yzk0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZETzIiLCJuYmYiOjE2NzgwMzI0ODIsImV4cCI6MTY3ODAzMzM4Mn0.0oEuQpFUCirgkVNpJcKVd13Fw_JsBWuZhmGOMpZ8sCE",
+    "patient_id": "P3",
+    "room_type": "CCU",
+    "admit_date": "2023-03-06"
+}
+server:
+{
+    "message": "Patient admitted successfully",
+    "room_no": "C102"
+}
+
+/discharge //--------------------------------------------------------------------------------------------------
+
+
+
+/
