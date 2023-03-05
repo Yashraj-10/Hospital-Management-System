@@ -33,4 +33,5 @@ ReactREADME.md
 /backend/env
 /backend/website/__pycache__
 /backend/check.py
+/backend/.env
 
