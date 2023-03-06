@@ -112,7 +112,7 @@ const Doctor = () => {
             </div></>
             }
             {isTodayapmts && <div className="admind_table">
-            <button className="aduser" onClick={handleBack}>Back</button>
+            <button className="backButton" onClick={handleBack}>Back</button>
                     <DoctorTodayApmts appointments={appointments}/>
                 </div>}
         </div>

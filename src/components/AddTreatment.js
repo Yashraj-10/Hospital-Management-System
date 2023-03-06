@@ -1,11 +1,11 @@
 import '../styles/register.css';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const AddTreatment = () => {
-    const [patientID, setpatientID] = useState('');
+    // const [patientID, setpatientID] = useState('');
     const [docAppointmentID, setdocAppointmentID] = useState('');
-    const [treatmentDate, settreatmentDate] = useState('');
+    // const [treatmentDate, settreatmentDate] = useState('');
 
     const [input, setInput] = useState('');
     const [tags, setTags] = useState([]);
@@ -14,23 +14,29 @@ const AddTreatment = () => {
 
     const handleAddTreatmentSubmit = (e) => {
         e.preventDefault();
-        const treatment = { patientID, docAppointmentID, treatmentDate, tags };
+        const treatment = {  docAppointmentID, tags };
         console.log(treatment);
-        axios.post("http://127.0.0.1:5000//add_treatment", {patientID : patientID, docAppointmentID : docAppointmentID, treatmentDate: treatmentDate, tags : tags})
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_treatment', { doc_appointment_id: docAppointmentID, treatment: tags, access_token: "" })
+            .then((response) => {
+                // console.log(response.data['access_token']);
+                console.log(response.data);
+                alert("Treatment Added Successfully");
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error);
+                alert("Treatment Addition Failed");
+            }
+            )
+
         console.log("Added Treatment");
         setIsPending(true);
     };
     useEffect(() => {
         // console.log("useEffect");
-        setpatientID('');
+        // setpatientID('');
         setdocAppointmentID('');
-        settreatmentDate('');
+        // settreatmentDate('');
         setTags([]);
         setIsPending(false);
     }, [isPending]);
@@ -74,7 +80,7 @@ const AddTreatment = () => {
         <div className="vikasAddTreatmentContainer">
             <div className="vikasRegHead">Add Treatment</div>
             <form className='vikasRegForm'>
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Patient ID:
                     </label>
@@ -86,7 +92,7 @@ const AddTreatment = () => {
                             required
                             onChange={(e) => setpatientID(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Doctor Appointment ID:
@@ -100,7 +106,7 @@ const AddTreatment = () => {
                             onChange={(e) => setdocAppointmentID(e.target.value)} />
                     </div>
                 </div>
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Treatment Date:
                     </label>
@@ -112,7 +118,7 @@ const AddTreatment = () => {
                             required
                             onChange={(e) => settreatmentDate(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
 
                 <div className="tagContainer">
                     <input
@@ -121,16 +127,16 @@ const AddTreatment = () => {
                         onKeyDown={onKeyDown}
                         onKeyUp={onKeyUp}
                         onChange={onChange}
-                        
+
                     />
                     {tags.map((tag, index) => (
                         <div className="tag">
                             <div className="tagRow">
                                 <div className="tagCol1">
-                                        {tag}
+                                    {tag}
                                 </div>
                                 <div className="tagCol2">
-                                    <button className='vikasDeleteTag' onClick={() => deleteTag(index)}>{index+1}</button>
+                                    <button className='vikasDeleteTag' onClick={() => deleteTag(index)}>{index + 1}</button>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +145,7 @@ const AddTreatment = () => {
                 </div>
                 <br />
                 <div className="vikasRegButton">
-                   <button type="submit" required onClick={handleAddTreatmentSubmit} >Submit</button>
+                    <button type="submit" required onClick={handleAddTreatmentSubmit} >Submit</button>
                 </div>
             </form>
 

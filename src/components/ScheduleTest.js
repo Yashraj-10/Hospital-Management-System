@@ -194,10 +194,10 @@ const ScheduleTest = () => {
                                         onChange={handlePatientId} />
                                 </div>
                             </div>
-                            {isPatientId && <div className='vikasConfirmAppointmentButton'>
+                            {isPatientId && <div className='vikasRegButton'>
 
 
-                                <button onClick={(e) => handleConfirmAppointment(e)}>Confirm</button>
+                                <button type="submit" onClick={(e) => handleConfirmAppointment(e)}>Confirm Appointment</button>
                             </div>}
                         </div>}
                     </div>}
