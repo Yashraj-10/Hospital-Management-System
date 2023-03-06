@@ -11,7 +11,7 @@ const Discharge = () => {
         const dischargeData = { patientID, amount };
         console.log(dischargeData);
 
-        axios.post('https://dbms-backend-api.azurewebsites.net/discharge', { patient_id: patientID, amount: amount, access_token: "fdoeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODEyMDAyNywianRpIjoiMmQyNWE3OGItNmNiNi00MTZkLTllMzAtMDk1ZjJjYzQ2OGJkIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZETzEiLCJuYmYiOjE2NzgxMjAwMjcsImV4cCI6MTY3ODEyMDkyN30.9uzGR1Xd0CpbN7XgZvEWJG-x_y9yY2y5VxeN9V-7A-Q" })
+        axios.post('https://dbms-backend-api.azurewebsites.net/discharge', { patient_id: patientID, amount: amount, access_token: localStorage.getItem('access_token') })
             .then((response) => {
                 // console.log(response.data['access_token']);
                 console.log(response.data);
