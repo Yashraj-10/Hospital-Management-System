@@ -24,8 +24,7 @@ const Doctor = () => {
 
     axios
         .post("https://dbms-backend-api.azurewebsites.net/appointment?doc_id=DOC1", {
-            access_token:
-            "doceyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODEwMjgzMCwianRpIjoiZDc4MGY4NGUtNWMwMy00OWM1LTg5MzQtMzUxMzFiMmVkZjQ5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRPQzEiLCJuYmYiOjE2NzgxMDI4MzAsImV4cCI6MTY3ODEwMzczMH0.mRB1-JIbAN7Y2qw3oLWAFdkEJYTHKzs9utRpcISN5xQ",
+            access_token: localStorage.getItem("access_token")
         })
         .then(
             (response) => {
@@ -55,10 +54,10 @@ const Doctor = () => {
     const [post, setPost] = React.useState(null);
 
     useEffect(() => {
+      var self_user_id = localStorage.getItem("self_user_id");
   axios
-    .post("https://dbms-backend-api.azurewebsites.net/patient?doc_id=DOC1", {
-      access_token:
-        "doceyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODEwMjgzMCwianRpIjoiZDc4MGY4NGUtNWMwMy00OWM1LTg5MzQtMzUxMzFiMmVkZjQ5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRPQzEiLCJuYmYiOjE2NzgxMDI4MzAsImV4cCI6MTY3ODEwMzczMH0.mRB1-JIbAN7Y2qw3oLWAFdkEJYTHKzs9utRpcISN5xQ",
+    .post('https://dbms-backend-api.azurewebsites.net/patient?doc_id='.concat(`${self_user_id}`), {
+      access_token: localStorage.getItem("access_token")
     })
     .then(
       (response) => {
