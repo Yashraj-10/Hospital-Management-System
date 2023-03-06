@@ -5,21 +5,27 @@ import axios from 'axios';
 const Admit = () => {
     const [patientID, setpatientID] = useState('');
     const [admitDate, setadmitDate] = useState('');
-    const [admitTime, setadmitTime] = useState('');
+    // const [admitTime, setadmitTime] = useState('');
     // const [roomNo, setroomNo] = useState('');
     const [roomType, setroomType] = useState('');
     const handleAdmitSubmit = (e) => {
-        // e.preventDefault();
-        const admitData = {patientID, admitDate, admitTime, roomType};
-        console.log(admitData);
+        e.preventDefault();
+        // const admitData = {patientID, admitDate, roomType};
+        // console.log(admitData);
+        // localStorage.getItem('access_token')}
+  
+        axios.post('https://dbms-backend-api.azurewebsites.net/admit', {patient_id: patientID, admit_date: admitDate, room_type: roomType, access_token: localStorage.getItem('access_token')})
+            .then((response) => {
+                // console.log(response.data['access_token']);
+                console.log(response.data);
+                alert("Patient Admitted Successfully");
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error.data);
+                alert(error.response.data.message);
 
-        axios.post("/admit", {patientID: patientID, admitDate: admitDate, admitTime: admitTime, roomType: roomType})
-        .then((response) => {
-            console.log(response);
-        }
-        , (error) => {
-            console.log(error);
-        })
+            }
+            )
 
         
     };
@@ -77,7 +83,7 @@ const Admit = () => {
                     </div>
                 </div>
 
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Admit Time:
                     </label>
@@ -85,7 +91,7 @@ const Admit = () => {
                         <input type="time"
                             className='vikasAdmitTextBox' value={admitTime} required onChange={(e) => setadmitTime(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
 
                 
         

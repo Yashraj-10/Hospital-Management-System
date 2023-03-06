@@ -1,33 +1,38 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+// import { useHistory } from 'react-router-dom';
 
 const Register = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [patientName, setpatientName] = useState('');
+    // const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [phoneNumber, setPhoneNumber] = useState();
     const [address1, setAddress1] = useState('');
-    const [address2, setAddress2] = useState('');
+    // const [address2, setAddress2] = useState('');
     const [sex, setSex] = useState('');
     const [emailId, setEmailId] = useState('');
     const [conditions, setConditions] = useState(['']);
-
+    // const history = useHistory();
     const handleSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
-        const patientData = { firstName, lastName, dateOfBirth, phoneNumber, address1, address2, emailId, conditions };
+        const patientData = { patientName, dateOfBirth, phoneNumber, address1, emailId, conditions };
         console.log(patientData);
 
-        // axios.post("/register", { firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, phoneNumber: phoneNumber, address1: address1, address2: address2, emailId: emailId, conditions: conditions })
-        //     .then((response) => {
-        //         console.log(response);
-        //     }
-        //         , (error) => {
-        //             console.log(error);
-        //         })
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_patient', { patient_name: patientName, dob: dateOfBirth, ph_number: phoneNumber.slice(1,13), address: address1, email: emailId, conditions: conditions, gender: sex, access_token: localStorage.getItem('access_token') })
+            .then((response) => {
+                // console.log(response.data['access_token']);
+                console.log(response.data);
+                alert("Patient Registered Successfully");
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error);
+                alert("Patient Registration Failed");
+            }
+            )
 
     };
     return (
@@ -36,27 +41,14 @@ const Register = () => {
             <form onSubmit={handleSubmit} className='vikasRegForm'>
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
-                        First Name:
+                        Patient Name:
                     </label>
                     <div className="vikasRegCol2">
                         <input
                             type="text"
-                            value={firstName}
+                            value={patientName}
                             required
-                            onChange={(e) => setFirstName(e.target.value)} />
-                    </div>
-                </div>
-
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Last Name:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input
-                            type="text"
-                            value={lastName}
-                            required
-                            onChange={(e) => setLastName(e.target.value)} />
+                            onChange={(e) => setpatientName(e.target.value)} />
                     </div>
                 </div>
 
@@ -79,7 +71,7 @@ const Register = () => {
                     </label>
                     <div className="vikasRegCol2">
                         <input type="date"
-                            max= "2023-03-31"
+                            max="2023-03-31"
                             className='vikasRegDOB' value={dateOfBirth} required onChange={(e) => setDateOfBirth(e.target.value)} />
                     </div>
                 </div>
@@ -120,7 +112,7 @@ const Register = () => {
 
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
-                        Address Line 1:
+                        Address:
                     </label>
                     <div className="vikasRegCol2">
                         <input
@@ -130,7 +122,7 @@ const Register = () => {
                             onChange={(e) => setAddress1(e.target.value)} />
                     </div>
                 </div>
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Address Line 2:
                     </label>
@@ -141,7 +133,7 @@ const Register = () => {
                             // required
                             onChange={(e) => setAddress2(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Prevailing Conditions (if any):

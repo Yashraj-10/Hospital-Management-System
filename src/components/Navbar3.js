@@ -2,14 +2,18 @@ import { useHistory } from 'react-router-dom';
 import NavbarLogo from './NavbarLogo';
 import FormDialogReset from './ResetPasswordPopup';
 import '../styles/navbar3.css';
+import { Link } from '@mui/material';
 const Navbar3 = () => {
     const history = useHistory();
     const handleMyHome = () => {
         history.push('/login');
     }
+    const handleLogoCLick = (e) => {
+        history.push('/');
+    }
     return (
         <nav className='navbar3'>
-            <div className="logo"><NavbarLogo /></div>
+            <div className="logo"><Link onClick={(e) => handleLogoCLick(e)}><NavbarLogo /></Link></div>
             <div className='vikasHName2'>
                 {/* <NavbarLogo /> */}
                 Azad Hospital

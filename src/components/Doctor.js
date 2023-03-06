@@ -105,7 +105,7 @@ const Doctor = () => {
       )}
       {isTodayapmts && (
         <div className="admind_table">
-          <button className="aduser" onClick={handleBack}>
+          <button className="backButton" onClick={handleBack}>
             Back
           </button>
           <DoctorTodayApmts appointments={appointments} />

@@ -5,20 +5,52 @@ import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import axios from 'axios';
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 const AdminAddUser = () => {
     const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    // const [lastName, setLastName] = useState('');
     const [Type, setType] = useState('');
     const [email, setEmail] = useState('');
     const [doctype, setDoctype] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [address1, setAddress1] = useState('');
-    const [address2, setAddress2] = useState('');
-
+    const [password, setPassword] = useState('');
+    // const [address2, setAddress2] = useState('');
+    
     const handleSubmit = (e) => {
-        // e.preventDefault();
-        console.log(firstName, lastName, Type, email, doctype, phoneNumber, address1, address2);
+        e.preventDefault();
+        console.log(firstName,  Type, email, doctype, phoneNumber, address1);
+        if (Type === "doc") {
+        axios.post('https://dbms-backend-api.azurewebsites.net/users/add', { name: firstName, type: Type, email: email, docType: doctype, ph_number: phoneNumber.slice(1,13), address: address1, password:password, access_token: localStorage.getItem("access_token") })
+            .then((response) => {
+                // console.log(response.data['access_token']);
+                console.log(response.data);
+                alert("User Added Successfully");
+                
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error);
+                alert("User Addition Failed");
+            }
+            )
+        }
+        else{
+            axios.post('https://dbms-backend-api.azurewebsites.net/users/add', { name: firstName, type: Type, ph_number: phoneNumber.slice(1,13), address: address1, password:password, access_token: localStorage.getItem('access_token') })
+            .then((response) => {
+                // console.log(response.data['access_token']);
+                console.log(response.data);
+                alert("User Added Successfully");
+                
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error);
+                alert("User Addition Failed");
+            }
+            )
+        }
     };
 
     const [isDoctor, setIsDoctor] = useState(false);
@@ -41,7 +73,7 @@ const AdminAddUser = () => {
             <form onSubmit={handleSubmit} className='vikasRegForm'>
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
-                        First Name:
+                        Name:
                     </label>
                     <div className="vikasRegCol2">
                         <input
@@ -52,7 +84,7 @@ const AdminAddUser = () => {
                     </div>
                 </div>
 
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Last Name:
                     </label>
@@ -63,7 +95,7 @@ const AdminAddUser = () => {
                             required
                             onChange={(e) => setLastName(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Type of User:
@@ -77,10 +109,10 @@ const AdminAddUser = () => {
                                 onClick={(e) => emailandtype(e,Type)}
                             >
                                 <option value="null">Select</option>
-                                <option value="DBA">DBA</option>
-                                <option value="Doctor">Doctor</option>
-                                <option value="DE">DE</option>
-                                <option value="FD">FD</option>
+                                <option value="dba">DBA</option>
+                                <option value="doc">Doctor</option>
+                                <option value="deo">DEO</option>
+                                <option value="fdo">FDO</option>
                             </select>
                         </div>
                     </div>
@@ -117,13 +149,18 @@ const AdminAddUser = () => {
                         Phone Number:
                     </label>
                     <div className="vikasRegCol2">
-                        <input type="tel" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} />
+                        {/* <input type="number" value={phoneNumber} required onChange={(e) => setPhoneNumber(e.target.value)} /> */}
+                        <PhoneInput
+                            placeholder="Enter phone number"
+                            value={phoneNumber}
+                            required
+                            onChange={setPhoneNumber} />
                     </div>
                 </div>
 
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
-                        Address Line 1:
+                        Address:
                     </label>
                     <div className="vikasRegCol2">
                         <input
@@ -133,7 +170,7 @@ const AdminAddUser = () => {
                             onChange={(e) => setAddress1(e.target.value)} />
                     </div>
                 </div>
-                <div className="vikasRegRow">
+                {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Address Line 2:
                     </label>
@@ -144,7 +181,7 @@ const AdminAddUser = () => {
                             required
                             onChange={(e) => setAddress2(e.target.value)} />
                     </div>
-                </div>
+                </div> */}
                 <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Password:
@@ -164,6 +201,9 @@ const AdminAddUser = () => {
                             </IconButton>
                             </InputAdornment>
                         }
+                        value={password}
+                        required
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                     </div>
                 </div>

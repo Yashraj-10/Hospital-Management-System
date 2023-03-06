@@ -7,17 +7,21 @@ const Discharge = () => {
     const [amount, setamount] = useState('');
     const handleSubmit = (e) => {
 
-        // e.preventDefault();
-        const dischargeData = {patientID, amount};
+        e.preventDefault();
+        const dischargeData = { patientID, amount };
         console.log(dischargeData);
-        
-        axios.post("/discharge", {patientID: patientID, amount: amount})
-        .then((response) => {
-            console.log(response);
-        }
-        , (error) => {
-            console.log(error);
-        })
+
+        axios.post('https://dbms-backend-api.azurewebsites.net/discharge', { patient_id: patientID, amount: amount, access_token: localStorage.getItem('access_token') })
+            .then((response) => {
+                // console.log(response.data['access_token']);
+                console.log(response.data);
+                alert("Patient Discharged Successfully");
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error);
+                alert("Patient Discharge Failed");
+            }
+            )
 
     };
     return (
@@ -50,11 +54,11 @@ const Discharge = () => {
                             onChange={(e) => setamount(e.target.value)} />
                     </div>
                 </div>
-                            
+
 
 
                 <div className="vikasRegButton">
-                    <button type="submit" 
+                    <button type="submit"
                         onClick={handleSubmit}
                     >Discharge</button>
                 </div>

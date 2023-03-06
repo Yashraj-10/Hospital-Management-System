@@ -10,16 +10,19 @@ const AddTestResults = () => {
     const [reportfile, setReportfile] = useState('');
 
     const handleATRSubmit = (e) => {
+
         
-        // const testResultsData = {patientID, testAppointmetID, testComment, testResult};
-        // console.log(testResultsData);
-        axios.post("http://127.0.0.1:5000//add_test_result", {testAppointmetID : testAppointmetID, testComment : testComment, testResult : testResult, reportfile : reportfile})
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: reportfile , access_token: ""})
+            .then((response) => {
+                // console.log(response.data['access_token']);
+                console.log(response.data);
+                alert("Test Result Added Successfully");
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error);
+                alert("Test Result Addition Failed");
+            }
+            )
     };
 
     return (
@@ -90,11 +93,11 @@ const AddTestResults = () => {
                         Upload Report:
                     </label>
                     <div className="vikasRegCol3">
-                    <input className="vikasATRUploadButton"
-                        type="file"
-                        value={reportfile}
-                        onChange= {(e) => setReportfile(e.target.value)} 
-                    />
+                        <input className="vikasATRUploadButton"
+                            type="file"
+                            value={reportfile}
+                            onChange={(e) => setReportfile(e.target.value)}
+                        />
                     </div>
                 </div>
                 <div className="vikasRegButton">
