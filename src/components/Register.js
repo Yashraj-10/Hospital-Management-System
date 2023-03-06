@@ -1,5 +1,5 @@
 import '../styles/register.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
@@ -15,6 +15,7 @@ const Register = () => {
     const [sex, setSex] = useState('');
     const [emailId, setEmailId] = useState('');
     const [conditions, setConditions] = useState(['']);
+    const [isRendered, setIsRendered] = useState(false);
     // const history = useHistory();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,13 +29,26 @@ const Register = () => {
                 console.log(response.data);
                 alert("Patient Registered Successfully");
                 // history.push("/frontdesk");
+                setIsRendered(true);
             }, (error) => {
                 console.log(error);
-                alert("Patient Registration Failed");
+                alert(error.response.data.message);
             }
             )
 
     };
+    useEffect(() => {
+        if (isRendered) {
+            setpatientName('');
+            setDateOfBirth('');
+            setPhoneNumber('');
+            setAddress1('');
+            setEmailId('');
+            setConditions(['']);
+            setSex('');
+            setIsRendered(false);
+        }
+    }, [isRendered])
     return (
         <div className='vikasRegFormContainer'>
             <div className='vikasRegHead'>Patient Registration</div>

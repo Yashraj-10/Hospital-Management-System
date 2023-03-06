@@ -16,19 +16,20 @@ const Doctor = () => {
   let appointments = [];
 
   const [isTodayapmts, setIsTodayapmts] = useState(false);
-  const [todaydata, setTodaydata] = useState(null);
+  const [todaydata, setTodaydata] = React.useState(null);
 
   const handleTodayapmts = (e) => {
     setIsTodayapmts(true);
     e.preventDefault();
-
+    var self_user_id = localStorage.getItem("self_user_id");
     axios
-        .post("https://dbms-backend-api.azurewebsites.net/appointment?doc_id=DOC1", {
+        .post('https://dbms-backend-api.azurewebsites.net/appointments?doc_id='.concat(`${self_user_id}`), {
             access_token: localStorage.getItem("access_token")
         })
         .then(
             (response) => {
                 setTodaydata(response.data);
+                console.log(response.data);
             }
         ,
         (error) => {
@@ -89,7 +90,7 @@ const Doctor = () => {
               Go
             </button>
             <button className="aduser" onClick={handleTodayapmts}>
-              Today's appointments
+              Today's Appointments
             </button>
           </div>
           <div>

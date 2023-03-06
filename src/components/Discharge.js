@@ -1,10 +1,11 @@
-
+import { useEffect } from 'react';
 import '../styles/register.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 const Discharge = () => {
     const [patientID, setpatientID] = useState('');
     const [amount, setamount] = useState('');
+    const [isDischargerendered, setIsDischargerendered] = useState(false);
     const handleSubmit = (e) => {
 
         e.preventDefault();
@@ -13,17 +14,25 @@ const Discharge = () => {
 
         axios.post('https://dbms-backend-api.azurewebsites.net/discharge', { patient_id: patientID, amount: amount, access_token: localStorage.getItem('access_token') })
             .then((response) => {
-                // console.log(response.data['access_token']);
                 console.log(response.data);
                 alert("Patient Discharged Successfully");
-                // history.push("/frontdesk");
+                setIsDischargerendered(true);
             }, (error) => {
                 console.log(error);
-                alert("Patient Discharge Failed");
+                alert(error.response.data.message);
             }
             )
 
     };
+    
+    useEffect(() => {
+        if (isDischargerendered) {
+            setpatientID('');
+            setamount('');
+            setIsDischargerendered(false);
+        }
+    }, [isDischargerendered]);
+
     return (
         <div className='vikasAdmitFormContainer'>
             <div className='vikasRegHead'>Discharge Patient</div>

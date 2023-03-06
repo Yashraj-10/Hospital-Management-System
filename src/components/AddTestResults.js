@@ -1,5 +1,5 @@
 import '../styles/register.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const AddTestResults = () => {
@@ -9,21 +9,33 @@ const AddTestResults = () => {
     const [testResult, settestResult] = useState('');
     const [reportfile, setReportfile] = useState('');
 
-    const handleATRSubmit = (e) => {
+    const [isATRrender, setisATRrender] = useState(false);
 
-        
-        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: reportfile , access_token: ""})
+    const handleATRSubmit = (e) => {
+        e.preventDefault();
+        console.log(reportfile);
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: reportfile , access_token: localStorage.getItem('access_token')})
             .then((response) => {
-                // console.log(response.data['access_token']);
+                
                 console.log(response.data);
                 alert("Test Result Added Successfully");
-                // history.push("/frontdesk");
+                setisATRrender(true);
             }, (error) => {
                 console.log(error);
-                alert("Test Result Addition Failed");
+                alert(error.response.data.message);
             }
             )
     };
+
+    useEffect(() => {
+        // console.log("useEffect");
+        // setpatientID('');
+        settestAppointmetID('');
+        settestComment('');
+        settestResult('');
+        setReportfile('');
+        setisATRrender(false);
+    }, [isATRrender]);
 
     return (
         <div className="vikasTestResultsContainer">
@@ -99,6 +111,7 @@ const AddTestResults = () => {
                             onChange={(e) => setReportfile(e.target.value)}
                         />
                     </div>
+                    
                 </div>
                 <div className="vikasRegButton">
                     <button type="submit" onClick={handleATRSubmit} >Add Result</button>
