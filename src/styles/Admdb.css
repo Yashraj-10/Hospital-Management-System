@@ -1,5 +1,12 @@
 .admind_header {
   /* margin-top: 0.5%; */
+  margin-left: 18%;
+  position: center;
+  display: flex;
+}
+
+.doctor_header {
+  /* margin-top: 0.5%; */
   margin-left: 25%;
   position: center;
   display: flex;

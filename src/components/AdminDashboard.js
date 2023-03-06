@@ -23,10 +23,32 @@ const AdminDashboard = () => {
     let data = [];
     data.push({"DBA":15, "DEO": 20, "FDO": 30, "DOC": 40});
 
-    let no_dbas = 220;
-    let no_doctors = 475;
-    let no_fds = 280;
-    let no_des = 160;
+    let users = [];
+    users.push(
+    {
+        "address": "KGP",
+        "name": "Vikas Basti",
+        "ph_number": "8830475325  ",
+        "type": "doc",
+        "user_id": "DOC1"
+    });
+    users.push(
+    {
+        "address": "Delhi",
+        "name": "Yashraj",
+        "ph_number": "916393746715",
+        "type": "dba",
+        "user_id": "DBA1"
+    });
+    users.push(
+    {
+        "address": "Delhi",
+        "name": "Astitva",
+        "ph_number": "910987654321",
+        "type": "fdo",
+        "user_id": "FDO2"
+    });
+
     return ( 
         <div>
             <div className="admind_header">
@@ -39,7 +61,7 @@ const AdminDashboard = () => {
                     <CheckboxesGroup />
                 </div>
                 <div className="admind_table">
-                    <StickyHeadTable />
+                    <StickyHeadTable users={users}/>
                 </div>
                 <div className="usr_cards">
                     <div className="usr_types_dba">

@@ -4,6 +4,7 @@ import '../styles/Admdb.css';
 import CheckboxesGroup from './DoctorFilter';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import DoctorTodayApmts from './DoctorAppointments';
 
 const Doctor = () => {
     const [searchInput, setSearchInput] = useState("");
@@ -18,7 +19,7 @@ const Doctor = () => {
     appointments.push({
         "doc_appointment_id": "APP1",
         "end_time": "2018-04-24 10:47:00",
-        "patient_name": "Astitva",
+        "patient_name": "Vikas",
         "start_time": "2018-04-24 10:47:00"
     });
     appointments.push({
@@ -27,9 +28,12 @@ const Doctor = () => {
         "patient_name": "Nirbhay",
         "start_time": "2018-04-24 10:50:00"
     });
+
+    const [isTodayapmts, setIsTodayapmts] = useState(false);
     
-    const handleAddUser = (e) => {
-    //     e.preventDefault();
+    const handleTodayapmts = (e) => {
+        setIsTodayapmts(true);
+        e.preventDefault();
     
     //     axios.get('http://127.0.0.1:5000//patients?doc_id=DOC1')
     //     .then((response) => {
@@ -40,8 +44,15 @@ const Doctor = () => {
     //         console.log(error);
     //     });
     
-    //     history.push('/todays_apmts');
     };
+
+    const handleBack = (e) => {
+        setIsTodayapmts(false);
+    };
+
+    useEffect(() => {
+        console.log("useEffect");
+    }, [isTodayapmts]);
     
     
     let patients = [];
@@ -85,19 +96,25 @@ const Doctor = () => {
                                         
     return (
         <div>
-            <div className="admind_header">
+
+            {!isTodayapmts && <><div className="doctor_header">
                 <input type="text" placeholder='Enter patient name' onChange={handleChange} value={searchInput} className="searchTerm"></input>
                 <button type="submit" className="searchButton">Go</button>
-                <button className="aduser" onClick={handleAddUser}>Today's appointments</button>
+                <button className="aduser" onClick={handleTodayapmts}>Today's appointments</button>
             </div>
             <div>
                 <div className="dropdownAge">
                     <CheckboxesGroup />
                 </div>
                 <div className="admind_table">
-                    <StickyHeadTable patients={patients} appointments={appointments}/>
+                    <StickyHeadTable patients={patients} />
                 </div>
-            </div>
+            </div></>
+            }
+            {isTodayapmts && <div className="admind_table">
+            <button className="aduser" onClick={handleBack}>Back</button>
+                    <DoctorTodayApmts appointments={appointments}/>
+                </div>}
         </div>
     );
 }

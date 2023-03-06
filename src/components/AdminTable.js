@@ -20,12 +20,12 @@ const columns = [
     minWidth: 170 
   },
   { 
-    id: 'usrcode', 
+    id: 'type', 
     label: 'Type', 
     minWidth: 100 
   },
   {
-    id: 'usrname',
+    id: 'user_id',
     label: 'Username',
     minWidth: 170
   },
@@ -39,26 +39,27 @@ const columns = [
   }
 ];
 
-function createData(name, usrcode, usrname) {
-  return { name, usrcode, usrname};
+function createData(name, type, user_id) {
+  return { name, type, user_id};
 }
 
-const rows = [
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-  createData('Nirbhay', 'DBA', 'jnv_45'),
-  createData('Pranil', 'Dr', 'puchhi_18'),
-  createData('Vikas', 'FD', 'basti_7'),
-];
+// const rows = [
+//   createData('Nirbhay', 'DBA', 'jnv_45'),
+//   createData('Pranil', 'Dr', 'puchhi_18'),
+//   createData('Vikas', 'FD', 'basti_7'),
+//   createData('Nirbhay', 'DBA', 'jnv_45'),
+//   createData('Pranil', 'Dr', 'puchhi_18'),
+//   createData('Vikas', 'FD', 'basti_7'),
+//   createData('Nirbhay', 'DBA', 'jnv_45'),
+//   createData('Pranil', 'Dr', 'puchhi_18'),
+//   createData('Vikas', 'FD', 'basti_7'),
+//   createData('Nirbhay', 'DBA', 'jnv_45'),
+//   createData('Pranil', 'Dr', 'puchhi_18'),
+//   createData('Vikas', 'FD', 'basti_7'),
+// ];
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
+  const rows = props.users;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 

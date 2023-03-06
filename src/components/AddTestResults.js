@@ -13,7 +13,7 @@ const AddTestResults = () => {
         
         // const testResultsData = {patientID, testAppointmetID, testComment, testResult};
         // console.log(testResultsData);
-        axios.post("http://127.0.0.1:5000//add_test_result", {patientID : patientID, testAppointmetID : testAppointmetID, testComment : testComment, testResult : testResult, reportfile : reportfile})
+        axios.post("http://127.0.0.1:5000//add_test_result", {testAppointmetID : testAppointmetID, testComment : testComment, testResult : testResult, reportfile : reportfile})
         .then((response) => {
             console.log(response);
         })

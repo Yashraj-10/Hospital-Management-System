@@ -23,6 +23,7 @@ import NotFound from './components/NotFound';
 import Navbar3 from './components/Navbar3';
 import Navbar4 from './components/Navbar4';
 import Home from './components/Home';
+
 function App() {
   return (
     <Router>

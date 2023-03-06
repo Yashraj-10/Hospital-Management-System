@@ -11,7 +11,7 @@ import '../styles/DocApmts.css';
 
 const columns = [
   { 
-    id: 'name', 
+    id: 'patient_name', 
     label: 'Patient\'s Name', 
     minWidth: 150
   },
@@ -56,7 +56,7 @@ function createData(name, date, symptoms, status, treatments) {
 //   createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
 // ];
 
-export default function StickyHeadTable(props) {
+export default function DoctorTodayApmts(props) {
   const rows = props.appointments;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -72,8 +72,8 @@ export default function StickyHeadTable(props) {
 
   return (
     <Paper className='astitvaApmtsTable'>
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 480 }}>
+    <Paper sx={{ width: '120%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 550 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

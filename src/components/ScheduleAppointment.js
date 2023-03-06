@@ -249,7 +249,7 @@ const ScheduleAppointment = () => {
                 {isDocSelected && <div className='vikasSelectDate'>
                     <div className="vikasRegRow">
                         <label className='vikasRegCol1'>
-                            Choose Date:
+                            Available Dates:
                         </label>
                         {/* <div className='form-group'> */}
                         <div className="vikasRegCol2">
@@ -289,7 +289,7 @@ const ScheduleAppointment = () => {
                     {isDateSelected && <div className='vikasSelectSlot'>
                         <div className="vikasRegRow">
                             <label className='vikasRegCol1'>
-                                Choose Slot:
+                                Available Slots:
                             </label>
                             <div className="vikasRegCol2">
                                 <div>
@@ -327,10 +327,10 @@ const ScheduleAppointment = () => {
                                         onChange={handlePatientId} />
                                 </div>
                             </div>
-                            {isPatientId && <div className='vikasConfirmAppointmentButton'>
+                            {isPatientId && <div className='vikasRegButton'>
 
 
-                                <button onClick={(e) => handleConfirmAppointment(e)}>Confirm Appointment</button>
+                                <button type="submit" onClick={(e) => handleConfirmAppointment(e)}>Confirm Appointment</button>
                             </div>}
                         </div>}
                     </div>}
