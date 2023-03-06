@@ -1,10 +1,12 @@
 import React from 'react';
 import axios from "axios";
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
     const [user_id, setUser_id] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         console.log(user_id, password);
