@@ -1,13 +1,10 @@
 import React from 'react';
 import axios from "axios";
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 const Login = () => {
     const [user_id, setUser_id] = useState("");
     const [password, setPassword] = useState("");
-
-    const history = useHistory();
 
     const handleSubmit = (e) => {
         // e.preventDefault();
@@ -23,16 +20,25 @@ const Login = () => {
         //     history.push("/login");
         // }
 
-        axios.post("/login", {user_id: user_id, password: password})
-        .then((response) => {
-            console.log(response.data['access_token']);
-            history.push("/frontdesk");
-        }
-        , (error) => {
-            console.log(error);
-            history.push("/login");
-        }
-        )
+        axios.post('https://dbms-backend-api.azurewebsites.net/login', { user_id: user_id, password: password })
+            .then((response) => {
+                console.log(response.data);
+                // history.push("/frontdesk");
+            }, (error) => {
+                console.log(error);
+            }
+            )
+
+        // axios.post("/login", {user_id: user_id, password: password})
+        // .then((response) => {
+        //     console.log(response.data['access_token']);
+        //     history.push("/frontdesk");
+        // }
+        // , (error) => {
+        //     console.log(error);
+        //     history.push("/login");
+        // }
+        // )
     }
     return (
         
@@ -58,10 +64,6 @@ const Login = () => {
                     <label>Password</label>
                 </div>
                 <button className='yashrajButton' onClick={handleSubmit}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
                     Log In
                 </button>
             </form>
