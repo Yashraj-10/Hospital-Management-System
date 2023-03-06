@@ -32,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start-backend": "cd backend && env/bin/flask run --no-debugger",
-    "build": "react-scripts build",
+    "build": "react-scripts build && echo ‘/* /index.html 200’ | cat >build/_redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
