@@ -1,17 +1,13 @@
 import React from 'react';
 import axios from "axios";
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 
 const Login = () => {
     const [user_id, setUser_id] = useState("");
     const [password, setPassword] = useState("");
 
-    const history = useHistory();
-
     const handleSubmit = (e) => {
         console.log(user_id, password);
-
 
         axios.post('https://dbms-backend-api.azurewebsites.net/login', { user_id: user_id, password: password })
             .then((response) => {
