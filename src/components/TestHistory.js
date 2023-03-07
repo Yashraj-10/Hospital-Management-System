@@ -12,43 +12,34 @@ import '../styles/DocApmts.css';
 
 const columns = [
   { 
-    id: 'name', 
+    id: 'test_name', 
     label: 'Test Name', 
     minWidth: 150
   },
   {
-    id: 'date',
+    id: 'start_time',
     label: 'Date',
     minWidth: 150
   },
   {
-    id: 'results',
+    id: 'result',
     label: 'Results',
     minWidth: 150
   },
   {
-    id: 'comments',
+    id: 'comment',
     label: 'Comments',
     minWidth: 150
   },
   {
-    id: 'report',
+    id: 'report_link',
     label: 'Test Report',
     minWidth: 150
   },
 ];
 
-function createData(name, date, results, comments, report) {
-    return { name, date, results, comments, report};
-}
-
-const rows = [
-  createData('Nirbhay','40/2/13', 'bawasir', 'bad'),
-  createData('Pranil','16/8/10', 'pregnancy', 'bad'),
-  createData('Vikas','20/5/12', 'food poisoning', 'bad')
-];
-
-export default function StickyHeadTable() {
+export default function StickyHeadTable(props) {
+  var tests = props.data;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -60,6 +51,10 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const clickHandler = (link) =>{
+    console.log(link)
+  }
 
   return (
     <Paper className='astitvaApmtsTable'>
@@ -79,7 +74,7 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {tests
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -89,7 +84,7 @@ export default function StickyHeadTable() {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'report' ? <Button variant="contained">View</Button> :
+                            column.id === 'report_link' ? <Button href={row.report_link} variant="contained" target="_blank">View</Button> :
                             column.format && typeof value === 'number' ? column.format(value) : value
                           }
                         </TableCell>
@@ -104,7 +99,7 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[5, 10, 20]}
         component="div"
-        count={rows.length}
+        count={tests.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

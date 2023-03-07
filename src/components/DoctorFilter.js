@@ -19,9 +19,10 @@ export default function CheckboxesGroup() {
       ...state,
       [event.target.name]: event.target.checked,
     });
+    console.log(state);
   };
 
-  const { Above, Between1, Between2, Below } = state;
+  var { Above, Between1, Between2, Below } = state;
 
   return (
     <Box sx={{ display: 'flex' }}>

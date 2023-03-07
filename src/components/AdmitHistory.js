@@ -7,57 +7,33 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Button from '@mui/material/Button';
 import '../styles/DocApmts.css';
-import axios from 'axios';
-import '../styles/register.css';
-
 
 const columns = [
   { 
-    id: 'doc_name', 
-    label: 'Doctor Name', 
+    id: 'admit_date', 
+    label: 'Admit Date', 
     minWidth: 150
   },
   {
-    id : 'docType',
-    label : 'Type',
+    id: 'discharge_time',
+    label: 'Discharge Date',
     minWidth: 150
   },
   {
-    id : 'doc_email',
-    label : 'email',
-    minWidth : 150
-  },
-  {
-    id : 'doc_number',
-    label : 'Ph. Number',
-    minWidth : 150
-  },
-  {
-    id: 'start_time',
-    label: 'Date',
+    id: 'room_no',
+    label: 'Room',
     minWidth: 150
-  },
-  {
-    id: 'symptoms',
-    label: 'Symptoms',
-    minWidth: 150
-  },
-  {
-    id: 'treatment',
-    label: 'Treatments',
-    minWidth: 150
-  },
+  }
 ];
 
 
 
-export default function StickyHeadTable(props) {
+export default function AdmitHistory(props) {
+    var admit = props.data;
   var appointments = props.data;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [post, setPost] = React.useState(null);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -69,7 +45,6 @@ export default function StickyHeadTable(props) {
   };
 
   return (
-    <div>
     <Paper className='astitvaApmtsTable'>
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 200 }}>
@@ -87,14 +62,13 @@ export default function StickyHeadTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {appointments
+            {admit
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
-                      const app_id = row['doc_appointment_id'];
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
@@ -112,7 +86,7 @@ export default function StickyHeadTable(props) {
       <TablePagination
         rowsPerPageOptions={[5, 10, 20]}
         component="div"
-        count={appointments.length}
+        count={admit.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
@@ -120,6 +94,5 @@ export default function StickyHeadTable(props) {
       />
     </Paper>
     </Paper>
-    </div>
   );
 }

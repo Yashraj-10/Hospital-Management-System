@@ -4,6 +4,7 @@ import "../styles/Admdb.css";
 import CheckboxesGroup from "./DoctorFilter";
 import axios from "axios";
 import DoctorTodayApmts from "./DoctorAppointments";
+import { useHistory } from "react-router-dom";
 
 const Doctor = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -70,27 +71,55 @@ const Doctor = () => {
     );
 }, []);
 
-    if (post) {
-        patients = post;
+const history = useHistory();
+  const getSearchQuery = (query) => {
+    console.log(query);
+    var temp = 0;
+    for(var i =0; i < query.length; i++){
+      if(query[i] >= '0' && query[i] <= '9'){
+        temp = 1;
+        break;
+      }
     }
+    if(temp){
+      localStorage.setItem('patient_id', query);
+      history.push('/patient_details');
+    }
+
+    else{
+      axios
+      .post('https://dbms-backend-api.azurewebsites.net/patient?search_string='.concat(`${query}`), {
+        access_token: localStorage.getItem("access_token")
+      })
+      .then(
+        (response) => {
+          setPost(response.data);
+      },
+      (error) => {
+          console.log(error);
+      }
+      );
+  }
+  }
 
   return (
     <div>
-      {!isTodayapmts && (
+      {!isTodayapmts && post && (
         <>
           <div className="doctor_header">
             <input
+              id="myForm"
               type="text"
-              placeholder="Enter patient name"
+              placeholder="Enter patient name/ID"
               onChange={handleChange}
               value={searchInput}
               className="searchTerm"
             ></input>
-            <button type="submit" className="searchButton">
+            <button type="submit" className="searchButton" onClick={() => getSearchQuery(searchInput)}>
               Go
             </button>
             <button className="aduser" onClick={handleTodayapmts}>
-              Today's Appointments
+              <b>Today's Appointments</b>
             </button>
           </div>
           <div>
@@ -98,15 +127,15 @@ const Doctor = () => {
               <CheckboxesGroup />
             </div>
             <div className="admind_table">
-              <StickyHeadTable patients={patients} />
+              <StickyHeadTable patients={post} />
             </div>
           </div>
         </>
       )}
-      {isTodayapmts && (
+      {isTodayapmts&& appointments && (
         <div className="admind_table">
           <button className="backButton" onClick={handleBack}>
-            Back
+           <b>Back</b>
           </button>
           <DoctorTodayApmts appointments={appointments} />
         </div>
