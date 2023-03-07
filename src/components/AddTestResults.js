@@ -1,30 +1,49 @@
 import '../styles/register.css';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { createClient } from '@supabase/supabase-js'
+import { v4 as uuidv4 } from "uuid";
 
 const AddTestResults = () => {
-    // const [patientID, setpatientID] = useState('');
+
+    const supabase = createClient('https://aorixqbhwobwdydcdrdb.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFvcml4cWJod29id2R5ZGNkcmRiIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY3ODA0MDg0NiwiZXhwIjoxOTkzNjE2ODQ2fQ.LpjMSO2Mnbk3qQnJdJsuhT67PgF5FtpWmJmdMD_scdQ')
+
     const [testAppointmetID, settestAppointmetID] = useState('');
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
-    const [reportfile, setReportfile] = useState('');
+    const [reportfile, setReportfile] = useState(null);
 
-    const handleATRSubmit = (e) => {
+    async function listBucket(e) {
 
-        
-        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: reportfile , access_token: ""})
+
+        //let's upload the file
+
+    }
+    async function handleATRSubmit(e) {
+        e.preventDefault();
+
+        const File = reportfile;
+        console.log(File)
+        let url=null;
+        if (File) {
+            const filepath = "azad/" + uuidv4() + "-" + File['name']; //file name for storing the image
+            const { data, error } = await supabase
+                .storage
+                .from('hms-files')
+                .upload(filepath, File);
+             url = "https://aorixqbhwobwdydcdrdb.supabase.co/storage/v1/object/public/hms-files/" + filepath
+            setReportfile(null);
+        }
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: url, access_token: localStorage.getItem("access_token") })
             .then((response) => {
-                // console.log(response.data['access_token']);
                 console.log(response.data);
                 alert("Test Result Added Successfully");
-                // history.push("/frontdesk");
             }, (error) => {
                 console.log(error);
                 alert("Test Result Addition Failed");
             }
             )
     };
-
     return (
         <div className="vikasTestResultsContainer">
             <div className="vikasRegHead">Add Test Results</div>
@@ -93,11 +112,28 @@ const AddTestResults = () => {
                         Upload Report:
                     </label>
                     <div className="vikasRegCol3">
-                        <input className="vikasATRUploadButton"
+
+
+                        {reportfile && (
+                            <div>
+                                <h5>Uploaded File: {reportfile['name']}</h5>
+                                <br />
+                                <button onClick={() => setReportfile(null)}>Remove</button>
+                            </div>
+                        )}
+
+                        <br />
+                        <br />
+                        <input className="inputfile"
                             type="file"
-                            value={reportfile}
-                            onChange={(e) => setReportfile(e.target.value)}
+                            name="file"
+                            id="file"
+                            
+                            onChange={(e) => {
+                                setReportfile(e.target.files[0]);
+                            }}
                         />
+                        <label for="file">Select file</label>
                     </div>
                 </div>
                 <div className="vikasRegButton">
