@@ -55,6 +55,25 @@ function createData(name, date, symptoms, status, treatments) {
 //   createData('Pranil','16/8/10', 'pregnancy', 'bad', 'surgery'),
 //   createData('Vikas','20/5/12', 'food poisoning', 'bad', 'surgery'),
 // ];
+// Array [ {…} ]
+// ​
+// 0: Object { doc_appointment_id: "DA1", end_time: "2023-03-06 11:15:00", patient_name: "Basti", … }
+// ​​
+// doc_appointment_id: "DA1"
+// ​​
+// end_time: "2023-03-06 11:15:00"
+// ​​
+// gender: null
+// ​​
+// patient_name: "Basti"
+// ​​
+// start_time: "2023-03-06 11:00:00"  ​​  
+// ​​
+// <prototype>: Object { … }
+// ​
+// length: 1
+// ​
+// <prototype>: Array []
 
 export default function DoctorTodayApmts(props) {
   const rows = props.appointments;

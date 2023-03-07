@@ -1,6 +1,6 @@
 
 import '../styles/register.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 const Admit = () => {
     const [patientID, setpatientID] = useState('');
@@ -8,6 +8,8 @@ const Admit = () => {
     // const [admitTime, setadmitTime] = useState('');
     // const [roomNo, setroomNo] = useState('');
     const [roomType, setroomType] = useState('');
+    const [isAdmitRendered, setIsAdmitRendered] = useState(false);
+
     const handleAdmitSubmit = (e) => {
         e.preventDefault();
         // const admitData = {patientID, admitDate, roomType};
@@ -19,6 +21,7 @@ const Admit = () => {
                 // console.log(response.data['access_token']);
                 console.log(response.data);
                 alert("Patient Admitted Successfully");
+                setIsAdmitRendered(true);
                 // history.push("/frontdesk");
             }, (error) => {
                 console.log(error.data);
@@ -29,6 +32,15 @@ const Admit = () => {
 
         
     };
+    useEffect(() => {
+        if (isAdmitRendered) {
+            setpatientID('');
+            setadmitDate('');
+            setroomType('');
+            setIsAdmitRendered(false);
+        }
+    }, [isAdmitRendered]);
+    
     return (
         <div className='vikasAdmitFormContainer'>
             <div className='vikasRegHead'>Admit Patient</div>

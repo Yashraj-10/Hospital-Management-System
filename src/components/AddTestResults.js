@@ -1,5 +1,5 @@
 import '../styles/register.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { createClient } from '@supabase/supabase-js'
 import { v4 as uuidv4 } from "uuid";
@@ -11,39 +11,36 @@ const AddTestResults = () => {
     const [testAppointmetID, settestAppointmetID] = useState('');
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
-    const [reportfile, setReportfile] = useState(null);
+    const [reportfile, setReportfile] = useState('');
 
-    async function listBucket(e) {
+    const [isATRrender, setisATRrender] = useState(false);
 
-
-        //let's upload the file
-
-    }
-    async function handleATRSubmit(e) {
+    const handleATRSubmit = (e) => {
         e.preventDefault();
-
-        const File = reportfile;
-        console.log(File)
-        let url=null;
-        if (File) {
-            const filepath = "azad/" + uuidv4() + "-" + File['name']; //file name for storing the image
-            const { data, error } = await supabase
-                .storage
-                .from('hms-files')
-                .upload(filepath, File);
-             url = "https://aorixqbhwobwdydcdrdb.supabase.co/storage/v1/object/public/hms-files/" + filepath
-            setReportfile(null);
-        }
-        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: url, access_token: localStorage.getItem("access_token") })
+        console.log(reportfile);
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: reportfile , access_token: localStorage.getItem('access_token')})
             .then((response) => {
+                
                 console.log(response.data);
                 alert("Test Result Added Successfully");
+                setisATRrender(true);
             }, (error) => {
                 console.log(error);
-                alert("Test Result Addition Failed");
+                alert(error.response.data.message);
             }
             )
     };
+
+    useEffect(() => {
+        // console.log("useEffect");
+        // setpatientID('');
+        settestAppointmetID('');
+        settestComment('');
+        settestResult('');
+        setReportfile('');
+        setisATRrender(false);
+    }, [isATRrender]);
+
     return (
         <div className="vikasTestResultsContainer">
             <div className="vikasRegHead">Add Test Results</div>
@@ -135,6 +132,7 @@ const AddTestResults = () => {
                         />
                         <label for="file">Select file</label>
                     </div>
+                    
                 </div>
                 <div className="vikasRegButton">
                     <button type="submit" onClick={handleATRSubmit} >Add Result</button>

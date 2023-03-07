@@ -19,7 +19,7 @@ const Login = () => {
                 // take the first three letters of access_token
                 let token = response.data.access_token;
                 localStorage.setItem("access_token", token);
-                localStorage.setItem("user_id", user_id);
+                localStorage.setItem("self_user_id", user_id);
                 let token_type = token.slice(0, 3);
                 console.log(token_type);
                 if(token_type === "doc"){
@@ -31,7 +31,7 @@ const Login = () => {
                     history.push("/frontdesk");
                 }
                 else if(token_type === "dba"){
-                    alert("Admin Login Successful");
+                    // alert("Admin Login Successful");
                     history.push("/admin");
                 }
                 else if(token_type === "deo"){

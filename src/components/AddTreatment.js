@@ -10,27 +10,24 @@ const AddTreatment = () => {
     const [input, setInput] = useState('');
     const [tags, setTags] = useState([]);
     const [isKeyReleased, setIsKeyReleased] = useState(false);
-    const [isPending, setIsPending] = useState(false);
+
+    const [isPending, setIsPending] = useState(false);  // for useEffect render 
 
     const handleAddTreatmentSubmit = (e) => {
         e.preventDefault();
-        const treatment = {  docAppointmentID, tags };
-        console.log(treatment);
+        // const treatment = {  docAppointmentID, tags };
+        // console.log(treatment);
 
-        axios.post('https://dbms-backend-api.azurewebsites.net/add_treatment', { doc_appointment_id: docAppointmentID, treatment: tags, access_token: "" })
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_treatment', { doc_appointment_id: docAppointmentID, treatment: tags.join(', '), access_token: localStorage.getItem('access_token') })
             .then((response) => {
-                // console.log(response.data['access_token']);
                 console.log(response.data);
                 alert("Treatment Added Successfully");
-                // history.push("/frontdesk");
+                setIsPending(true);
             }, (error) => {
                 console.log(error);
-                alert("Treatment Addition Failed");
+                alert(error.response.data.message);
             }
-            )
-
-        console.log("Added Treatment");
-        setIsPending(true);
+            )    
     };
     useEffect(() => {
         // console.log("useEffect");

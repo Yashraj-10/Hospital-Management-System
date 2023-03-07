@@ -1,5 +1,5 @@
 import '../styles/register.css';
-import React, { useState } from 'react';
+import React, { useEffect , useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -19,6 +19,7 @@ const AdminAddUser = () => {
     const [address1, setAddress1] = useState('');
     const [password, setPassword] = useState('');
     // const [address2, setAddress2] = useState('');
+    const [isAdduserrendered, setIsAdduserrendered] = useState(false);
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,32 +27,47 @@ const AdminAddUser = () => {
         if (Type === "doc") {
         axios.post('https://dbms-backend-api.azurewebsites.net/users/add', { name: firstName, type: Type, email: email, docType: doctype, ph_number: phoneNumber.slice(1,13), address: address1, password:password, access_token: localStorage.getItem("access_token") })
             .then((response) => {
-                // console.log(response.data['access_token']);
                 console.log(response.data);
                 alert("User Added Successfully");
+                setIsAdduserrendered(true);
                 
-                // history.push("/frontdesk");
             }, (error) => {
                 console.log(error);
-                alert("User Addition Failed");
+                alert(error.response.data.message);
             }
             )
         }
         else{
             axios.post('https://dbms-backend-api.azurewebsites.net/users/add', { name: firstName, type: Type, ph_number: phoneNumber.slice(1,13), address: address1, password:password, access_token: localStorage.getItem('access_token') })
             .then((response) => {
-                // console.log(response.data['access_token']);
+                
                 console.log(response.data);
                 alert("User Added Successfully");
+                setIsAdduserrendered(true);
                 
-                // history.push("/frontdesk");
             }, (error) => {
                 console.log(error);
-                alert("User Addition Failed");
+                alert(error.response.data.message);
             }
             )
         }
     };
+
+    useEffect(() => {
+        if (isAdduserrendered) {
+            setFirstName('');
+            // setLastName('');
+            setType('');
+            setEmail('');
+            setDoctype('');
+            setPhoneNumber('');
+            setAddress1('');
+            setPassword('');
+            // setAddress2('');
+            setIsAdduserrendered(false);
+        }
+    }, [isAdduserrendered]);
+
 
     const [isDoctor, setIsDoctor] = useState(false);
     const emailandtype = (e,value) => {
