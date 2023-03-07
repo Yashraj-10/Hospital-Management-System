@@ -11,36 +11,34 @@ const AddTestResults = () => {
     const [testAppointmetID, settestAppointmetID] = useState('');
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
-    const [reportfile, setReportfile] = useState('');
+    const [reportfile, setReportfile] = useState(null);
 
-    const [isATRrender, setisATRrender] = useState(false);
-
-    const handleATRSubmit = (e) => {
+   
+    async function handleATRSubmit(e) {
         e.preventDefault();
-        console.log(reportfile);
-        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: reportfile , access_token: localStorage.getItem('access_token')})
+
+        const File = reportfile;
+        console.log(File)
+        let url=null;
+        if (File) {
+            const filepath = "azad/" + uuidv4() + "-" + File['name']; //file name for storing the image
+            const { data, error } = await supabase
+                .storage
+                .from('hms-files')
+                .upload(filepath, File);
+             url = "https://aorixqbhwobwdydcdrdb.supabase.co/storage/v1/object/public/hms-files/" + filepath
+            setReportfile(null);
+        }
+        axios.post('https://dbms-backend-api.azurewebsites.net/add_test_result', { test_appointment_result_id: testAppointmetID, comment: testComment, result: testResult, report_link: url, access_token: localStorage.getItem("access_token") })
             .then((response) => {
-                
                 console.log(response.data);
                 alert("Test Result Added Successfully");
-                setisATRrender(true);
             }, (error) => {
                 console.log(error);
                 alert(error.response.data.message);
             }
             )
     };
-
-    useEffect(() => {
-        // console.log("useEffect");
-        // setpatientID('');
-        settestAppointmetID('');
-        settestComment('');
-        settestResult('');
-        setReportfile('');
-        setisATRrender(false);
-    }, [isATRrender]);
-
     return (
         <div className="vikasTestResultsContainer">
             <div className="vikasRegHead">Add Test Results</div>
