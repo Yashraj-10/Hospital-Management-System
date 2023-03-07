@@ -8,7 +8,23 @@ import { useHistory } from 'react-router-dom';
 const Navbar4 = () => {
     const history = useHistory();
     const handleLogoCLick = (e) => {
-        history.push('/');
+        
+        let token_type = localStorage.getItem('access_token').slice(0, 3);
+        if(token_type === "doc"){
+            history.push("/doctor");
+        }
+        else if(token_type === "fdo"){
+            history.push("/frontdesk");
+        }
+        else if(token_type === "dba"){
+            history.push("/admin");
+        }
+        else if(token_type === "deo"){
+            history.push("/dataentry");
+        }
+        else{
+            history.push('/');
+        }
     }
 
     return (

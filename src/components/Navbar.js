@@ -8,7 +8,23 @@ const Navbar = () => {
         history.push('/login');
     }
     const handleLogoCLick = (e) => {
-        history.push('/');
+        
+        let token_type = localStorage.getItem('access_token').slice(0, 3);
+        if(token_type === "doc"){
+            history.push("/doctor");
+        }
+        else if(token_type === "fdo"){
+            history.push("/frontdesk");
+        }
+        else if(token_type === "dba"){
+            history.push("/admin");
+        }
+        else if(token_type === "deo"){
+            history.push("/dataentry");
+        }
+        else{
+            history.push('/');
+        }
     }
 
     return (
