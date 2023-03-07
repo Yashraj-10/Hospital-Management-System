@@ -43,6 +43,7 @@ const ScheduleAppointment = () => {
 
     const [docSelect, setdoctorsAvailable] = useState('');
     const [isDocSelected, setIsDocSelected] = useState(false);
+    const [isUser, setIsuser] = useState(false);
     // const [isPendingDoctor, setIsPendingDoctor] = useState(false);
 
     // var array = ["2023-03-14", "2023-03-11", "2023-03-26"]; OR

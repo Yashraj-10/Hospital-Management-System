@@ -5,6 +5,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
 import '../styles/frontDesk.css';
 import { useHistory } from "react-router-dom";
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const images = [
     {
@@ -17,7 +19,7 @@ const images = [
         title: 'Add Treatments',
         width: '40%',
     },
-    
+
 ];
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
@@ -87,58 +89,77 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 const DataEntry = () => {
+    const [isUser, setIsuser] = useState(false);
+
     const history = useHistory();
     const handleClick = (event, chooseOp) => {
-        if(chooseOp === 'Add Test Results'){
+        if (chooseOp === 'Add Test Results') {
             history.push('/addTestResults');
         }
-        else if(chooseOp === 'Add Treatments'){
+        else if (chooseOp === 'Add Treatments') {
             history.push('/addTreatments');
         }
     }
 
-    return ( 
-        <div className="vikasDataEntryContainer">
-            <p className='text-blk landing19-head'>
-            Data Entry Operator
-            </p>
-            <div className='vikasFdOpContainer'>
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
-                    {images.map((image) => (
-                        <ImageButton
-                            focusRipple
-                            key={image.title}
-                            style={{
-                                width: image.width,
-                                border: '1px solid white',
-                                fontSize: '100px'
-                            }}
-                            onClick={(e) => handleClick(e, image.title)}
-                        >
-                            <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-                            <ImageBackdrop className="MuiImageBackdrop-root" />
-                            <Image>
-                                <Typography
-                                    component="span"
-                                    variant="subtitle1"
-                                    color="inherit"
-                                    sx={{
-                                        position: 'relative',
-                                        p: 4,
-                                        pt: 2,
-                                        pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                                    }}
-                                >
-                                    <div className='vikasImgTitle' >{image.title}</div>
-                                    <ImageMarked className="MuiImageMarked-root" />
-                                </Typography>
-                            </Image>
-                        </ImageButton>
-                    ))}
-                </Box>
-            </div>
+    useEffect(() => {
+        let token_type = localStorage.getItem('access_token').slice(0, 3);
+        if (token_type === "deo") { setIsuser(true); }
+    }, []);
+
+
+    return (
+        <div>
+            {isUser && <div className="vikasDataEntryContainer">
+                <p className='text-blk landing19-head'>
+                    Data Entry Operator
+                </p>
+                <div className='vikasFdOpContainer'>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+                        {images.map((image) => (
+                            <ImageButton
+                                focusRipple
+                                key={image.title}
+                                style={{
+                                    width: image.width,
+                                    border: '1px solid white',
+                                    fontSize: '100px'
+                                }}
+                                onClick={(e) => handleClick(e, image.title)}
+                            >
+                                <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+                                <ImageBackdrop className="MuiImageBackdrop-root" />
+                                <Image>
+                                    <Typography
+                                        component="span"
+                                        variant="subtitle1"
+                                        color="inherit"
+                                        sx={{
+                                            position: 'relative',
+                                            p: 4,
+                                            pt: 2,
+                                            pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                                        }}
+                                    >
+                                        <div className='vikasImgTitle' >{image.title}</div>
+                                        <ImageMarked className="MuiImageMarked-root" />
+                                    </Typography>
+                                </Image>
+                            </ImageButton>
+                        ))}
+                    </Box>
+                </div>
+            </div>}
+            {
+                !isUser && <div className='notAuthorized'> <div class="w3-display-middle">
+                    <h1 class="w3-jumbo w3-animate-top w3-center"><code>Access Denied</code></h1>
+                    {/* <h class="w3-border-white w3-animate-left" style="margin:auto;width:50%"> */}
+                    <h3 class="w3-center w3-animate-right">You dont have permission to view this page.</h3>
+                    <h3 class="w3-center w3-animate-zoom">🚫🚫🚫🚫</h3>
+                    <h6 class="w3-center w3-animate-zoom">error code:403 forbidden</h6>
+                </div></div>
+            }
         </div>
-     );
+    );
 }
- 
+
 export default DataEntry;

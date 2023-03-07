@@ -9,14 +9,15 @@ const Admit = () => {
     // const [roomNo, setroomNo] = useState('');
     const [roomType, setroomType] = useState('');
     const [isAdmitRendered, setIsAdmitRendered] = useState(false);
+    const [isUser, setIsuser] = useState(false);
 
     const handleAdmitSubmit = (e) => {
         e.preventDefault();
         // const admitData = {patientID, admitDate, roomType};
         // console.log(admitData);
         // localStorage.getItem('access_token')}
-  
-        axios.post('https://dbms-backend-api.azurewebsites.net/admit', {patient_id: patientID, admit_date: admitDate, room_type: roomType, access_token: localStorage.getItem('access_token')})
+
+        axios.post('https://dbms-backend-api.azurewebsites.net/admit', { patient_id: patientID, admit_date: admitDate, room_type: roomType, access_token: localStorage.getItem('access_token') })
             .then((response) => {
                 // console.log(response.data['access_token']);
                 console.log(response.data);
@@ -30,9 +31,11 @@ const Admit = () => {
             }
             )
 
-        
+
     };
     useEffect(() => {
+        let token_type = localStorage.getItem('access_token').slice(0, 3);
+        if (token_type === "fdo") { setIsuser(true); }
         if (isAdmitRendered) {
             setpatientID('');
             setadmitDate('');
@@ -40,62 +43,63 @@ const Admit = () => {
             setIsAdmitRendered(false);
         }
     }, [isAdmitRendered]);
-    
+
     return (
-        <div className='vikasAdmitFormContainer'>
-            <div className='vikasRegHead'>Admit Patient</div>
-            <form onSubmit={handleAdmitSubmit} className='vikasRegForm'>
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Patient ID:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input
-                            type="text"
-                            className='vikasAdmitTextBox'
-                            value={patientID}
-                            required
-                            onChange={(e) => setpatientID(e.target.value)} />
-                    </div>
-                </div>
-                
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Room Type:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <div className="admitRoomType">
-                            <select
-                                value={roomType}
-                                onChange={(e) => setroomType(e.target.value)}
+        <div>
+        { isUser &&    <div className='vikasAdmitFormContainer'>
+                <div className='vikasRegHead'>Admit Patient</div>
+                <form onSubmit={handleAdmitSubmit} className='vikasRegForm'>
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Patient ID:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input
+                                type="text"
+                                className='vikasAdmitTextBox'
+                                value={patientID}
                                 required
-                            >
-                                <option value="null">Select</option>
-                                <option value="ICU">ICU</option>
-                                <option value="CCU">CCU</option>
-                                <option value="OT">OT</option>
-                                <option value="AC">AC Ward</option>
-                                <option value="Non-AC">Non-AC Ward</option>
-                                <option value="General">General</option>
-
-
-                            </select>
+                                onChange={(e) => setpatientID(e.target.value)} />
                         </div>
                     </div>
-                </div>
 
-                <div className="vikasRegRow">
-                    <label className='vikasRegCol1'>
-                        Admit Date:
-                    </label>
-                    <div className="vikasRegCol2">
-                        <input type="date"
-                            max="2030-12-31"
-                            className='vikasAdmitTextBox' value={admitDate} required onChange={(e) => setadmitDate(e.target.value)} />
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Room Type:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <div className="admitRoomType">
+                                <select
+                                    value={roomType}
+                                    onChange={(e) => setroomType(e.target.value)}
+                                    required
+                                >
+                                    <option value="null">Select</option>
+                                    <option value="ICU">ICU</option>
+                                    <option value="CCU">CCU</option>
+                                    <option value="OT">OT</option>
+                                    <option value="AC">AC Ward</option>
+                                    <option value="Non-AC">Non-AC Ward</option>
+                                    <option value="General">General</option>
+
+
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                {/* <div className="vikasRegRow">
+                    <div className="vikasRegRow">
+                        <label className='vikasRegCol1'>
+                            Admit Date:
+                        </label>
+                        <div className="vikasRegCol2">
+                            <input type="date"
+                                max="2030-12-31"
+                                className='vikasAdmitTextBox' value={admitDate} required onChange={(e) => setadmitDate(e.target.value)} />
+                        </div>
+                    </div>
+
+                    {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Admit Time:
                     </label>
@@ -105,9 +109,9 @@ const Admit = () => {
                     </div>
                 </div> */}
 
-                
-        
-                {/* <div className="vikasRegRow">
+
+
+                    {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Discharge Date:
                     </label>
@@ -128,7 +132,7 @@ const Admit = () => {
                     </div>
                 </div> */}
 
-                {/* <div className="vikasRegRow">
+                    {/* <div className="vikasRegRow">
                     <label className='vikasRegCol1'>
                         Room No:
                     </label>
@@ -141,12 +145,21 @@ const Admit = () => {
                             onChange={(e) => setroomNo(e.target.value)} />
                     </div>
                 </div> */}
-                <div className="vikasRegButton">
-                    <button type="submit" onClick={handleAdmitSubmit} >Admit</button>
-                </div>
-            </form>
+                    <div className="vikasRegButton">
+                        <button type="submit" onClick={handleAdmitSubmit} >Admit</button>
+                    </div>
+                </form>
+            </div>}
+            {
+                !isUser && <div className='notAuthorized'> <div class="w3-display-middle">
+                <h1 class="w3-jumbo w3-animate-top w3-center"><code>Access Denied</code></h1>
+                {/* <h class="w3-border-white w3-animate-left" style="margin:auto;width:50%"> */}
+                <h3 class="w3-center w3-animate-right">You dont have permission to view this page.</h3>
+                <h3 class="w3-center w3-animate-zoom">🚫🚫🚫🚫</h3>
+                <h6 class="w3-center w3-animate-zoom">error code:403 forbidden</h6>
+                </div></div>
+            }
         </div>
-
     );
 }
 

@@ -289,3 +289,24 @@ body{
  max-width: 300px;
  max-height: 300px;
 }
+
+.notAuthorized{
+  background-color: black;
+  color: white;
+  height:900px;
+}
+.notAuthorized h1 {
+  padding-top: 10%;
+  color: red;
+  }
+
+.notAuthorized h6{
+  color: red;
+  text-decoration: underline;
+  }
+
+  
+  
+  
+  
+  
