@@ -4,10 +4,11 @@ import FormDialogReset from './ResetPasswordPopup';
 import '../styles/navbar3.css';
 import { Link } from '@mui/material';
 import axios from 'axios';
+// import axios from 'axios';
 const Navbar3 = () => {
     const history = useHistory();
     const handleMyHome = () => {
-        // history.push('/login');
+        history.push('/login');
         axios.post('https://dbms-backend-api.azurewebsites.net/logout', {access_token: localStorage.getItem('access_token')})
         .then((response) => {
             console.log(response.data);
@@ -18,7 +19,23 @@ const Navbar3 = () => {
         )
     }
     const handleLogoCLick = (e) => {
-        history.push('/');
+        
+        let token_type = localStorage.getItem('access_token').slice(0, 3);
+        if(token_type === "doc"){
+            history.push("/doctor");
+        }
+        else if(token_type === "fdo"){
+            history.push("/frontdesk");
+        }
+        else if(token_type === "dba"){
+            history.push("/admin");
+        }
+        else if(token_type === "deo"){
+            history.push("/dataentry");
+        }
+        else{
+            history.push('/');
+        }
     }
     return (
         <nav className='navbar3'>

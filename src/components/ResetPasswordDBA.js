@@ -7,9 +7,9 @@ import DialogContent from '@mui/material/DialogContent';
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function FormDialogReset() {
+export default function ResetPasswordAdmin(props) {
   const [open, setOpen] = React.useState(false);
-  // var userID = props.uID;
+  var user_id = props.user_id;
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -24,7 +24,7 @@ export default function FormDialogReset() {
 
     axios.post('https://dbms-backend-api.azurewebsites.net/users/update_pass', {
               access_token: localStorage.getItem("access_token"),
-              user_id: localStorage.getItem("self_user_id"),
+              user_id: user_id,
               password: newpassword
           })
               .then(
@@ -40,7 +40,6 @@ export default function FormDialogReset() {
                   }
               );
   };
-
 
   return (
     <div>
