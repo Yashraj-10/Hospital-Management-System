@@ -2,19 +2,20 @@ import { useHistory } from 'react-router-dom';
 import NavbarLogo from './NavbarLogo';
 import '../styles/navbar3.css';
 import { Link } from '@mui/material';
+import axios from 'axios';
 // import axios from 'axios';
 const Navbar3 = () => {
     const history = useHistory();
     const handleMyHome = () => {
         history.push('/login');
-        // axios.post('https://dbms-backend-api.azurewebsites.net/logout', {access_token: localStorage.getItem('access_token')})
-        // .then((response) => {
-        //     console.log(response.data);
-        // }
-        // , (error) => {
-        //     console.log(error);
-        // }
-        // )
+        axios.post('https://dbms-backend-api.azurewebsites.net/logout', {access_token: localStorage.getItem('access_token')})
+        .then((response) => {
+            console.log(response.data);
+        }
+        , (error) => {
+            console.log(error);
+        }
+        )
     }
     const handleLogoCLick = (e) => {
         

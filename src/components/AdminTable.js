@@ -9,10 +9,9 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import FormDialogReset from './ResetPasswordPopup';
+import ResetPasswordAdmin from './ResetPasswordDBA';
 import { minWidth } from '@mui/system';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
 //no IE 11 support
 
 const columns = [
@@ -58,7 +57,7 @@ export default function StickyHeadTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const handleDelete = (e, userID) => {
-    console.log('delete called');
+    // console.log('delete called');
     axios.post('https://dbms-backend-api.azurewebsites.net/users/delete', {
               access_token: localStorage.getItem("access_token"),
               user_id: userID
@@ -66,15 +65,16 @@ export default function StickyHeadTable(props) {
               .then(
                   (response) => {
                       // setPost(response.data);
-                      console.log(response.data);
+                      // console.log(response.data);
                       alert(response.data.message);
+                      window.location.reload();
                   },
                   (error) => {
-                      console.log(error);
+                      // console.log(error);
                       alert(error.response.data.message);
                   }
               );
-    console.log(userID);
+    // console.log(userID);
   }
 
   const handleChangePage = (event, newPage) => {
@@ -113,7 +113,7 @@ export default function StickyHeadTable(props) {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'psswd' ? <FormDialogReset /> :
+                            column.id === 'psswd' ? <ResetPasswordAdmin user_id = {row.user_id}/> :
                             column.id === 'del' ? <IconButton aria-label="delete"><DeleteIcon onClick= {(e) => handleDelete(e,row.user_id)}/></IconButton> :
                             column.format && typeof value === 'number'
                             ? column.format(value)
