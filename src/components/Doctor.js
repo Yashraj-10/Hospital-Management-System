@@ -30,7 +30,7 @@ const Doctor = () => {
         .then(
             (response) => {
                 setTodaydata(response.data);
-                console.log(response.data);
+                console.log("Future appointments : ",response.data);
             }
         ,
         (error) => {
@@ -132,12 +132,12 @@ const history = useHistory();
           </div>
         </>
       )}
-      {isTodayapmts&& appointments && (
+      {isTodayapmts&& todaydata && (
         <div className="admind_table">
           <button className="backButton" onClick={handleBack}>
            <b>Back</b>
           </button>
-          <DoctorTodayApmts appointments={appointments} />
+          <DoctorTodayApmts appointments={todaydata} />
         </div>
       )}
     </div>

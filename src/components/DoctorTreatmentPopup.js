@@ -5,8 +5,10 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
-export default function FormDialogTreatment() {
+export default function FormDialogTreatment(props) {
+  const treat_id = props.id;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -16,6 +18,28 @@ export default function FormDialogTreatment() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [treatment, setTreatment] = React.useState('');
+  const handleAddTreatment  = () =>{
+    console.log(treatment);
+    setOpen(false);
+
+    axios
+    .post('https://dbms-backend-api.azurewebsites.net/add_treatment', {
+      access_token: localStorage.getItem("access_token"),
+      doc_appointment_id : treat_id,
+      treatment : treatment
+    }).then(
+      (response) => {
+        console.log(response.data);
+        alert(response.data.message)
+        window.location.reload();
+    },
+    (error) => {
+        console.log(error);
+    }
+    );
+  }
 
   return (
     <div>
@@ -32,12 +56,15 @@ export default function FormDialogTreatment() {
             label="Enter treatment name"
             type="email"
             fullWidth
+            onChange = {(e) => {
+              setTreatment(e.target.value)
+            }}
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={handleAddTreatment}>Add</Button>
         </DialogActions>
       </Dialog>
     </div>

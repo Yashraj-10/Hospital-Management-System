@@ -16,30 +16,28 @@ const columns = [
     minWidth: 150
   },
   {
-    id: 'date',
+    id: 'start_time',
     label: 'Date',
     minWidth: 150
   },
   {
-    id: 'symptoms', 
-    label: 'Symptoms',
+    id: 'age', 
+    label: 'Age',
     minWidth: 150
   },
   {
-    id: 'status',
-    label: 'Status',
+    id: 'doc_appointment_id',
+    label: 'Appointment Id',
     minWidth: 150
   },
   {
-    id: 'treatments',
-    label: 'Treatments',
+    id: 'gender',
+    label: 'Gender',
     minWidth: 150
   },
 ];
 
-function createData(name, date, symptoms, status, treatments) {
-    return { name, date, symptoms, status, treatments};
-}
+
 
 // const rows = [
 //   createData('Nirbhay','40/2/13', 'bawasir', 'bad', 'surgery'),

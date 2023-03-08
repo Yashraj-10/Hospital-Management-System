@@ -103,14 +103,14 @@ export default function StickyHeadTable(props) {
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
                     {columns.map((column) => {
                       const value = row[column.id];
+                      const treat_id = row['doc_appointment_id']
 
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
                             value === '' ? <p>{"—"}</p> :
                             column.id === 'patient_name' ? <Button onClick={ () => handlePatientDetails(row.patient_id)}>{value}</Button> :
-                            column.id === 'adddrugs' ? <FormDialogDrug /> :
-                            column.id === 'addtreatments' ? <FormDialogTreatment /> :
+                            column.id === 'addtreatments' ? <FormDialogTreatment id={treat_id}/> :
                             column.format && typeof value === 'number' ? column.format(value) : value
                           }
                         </TableCell>
