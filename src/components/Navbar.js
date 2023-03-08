@@ -44,7 +44,7 @@ const Navbar = () => {
                 Azad Hospital
             </div>
             <div className='vikasmyHomeNav'>
-                <button onClick={handleMyHome}>Log In</button>
+                <button onClick={handleMyHome}><b>Log In</b></button>
             </div>
             {/* <div className='vikasmyHome2'>
                 <Link to="/login"><button >Logout</button></Link>

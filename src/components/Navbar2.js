@@ -7,15 +7,19 @@ import axios from 'axios';
 const Navbar3 = () => {
     const history = useHistory();
     const handleMyHome = () => {
-        history.push('/login');
         axios.post('https://dbms-backend-api.azurewebsites.net/logout', {access_token: localStorage.getItem('access_token')})
         .then((response) => {
             console.log(response.data);
+            localStorage.setItem('access_token', '');
+            localStorage.setItem('self_user_id', '');
+            localStorage.setItem('patient_id', '');
+            history.push('/login');
         }
         , (error) => {
             console.log(error);
         }
         )
+
     }
     const handleLogoCLick = (e) => {
         
@@ -44,7 +48,7 @@ const Navbar3 = () => {
                 Azad Hospital
             </div>
             <div className='vikasmyHomeNav2'>
-                <button onClick={handleMyHome}>Logout</button>
+                <button onClick={handleMyHome}><b>Logout</b></button>
             </div>
             {/* <div className='vikasmyHome2'>
                 <Link to="/login"><button >Logout</button></Link>

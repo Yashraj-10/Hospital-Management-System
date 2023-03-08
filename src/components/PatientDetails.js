@@ -16,6 +16,12 @@ export default function PatientDetails(){
         useEffect(() => {
             var self_user_id = localStorage.getItem("self_user_id");
             var pat = localStorage.getItem("patient_id")
+            if(pat.length == 0){
+                alert("Invalid patient Id !!")
+                history.push('/doctor');
+            }
+
+            else{
           axios
           .post('https://dbms-backend-api.azurewebsites.net/patient?search_string='.concat(`${pat}`), {
             access_token: localStorage.getItem("access_token")
@@ -24,8 +30,8 @@ export default function PatientDetails(){
             (response) => {
               setPost(response.data);
               console.log(response.data)
-              if(response.data === []){
-                  console.assert(response.data != [], "No entries found !!")
+              if(response.data.length == 0){
+                  alert("Invalid patient Id !!")
                   history.push('/doctor');
               }
               
@@ -34,6 +40,7 @@ export default function PatientDetails(){
               console.log(error);
           }
           );
+        }
       }, []);
     
     // res = post;
@@ -131,7 +138,6 @@ export default function PatientDetails(){
             <div className='vikasRegHead'>Admit History</div>
             <AdmitHistory data={res[0]['admit_history']} />
         </div>}
-        {res == [] && <p>Not found</p>}
         
         <div>
             {
