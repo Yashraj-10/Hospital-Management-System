@@ -45,7 +45,7 @@ export default function FormDialogReset() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Reset Password
+        <b>Reset Password</b>
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>

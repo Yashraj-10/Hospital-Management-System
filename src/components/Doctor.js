@@ -58,7 +58,9 @@ const Doctor = () => {
 
   useEffect(() => {
     let token_type = localStorage.getItem('access_token').slice(0, 3);
-        if (token_type === "doc") { setIsuser(true); }
+    if (token_type === "doc") { setIsuser(true); }
+    else{setIsuser(false);}
+
     var self_user_id = localStorage.getItem("self_user_id");
     axios
       .post('https://dbms-backend-api.azurewebsites.net/patient?doc_id='.concat(`${self_user_id}`), {
@@ -72,7 +74,7 @@ const Doctor = () => {
           console.log(error);
         }
       );
-  }, []);
+  }, [isUser]);
 
 const history = useHistory();
   const getSearchQuery = (query) => {
@@ -122,7 +124,7 @@ const history = useHistory();
               Go
             </button>
             <button className="aduser" onClick={handleTodayapmts}>
-              <b>Today's Appointments</b>
+              <b>Future Appointments</b>
             </button>
           </div>
           <div>

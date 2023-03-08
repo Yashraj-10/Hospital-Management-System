@@ -2,11 +2,38 @@ import React from 'react';
 import axios from "axios";
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Login = () => {
     const [user_id, setUser_id] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
+
+    useEffect(() => {
+        var self_user_id = localStorage.getItem("self_user_id");
+        var access_token = localStorage.getItem("access_token")
+
+        let token_type = access_token.slice(0, 3);
+                console.log(token_type);
+                if(token_type === "doc"){
+                    // alert("Doctor Login Successful");
+                    history.push("/doctor");
+                }
+                else if(token_type === "fdo"){
+                    // alert("Front Desk Operator Login Successful");
+                    history.push("/frontdesk");
+                }
+                else if(token_type === "dba"){
+                    // alert("Admin Login Successful");
+                    history.push("/admin");
+                }
+                else if(token_type === "deo"){
+                    // alert("Data Entry Operator Login Successful");
+                    history.push("/dataentry");
+                }
+  }, []);
+
+
 
     const handleSubmit = (e) => {
         console.log(user_id, password);
