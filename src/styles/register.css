@@ -339,3 +339,21 @@ display:block;
 margin:0.4em auto;
 }
 }
+
+.PatientDetailsContainer .vikasRegFormContainer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 1200px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+.PatientDetailsContainer .DetailsContainer{
+    text-align: center;
+    align-items: center;
+    margin-left: 35%;
+}

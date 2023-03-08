@@ -19,10 +19,19 @@ export default function CheckboxesGroup() {
       ...state,
       [event.target.name]: event.target.checked,
     });
-    console.log(state);
+    // console.log(state);
   };
 
   var { Above, Between1, Between2, Below } = state;
+  
+  React.useEffect (() => {
+    state.Above = Above;
+    state.Between1 = Between1;
+    state.Between2 = Between2;
+    state.Below = Below;
+  },[state])
+
+  console.log("state=",state);
 
   return (
     <Box sx={{ display: 'flex' }}>
