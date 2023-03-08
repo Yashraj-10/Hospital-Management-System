@@ -12,7 +12,7 @@ const AddTestResults = () => {
     const [testComment, settestComment] = useState('');
     const [testResult, settestResult] = useState('');
     const [reportfile, setReportfile] = useState(null);
-
+    const [isUser, setIsuser] = useState(false);
    
     async function handleATRSubmit(e) {
         e.preventDefault();
@@ -39,7 +39,13 @@ const AddTestResults = () => {
             }
             )
     };
+    useEffect(() => {
+        let token_type = localStorage.getItem('access_token').slice(0, 3);
+        if (token_type === "deo") { setIsuser(true); }
+    }, []);
     return (
+        <div>
+            {isUser &&
         <div className="vikasTestResultsContainer">
             <div className="vikasRegHead">Add Test Results</div>
             <form onSubmit={handleATRSubmit} className='vikasRegForm'>
@@ -136,6 +142,16 @@ const AddTestResults = () => {
                     <button type="submit" onClick={handleATRSubmit} >Add Result</button>
                 </div>
             </form>
+        </div>}
+            {
+                !isUser && <div className='notAuthorized'> <div class="w3-display-middle">
+                    <h1 class="w3-jumbo w3-animate-top w3-center"><code>Access Denied</code></h1>
+                    {/* <h class="w3-border-white w3-animate-left" style="margin:auto;width:50%"> */}
+                    <h3 class="w3-center w3-animate-right">You dont have permission to view this page.</h3>
+                    <h3 class="w3-center w3-animate-zoom">🚫🚫🚫🚫</h3>
+                    <h6 class="w3-center w3-animate-zoom">error code:403 forbidden</h6>
+                </div></div>
+            }
         </div>
     );
 }
