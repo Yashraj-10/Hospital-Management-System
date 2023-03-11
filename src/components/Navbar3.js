@@ -42,8 +42,10 @@ const Navbar3 = () => {
             history.push('/');
         }
     }
+    let token = localStorage.getItem('access_token');
     return (
-        <nav className='navbar3'>
+        <div>
+            {token && <nav className='navbar3'>
             <div className="logo"><Link onClick={(e) => handleLogoCLick(e)}><NavbarLogo /></Link></div>
             <div className='vikasHName2'>
                 {/* <NavbarLogo /> */}
@@ -59,7 +61,8 @@ const Navbar3 = () => {
             {/* <div className='vikasmyHome2'>
                 <Link to="/login"><button >Logout</button></Link>
             </div> */}
-        </nav>
+        </nav>}
+        </div>
     );
 }
 

@@ -10,27 +10,27 @@ const Login = () => {
     const history = useHistory();
 
     useEffect(() => {
-        var self_user_id = localStorage.getItem("self_user_id");
-        var access_token = localStorage.getItem("access_token")
+        // var self_user_id = localStorage.getItem("self_user_id");
+        // var access_token = localStorage.getItem("access_token")
 
-        let token_type = access_token.slice(0, 3);
-                console.log(token_type);
-                if(token_type === "doc"){
-                    // alert("Doctor Login Successful");
-                    history.push("/doctor");
-                }
-                else if(token_type === "fdo"){
-                    // alert("Front Desk Operator Login Successful");
-                    history.push("/frontdesk");
-                }
-                else if(token_type === "dba"){
-                    // alert("Admin Login Successful");
-                    history.push("/admin");
-                }
-                else if(token_type === "deo"){
-                    // alert("Data Entry Operator Login Successful");
-                    history.push("/dataentry");
-                }
+        // let token_type = access_token.slice(0, 3);
+        //         console.log(token_type);
+        //         if(token_type === "doc"){
+        //             // alert("Doctor Login Successful");
+        //             history.push("/doctor");
+        //         }
+        //         else if(token_type === "fdo"){
+        //             // alert("Front Desk Operator Login Successful");
+        //             history.push("/frontdesk");
+        //         }
+        //         else if(token_type === "dba"){
+        //             // alert("Admin Login Successful");
+        //             history.push("/admin");
+        //         }
+        //         else if(token_type === "deo"){
+        //             // alert("Data Entry Operator Login Successful");
+        //             history.push("/dataentry");
+        //         }
   }, []);
 
 
