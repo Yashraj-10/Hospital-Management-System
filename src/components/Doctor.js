@@ -45,6 +45,10 @@ const Doctor = () => {
       );
   };
 
+  if(todaydata){
+    appointments = todaydata;
+  }
+
   const handleBack = (e) => {
     setIsTodayapmts(false);
   };
@@ -54,6 +58,7 @@ const Doctor = () => {
   //   }, [isTodayapmts]);
 
   let patients = [];
+  var appointments = [];
 
   const [post, setPost] = React.useState(null);
   const [dummyPost, setDummyPost] = React.useState(null);
@@ -78,6 +83,8 @@ const Doctor = () => {
         }
       );
   }, [isUser]);
+
+
 
 const history = useHistory();
 
@@ -265,7 +272,7 @@ const handleSetSlot = (e) => {
           <button className="backButton" onClick={handleBack}>
             <b>Back</b>
           </button>
-          <DoctorTodayApmts appointments={todaydata} />
+          <DoctorTodayApmts appointments={appointments} />
         </div>
       )}
       {
