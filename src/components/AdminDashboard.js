@@ -23,9 +23,9 @@ const AdminDashboard = () => {
 
     const [state, setState] = React.useState({
         DBA: false,
-        FD: false,
-        DE: false,
-        doctor: false,
+        FDO: false,
+        DEO: false,
+        DOC: false,
     });
 
     const handleStateChange = (event) => {
@@ -35,7 +35,7 @@ const AdminDashboard = () => {
         });
     };
 
-    const { DBA, FD, DE, doctor } = state;
+    const { DBA, FDO, DEO, DOC } = state;
 
 
 
@@ -72,24 +72,32 @@ const AdminDashboard = () => {
         var FDO = state.FDO;
         var DOC = state.DOC;
         console.log(state);
-        console.log(DBA);
+        console.log("----------------")
+        // console.log(DBA);
         // var { DBA, DEO, FDO, DOC } = state;
 
         // filtering the user list based on type
         if (DBA || DEO || FDO || DOC) {
-            post && post.map((user) => {
+            dummyPost && dummyPost.map((user) => {
+                // console.log(users)
                 if (DBA && user.type == 'dba') {
                     users.push(user);
+                    console.log("dba")
                 }
-                else if (DEO && user.type == 'deo') {
+                if (DEO && user.type == 'deo') {
                     users.push(user);
+                    console.log("deo")
                 }
-                else if (FDO && user.type == 'fdo') {
+                if (FDO && user.type == 'fdo') {
                     users.push(user);
+                    console.log("fdo")
                 }
-                else if (DOC && user.type == 'doc') {
+                if (DOC && user.type == 'doc') {
                     users.push(user);
+                    console.log("doc")
                 }
+                console.log("xxxxxx")
+                // console.log(post)
                 setPost(users);
             });
         }

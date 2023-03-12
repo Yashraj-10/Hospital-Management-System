@@ -130,42 +130,8 @@ const Doctor = () => {
   };
 
   var { Above, Between1, Between2, Below } = state;
-  // const handleRefresh = (e) => {
-  // e.preventDefault();
-  // let token_type = localStorage.getItem('access_token').slice(0, 3);
-  // if (token_type === "doc") { setIsuser(true); }
-  // else{setIsuser(false);}
-  //   state.Above = Above;
-  //   state.Between1 = Between1;
-  //   state.Between2 = Between2;
-  //   state.Below = Below;
-
-  //   // filtering the patient list based on age
-  //   if(Above || Between1 || Between2 || Below){
-  //     post && post.map((patient) => {
-  //       if(Above && patient.age >= 60){
-  //         patients.push(patient);
-  //       }
-  //       else if(Between1 && patient.age >= 40 && patient.age < 60){
-  //         patients.push(patient);
-  //       }
-  //       else if(Between2 && patient.age >= 20 && patient.age < 40){
-  //         patients.push(patient);
-  //       }
-  //       else if(Below && patient.age < 20){
-  //         patients.push(patient);
-  //       }
-  //     });
-  //     setPost(patients);
-  //   }
-  //   else{
-  //     setPost(dummyPost);
-  //   }
-  // }
 
   React.useEffect(() => {
-    // handleRefresh();
-    // setPost(dummyPost);
     state.Above = Above;
     state.Between1 = Between1;
     state.Between2 = Between2;
@@ -174,7 +140,7 @@ const Doctor = () => {
 
     // filtering the patient list based on age
     if (Above || Between1 || Between2 || Below) {
-      post && post.map((patient) => {
+      dummyPost && dummyPost.map((patient) => {
         if (Above && patient.age >= 60) {
           patients.push(patient);
         }
