@@ -10,8 +10,8 @@ const Login = () => {
     const history = useHistory();
 
     useEffect(() => {
-        var self_user_id = localStorage.getItem("self_user_id");
-        var access_token = localStorage.getItem("access_token")
+        // var self_user_id = localStorage.getItem("self_user_id");
+        // var access_token = localStorage.getItem("access_token")
 
         var token_type;
         if(access_token === null || access_token.length == 0){

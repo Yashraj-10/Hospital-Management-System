@@ -55,6 +55,19 @@
     text-transform: uppercase;
     /* font-weight: 600; */
   }
+
+  .navbar3 .vikasmyHome button:hover{
+    background-color: rgb(169, 246, 246);
+  }
+  .navbar3 .vikasmyHomeNav button:hover{
+    background-color: rgb(169, 246, 246);
+  }
+  .navbar3 .vikasmyHomeNav2 button:hover{
+    background-color: rgb(169, 246, 246);
+  }
+  .navbar3 .vikasChangePass button:hover{
+    background-color: rgb(169, 246, 246);
+  }
   .navbar3 .vikasChangePass{
     margin-right: 1%;
   }
