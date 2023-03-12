@@ -13,7 +13,14 @@ const Login = () => {
         var self_user_id = localStorage.getItem("self_user_id");
         var access_token = localStorage.getItem("access_token")
 
-        let token_type = access_token.slice(0, 3);
+        var token_type;
+        if(access_token === null || access_token.length == 0){
+            token_type = 'none';
+        }
+
+        else {
+            token_type = access_token.slice(0, 3);
+        }
                 console.log(token_type);
                 if(token_type === "doc"){
                     // alert("Doctor Login Successful");

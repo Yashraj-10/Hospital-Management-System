@@ -21,7 +21,7 @@ const Admit = () => {
             .then((response) => {
                 // console.log(response.data['access_token']);
                 console.log(response.data);
-                alert("Patient Admitted Successfully");
+                alert(`Patient Admitted Successfully in Room no. ${response.data.room_no}`);
                 setIsAdmitRendered(true);
                 // history.push("/frontdesk");
             }, (error) => {

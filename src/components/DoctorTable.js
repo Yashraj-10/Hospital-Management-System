@@ -19,6 +19,11 @@ const columns = [
     minWidth: 150
   },
   {
+    id : 'patient_id',
+    label : 'Pat. Id',
+    minWidth : 150
+  },
+  {
     id : 'start_time',
     label : 'Date',
     minWidth: 150

@@ -24,6 +24,8 @@ const AddTreatment = () => {
                 console.log(response.data);
                 alert("Treatment Added Successfully");
                 setIsPending(true);
+                window.location.reload();
+                
             }, (error) => {
                 console.log(error);
                 alert(error.response.data.message);

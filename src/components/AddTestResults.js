@@ -33,6 +33,8 @@ const AddTestResults = () => {
             .then((response) => {
                 console.log(response.data);
                 alert("Test Result Added Successfully");
+                window.location.reload();
+
             }, (error) => {
                 console.log(error);
                 alert(error.response.data.message);

@@ -10,6 +10,7 @@ import axios from 'axios';
 export default function FormDialogTreatment(props) {
   const treat_id = props.id;
   const [open, setOpen] = React.useState(false);
+  console.log("ttttreatment id is", treat_id)
 
   const handleClickOpen = () => {
     setOpen(true);

@@ -17,6 +17,11 @@ const columns = [
     minWidth: 150
   },
   {
+    id : 'test_appointment_result_id',
+    label : 'Appointment Id',
+    minWidth : 150
+  },
+  {
     id: 'start_time',
     label: 'Date',
     minWidth: 150
@@ -84,7 +89,7 @@ export default function StickyHeadTable(props) {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {
-                            column.id === 'report_link' ? <Button href={row.report_link} variant="contained" target="_blank">View</Button> :
+                            column.id === 'report_link' && row['report_link'] ? <Button href={row.report_link} variant="contained" target="_blank">View</Button> :
                             column.format && typeof value === 'number' ? column.format(value) : value
                           }
                         </TableCell>
