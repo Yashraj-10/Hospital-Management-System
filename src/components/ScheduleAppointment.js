@@ -43,7 +43,11 @@ const ScheduleAppointment = () => {
         // console.log(docSelect);
         e.preventDefault();
         console.log(docSelect);
-        setIsDocSelected(true);
+
+
+        if(docSelect.length == 0){
+            alert("Please select a doctor !");
+        }
 
         // 2nd axios call to post the doctor selected 
         // axios.post("/doctors", {doc_id: docSelect})
@@ -54,6 +58,8 @@ const ScheduleAppointment = () => {
         //     console.log(error);
         // }
         // )
+        else{
+        setIsDocSelected(true);
 
         // 3rd axios call to get the list of dates available for the doctor selected
         axios.post('https://dbms-backend-api.azurewebsites.net/doc_appointment/dates?doc_id='.concat(`${docSelect}`),{
@@ -65,7 +71,7 @@ const ScheduleAppointment = () => {
             var dates = []
             if(temp.length == 0){
                 alert("Doctor is unavailable !");
-                window.location.reload();
+                // window.location.reload();
             }
             for(var i = 0; i < temp.length; i++){
                 console.log(temp[i].date)
@@ -79,6 +85,7 @@ const ScheduleAppointment = () => {
         }
         )
     }
+    }
 
     const [appointmentDate, setAppointmentDate] = useState('');
     const [isDateSelected, setIsDateSelected] = useState(false);
@@ -91,7 +98,14 @@ const ScheduleAppointment = () => {
     const handleDateClick = (e) => {
         // console.log(e.target.value);
         // setAppointmentDate(e.target.value);
+        e.preventDefault();
         console.log(appointmentDate);
+
+        if(appointmentDate.length == 0){
+            alert("Please select a date !");
+        }
+
+        else{
         final = appointmentDate.toISOString().slice(0,8).replace(/-/g,"-")
         final = final + appointmentDate.toString().slice(8,10);
         console.log(final);
@@ -110,7 +124,6 @@ const ScheduleAppointment = () => {
 
               if(response.data.length == 0){
                 alert("No slot available for that day !!")
-                window.location.reload(); 
               }
               
           },
@@ -118,13 +131,20 @@ const ScheduleAppointment = () => {
               console.log(error);
           }
           );
+        }
     }
 
     const [slotSelect, setSlots] = useState('');
     const [isSlotSelected, setIsSlotSelected] = useState(false);
     const handleSelectSlot = (e) => {
         console.log(slotSelect);
-        setIsSlotSelected(true);
+        e.preventDefault();
+
+        if(slotSelect.length == 0){
+            alert("Please select a slot !");
+        }
+
+        else {setIsSlotSelected(true);}
     }
     const [patientId, setPatientId] = useState('');
     const [isPatientId, setIsPatientId] = useState(false);
@@ -140,7 +160,6 @@ const ScheduleAppointment = () => {
         e.preventDefault();
         ///popup for confirmation/error
         //go to your dashboard/ schedule another appointment
-        console.log('Appointment Confirmed');
         var appointmentData = { docSelect, appFinal, slotSelect, patientId, symptoms};
 
         var slotSelect2 = slotSelect.split("-");
@@ -175,7 +194,7 @@ const ScheduleAppointment = () => {
               window.location.reload();
           },
           (error) => {
-              console.log(error);
+              alert(error.response.data.message);
           }
           );
     }

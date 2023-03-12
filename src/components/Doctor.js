@@ -20,11 +20,10 @@ const Doctor = () => {
     setSearchInput(e.target.value);
   };
 
-  let appointments = [];
-
   const [isTodayapmts, setIsTodayapmts] = useState(false);
   const [todaydata, setTodaydata] = React.useState(null);
   const [isUser, setIsuser] = useState(false);
+
 
   const handleTodayapmts = (e) => {
     setIsTodayapmts(true);
@@ -44,10 +43,6 @@ const Doctor = () => {
           console.log(error);
         }
       );
-
-    if (todaydata) {
-      appointments = todaydata;
-    }
   };
 
   const handleBack = (e) => {
@@ -84,7 +79,11 @@ const Doctor = () => {
       );
   }, [isUser]);
 
-  const history = useHistory();
+const history = useHistory();
+
+const handleSetSlot = (e) => {
+    history.push('/doctor/add_slot')
+};
   const getSearchQuery = (query) => {
     console.log(query);
     var temp = 0;
@@ -177,8 +176,13 @@ const Doctor = () => {
             <button type="submit" className="searchButton" onClick={() => getSearchQuery(searchInput)}>
               Go
             </button>
-            <button className="aduser" onClick={handleTodayapmts}>
+          </div>
+          <div>
+          <button className="aduser" onClick={handleTodayapmts}>
               <b>Future Appointments</b>
+            </button>
+            <button className="aduser" onClick={handleSetSlot}>
+              <b>Add Slot</b>
             </button>
           </div>
           <div>

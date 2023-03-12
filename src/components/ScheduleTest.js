@@ -1,74 +1,131 @@
 import React, { useState } from 'react';
 import '../styles/scheduleAppointment.css';
+import axios from 'axios';
+import { useEffect } from 'react';
+import DatePicker from "react-datepicker";
+const dateFormat = "yyyy-MM-dd";
 // import SelectDate from './SelectDate';
 // import $ from 'jquery';
 // import jQuery from 'jquery';
 
 const ScheduleTest = () => {
 
-    const slotsAvailable = [
-        {
-            slot_id: 1,
-            name: 'test1'
-        },
-        {
-            slot_id: 2,
-            name: 'test2'
-        },
-        {
-            slot_id: 3,
-            name: 'test3'
-        },
-    ];
+    const [testsAvailable, setTestsAvailable] = useState([]);
+    useEffect(() => {
+        axios.post('https://dbms-backend-api.azurewebsites.net/tests',{
+            access_token : localStorage.getItem("access_token")
+        })
+        .then((response) => {
+            console.log(response.data);
+            setTestsAvailable(response.data);
+        }
+        , (error) => {
+            console.log(error);
+        }
+        )
+    }, []);
+
+
+
     const [docSelect, setslotsAvailable] = useState('');
     const [isDocSelected, setIsDocSelected] = useState(false);
     // const [isPendingDoctor, setIsPendingDoctor] = useState(false);
+
+    const [dateArray, setArray] = useState([]);
     const handleSelectDoctor = (e) => {
         // console.log(docSelect);
         e.preventDefault();
-        console.log(docSelect);
-        setIsDocSelected(true);
-    }
-    // var array = ["2023-03-14", "2023-03-11", "2023-03-26"];
+        if(docSelect.length == 0){
+            alert("Please select a test!");
+        }
+        else{
+            console.log(docSelect);
+            setIsDocSelected(true);
 
-    // $(function () {
-    //     $("input").datepicker({
-    //         dateFormat: "yy-mm-dd",
-    //         beforeShowDay: function (date) {
-    //             var string = jQuery.datepicker.formatDate("yy-mm-dd", date);
-    //             return [array.indexOf(string) !== -1];
-    //         },
-    //     });
-    // });
+            axios.post('https://dbms-backend-api.azurewebsites.net/test_appointment/dates?test_id='.concat(`${docSelect}`),{
+            access_token : localStorage.getItem('access_token')
+            })
+            .then((response) => {
+                console.log(response.data);
+                var temp = response.data;
+                var dates = []
+                if(temp.length == 0){
+                    alert("Test is unavailable !");
+                    // window.location.reload();
+                }
+                for(var i = 0; i < temp.length; i++){
+                    console.log(temp[i].date)
+                    var date = new Date(temp[i].date);
+                    dates.push(date);
+                }
+                setArray(dates);
+            }
+            , (error) => {
+                console.log(error);
+            }
+            )
+        }
+        
+    }
+
+    const [finalAppDate, setFinalAppDate] = useState('');
     const [appointmentDate, setAppointmentDate] = useState('');
     const [isDateSelected, setIsDateSelected] = useState(false);
+    const [slots, setBastiSlots] = useState([])
+
     const handleDateClick = (e) => {
         // console.log(e.target.value);
         // setAppointmentDate(e.target.value);
-        console.log(appointmentDate);
-        setIsDateSelected(true);
-    }
-    const slots = [
-        {
-            slot_id: 1,
-            time: '10:00 AM'
-        },
-        {
-            slot_id: 2,
-            time: '11:00 AM'
-        },
-        {
-            slot_id: 3,
-            time: '12:00 PM'
-        },
+        e.preventDefault();
 
-    ];
+        if(appointmentDate.length == 0){
+            alert("Please select a date !");
+        }
+
+        else{
+        var final = appointmentDate.toISOString().slice(0,8).replace(/-/g,"-")
+        final = final + appointmentDate.toString().slice(8,10);
+        console.log(final);
+        // console.log(appointmentDate);
+        setIsDateSelected(true);
+        setFinalAppDate(final);
+        // api call to get the slots of the test on the given date
+        axios
+          .post(`https://dbms-backend-api.azurewebsites.net/test_appointment/slots?test_id=${docSelect}&date=${final}`, {
+            access_token: localStorage.getItem("access_token")
+          })
+          .then(
+            (response) => {
+                console.log(response.data)
+                
+                if(response.data.length == 0){
+                    alert("No slot available for that day !!") 
+                }
+                setBastiSlots(response.data);
+              
+          },
+          (error) => {
+              console.log(error.data.message);
+          }
+          );
+        }
+    }
+    
     const [slotSelect, setSlots] = useState('');
     const [isSlotSelected, setIsSlotSelected] = useState(false);
     const handleSelectSlot = (e) => {
         console.log(slotSelect);
-        setIsSlotSelected(true);
+        e.preventDefault();
+
+        if(slotSelect.length == 0){
+            alert("Please select a slot !");
+        }
+
+        else{
+            setIsSlotSelected(true);
+        }
     }
+
     const [patientId, setPatientId] = useState('');
     const [isPatientId, setIsPatientId] = useState(false);
 
@@ -80,23 +137,42 @@ const ScheduleTest = () => {
     // const [isRender, setIsRender] = useState(false);
 
     const handleConfirmAppointment = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         ///popup for confirmation/error
         //go to your dashboard/ schedule another appointment
         console.log('Appointment Confirmed');
-        const appointmentData = { docSelect, appointmentDate, slotSelect, patientId };
+        var slotSelect2 = slotSelect.split("-");
+        var temp = slotSelect2[0];
+        var start_time = temp.slice(0, temp.length - 2) + ":" + temp.slice(temp.length-2, temp.length) + ":00";
+        
+        start_time = finalAppDate + " "+ start_time;
+
+        const appointmentData = { "test_id":docSelect,"start_time": start_time, "patient_id":patientId };
         console.log(appointmentData);
-        console.log('Appointment Confirmed');
-        console.log('This is running');
+        
+        axios
+        .post(`https://dbms-backend-api.azurewebsites.net/test_appointment`, {
+          "access_token" : localStorage.getItem("access_token"),
+          "test_id" : docSelect,
+          "patient_id" : patientId,
+          "start_time" : start_time
+        })
+        .then(
+          (response) => {
+            console.log(response.data);
+            alert("Test Appointment confirmed !");
+            window.location.reload();
+        },
+        (error) => {
+            alert(error.response.data.message);
+        }
+        );
         // setIsRender(true);
 
     }
 
-    // useEffect(() => {
-    //     console.log('use effect ran');
-    // },[isRender]);
-
     return (
+        
         <div className="vikasScheduleAppointmentContainer">
             <div className="vikasRegHead"> Schedule Test </div>
             <form className="vikasRegForm">
@@ -112,17 +188,17 @@ const ScheduleTest = () => {
                                 onChange={(e) => setslotsAvailable(e.target.value)}
                                 required
                             >
-                                <option value=""></option>
-                                {slotsAvailable.map((doctor) => (
-                                    <option key={doctor.slot_id} value={doctor.slot_id}>
-                                        {doctor.name}
+                                <option value="">Select</option>
+                                {testsAvailable.map((test) => (
+                                    <option key={test.test_id} value={test.test_id}>
+                                        {test.test_name}
                                     </option>
                                 ))}
                             </select>
                         </div>
                     </div>
                     <div className='vikasSelectDoctorButton'>
-                        <button onClick={handleSelectDoctor}>Select</button>
+                        <button onClick={handleSelectDoctor}>Confirm</button>
                     </div>
                 </div>
                 <hr />
@@ -135,7 +211,7 @@ const ScheduleTest = () => {
                             <div className="vikasRegCol2">
                                 {/* <label for="date"></label> */}
 
-                                <input
+                                {/* <input
                                     type="date"
                                     name="date"
                                     value={appointmentDate}
@@ -144,11 +220,20 @@ const ScheduleTest = () => {
                                     required
                                     // readonly
                                     onChange={(e) => setAppointmentDate(e.target.value)}
+                                /> */}
+                                <DatePicker
+                                    selected={appointmentDate}
+                                    dateFormat={dateFormat}
+                                    onChange={(date) => setAppointmentDate(date)}
+                                    // filterDate={isWeekday}
+                                    minDate={new Date()}
+                                    // maxDate={addDays(new Date(), 7)}
+                                    includeDates={dateArray}
                                 />
                             </div>
                         {/* </div> */}
                         <div className='vikasSelectDoctorButton'>
-                            <button onClick={handleDateClick}>Select</button>
+                            <button onClick={handleDateClick}>Confirm</button>
                         </div>
                     </div>
                     <hr />
@@ -167,15 +252,15 @@ const ScheduleTest = () => {
                                     >
                                         <option value=""></option>
                                         {slots.map((slot) => (
-                                            <option key={slot.slot_id} value={slot.slot_id}>
-                                                {slot.time}
+                                            <option key={slot.slot} value={slot.slot}>
+                                                {slot.slot}
                                             </option>
                                         ))}
                                     </select>
                                 </div>
                             </div>
                             <div className='vikasSelectDoctorButton'>
-                                <button onClick={handleSelectSlot}>Select</button>
+                                <button onClick={handleSelectSlot}>Confirm</button>
                             </div>
 
 
