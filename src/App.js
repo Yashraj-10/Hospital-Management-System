@@ -107,14 +107,17 @@ function App() {
             <Route exact path='/scheduleappointment'>
               <Navbar2 />
               <ScheduleAppointment />
+              <Footer />
             </Route>
             <Route exact path='/scheduletest'>
               <Navbar2 /> 
               <ScheduleTest />
+              <Footer />
             </Route>
             <Route exact path='/addslot'>
               <Navbar2 /> 
               <DocSlots />
+              <Footer />
             </Route>
             <Route exact path='*'>
               <NotFound />
