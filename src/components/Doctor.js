@@ -36,7 +36,7 @@ const Doctor = () => {
       .then(
         (response) => {
           setTodaydata(response.data);
-          console.log(response.data);
+          // console.log(response.data);
         }
         ,
         (error) => {
@@ -44,7 +44,7 @@ const Doctor = () => {
         }
       );
   };
-
+  var appointments = [];
   if(todaydata){
     appointments = todaydata;
   }
@@ -58,7 +58,7 @@ const Doctor = () => {
   //   }, [isTodayapmts]);
 
   let patients = [];
-  var appointments = [];
+  
 
   const [post, setPost] = React.useState(null);
   const [dummyPost, setDummyPost] = React.useState(null);
@@ -89,10 +89,10 @@ const Doctor = () => {
 const history = useHistory();
 
 const handleSetSlot = (e) => {
-    history.push('/doctor/add_slot')
+    history.push('/addslot')
 };
   const getSearchQuery = (query) => {
-    console.log(query);
+    // console.log(query);
     var temp = 0;
     for (var i = 0; i < query.length; i++) {
       if (query[i] >= '0' && query[i] <= '9') {
@@ -142,7 +142,7 @@ const handleSetSlot = (e) => {
     state.Between1 = Between1;
     state.Between2 = Between2;
     state.Below = Below;
-    console.log(state);
+    // console.log(state);
 
     // filtering the patient list based on age
     if (Above || Between1 || Between2 || Below) {

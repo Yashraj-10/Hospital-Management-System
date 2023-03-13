@@ -7,6 +7,7 @@ const Discharge = () => {
     const [amount, setamount] = useState('');
     const [isDischargerendered, setIsDischargerendered] = useState(false);
     const [isUser, setIsuser] = useState(false);
+    const [patientIds, setPatientIds] = useState([]);
     
     const handleSubmit = (e) => {
 
@@ -30,6 +31,17 @@ const Discharge = () => {
     useEffect(() => {
         let token_type = localStorage.getItem('access_token').slice(0, 3);
         if (token_type === "fdo") { setIsuser(true); }
+        axios.post('https://dbms-backend-api.azurewebsites.net/users/patients', {
+            access_token: localStorage.getItem("access_token")
+        })
+            .then((response) => {
+                console.log(response.data);
+                setPatientIds(response.data);
+            }
+                , (error) => {
+                    console.log(error);
+                }
+            )
         if (isDischargerendered) {
             setpatientID('');
             setamount('');
@@ -42,17 +54,26 @@ const Discharge = () => {
             {isUser && <div className='vikasAdmitFormContainer'>
                 <div className='vikasRegHead'>Discharge Patient</div>
                 <form onSubmit={handleSubmit} className='vikasRegForm'>
-                    <div className="vikasRegRow">
+                <div className="vikasRegRow">
                         <label className='vikasRegCol1'>
                             Patient ID:
                         </label>
                         <div className="vikasRegCol2">
-                            <input
-                                type="text"
-                                className='vikasAdmitTextBox'
-                                value={patientID}
-                                required
-                                onChange={(e) => setpatientID(e.target.value)} />
+                            <div className="admitRoomType">
+                                <select
+                                    value={patientID}
+                                    onChange={(e) => setpatientID(e.target.value)}
+                                    required
+
+                                >
+                                    <option value=""></option>
+                                    {patientIds.map((pat) => (
+                                        <option key={pat.patient_id} value={pat.patient_id}>
+                                            {pat.patient_name} - {pat.patient_id}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div className="vikasRegRow">

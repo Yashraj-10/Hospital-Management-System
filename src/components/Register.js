@@ -28,7 +28,8 @@ const Register = () => {
             .then((response) => {
                 // console.log(response.data['access_token']);
                 console.log(response.data);
-                alert("Patient Registered Successfully");
+                // alert("Patient Registered Successfully");
+                alert(`${response.data.message} and its id is ${response.data.patient_id}`);
                 // history.push("/frontdesk");
                 setIsRendered(true);
             }, (error) => {
