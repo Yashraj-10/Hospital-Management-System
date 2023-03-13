@@ -74,7 +74,14 @@ export default function PatientDetails() {
                                     {res[0]['patient_info'].patient_name}
                                 </div>
                             </div>
-
+                            <div className="vikasRegRow">
+                                <label className='vikasRegCol1'>
+                                    Phone Number:
+                                </label>
+                                <div className="vikasRegCol2">
+                                    8830475330
+                                </div>
+                            </div>
                             <div className="vikasRegRow">
                                 <label className='vikasRegCol1'>
                                     Email Id:
@@ -129,7 +136,6 @@ export default function PatientDetails() {
                             </div>
                         </div>
                     </div>
-                    <br></br>
 
                     <div className='vikasRegHead'>Tests History</div>
                     <TestHistory data={res[0]['prev_tests']} />

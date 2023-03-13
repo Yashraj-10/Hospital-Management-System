@@ -75,7 +75,7 @@ const AdminAddUser = () => {
     const [isDoctor, setIsDoctor] = useState(false);
     const emailandtype = (e, value) => {
         console.log(value);
-        if (value === "Doctor") setIsDoctor(true);
+        if (value === "doc") setIsDoctor(true);
         else setIsDoctor(false);
     };
     const [showPassword, setShowPassword] = React.useState(false);

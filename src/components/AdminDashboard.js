@@ -42,7 +42,7 @@ const AdminDashboard = () => {
     const handleChange = (e) => {
         e.preventDefault();
         // setSearchInput(e.target.value);
-        console.log(searchInput);
+        // console.log(searchInput);
         axios
             .post('https://dbms-backend-api.azurewebsites.net/user?search_string='.concat(`${searchInput}`), {
                 access_token: localStorage.getItem("access_token")
@@ -71,8 +71,8 @@ const AdminDashboard = () => {
         var DEO = state.DEO;
         var FDO = state.FDO;
         var DOC = state.DOC;
-        console.log(state);
-        console.log("----------------")
+        // console.log(state);
+        // console.log("----------------")
         // console.log(DBA);
         // var { DBA, DEO, FDO, DOC } = state;
 
@@ -82,21 +82,21 @@ const AdminDashboard = () => {
                 // console.log(users)
                 if (DBA && user.type == 'dba') {
                     users.push(user);
-                    console.log("dba")
+                    // console.log("dba")
                 }
                 if (DEO && user.type == 'deo') {
                     users.push(user);
-                    console.log("deo")
+                    // console.log("deo")
                 }
                 if (FDO && user.type == 'fdo') {
                     users.push(user);
-                    console.log("fdo")
+                    // console.log("fdo")
                 }
                 if (DOC && user.type == 'doc') {
                     users.push(user);
-                    console.log("doc")
+                    // console.log("doc")
                 }
-                console.log("xxxxxx")
+                
                 // console.log(post)
                 setPost(users);
             });
