@@ -160,7 +160,7 @@ const ScheduleTest = () => {
         .then(
           (response) => {
             console.log(response.data);
-            alert("Test Appointment confirmed !");
+            alert(`Test Appointment confirmed ! and appointment_id is ${response.data.test_appointment_result_id}`);
             window.location.reload();
         },
         (error) => {

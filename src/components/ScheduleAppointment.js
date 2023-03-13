@@ -190,7 +190,7 @@ const ScheduleAppointment = () => {
             .then(
                 (response) => {
                     console.log(response.data);
-                    alert("Appointment confirmed !");
+                    alert(`Appointment confirmed ! and appointment id is ${response.data.doc_appointment_id}`);
                     window.location.reload();
                 },
                 (error) => {

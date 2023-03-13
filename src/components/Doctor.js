@@ -227,6 +227,9 @@ const handleSetSlot = (e) => {
                 </FormControl>
               </Box>
             </div>
+
+            <br></br>
+              {/* <h1>Appointment History</h1> */}
             <div className="admind_table">
               <StickyHeadTable patients={post} />
             </div>
