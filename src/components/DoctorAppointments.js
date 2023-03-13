@@ -78,7 +78,7 @@ export default function DoctorTodayApmts(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {rows && rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (

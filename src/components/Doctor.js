@@ -21,7 +21,7 @@ const Doctor = () => {
   };
 
   const [isTodayapmts, setIsTodayapmts] = useState(false);
-  const [todaydata, setTodaydata] = React.useState(null);
+  const [todaydata, setTodaydata] = React.useState([]);
   const [isUser, setIsuser] = useState(false);
 
 
@@ -238,7 +238,7 @@ const handleSetSlot = (e) => {
           <button className="backButton" onClick={handleBack}>
             <b>Back</b>
           </button>
-          <DoctorTodayApmts appointments={appointments} />
+          <DoctorTodayApmts appointments={todaydata} />
         </div>
       )}
       {
