@@ -1,0 +1,46 @@
+.vikasScheduleAppointmentContainer{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 100px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+}
+.vikasScheduleAppointmentContainer .vikasRegCol2{
+    width: 50%;
+    float: left;
+    cursor: pointer;
+}
+.vikasSelectDoctorButton button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+    background-color:aqua;
+    width: 100px;
+    height: 35px;
+    cursor: pointer;
+}
+.vikasScheduleAppointmentContainer .vikasRegCol2 input{
+    width: 200px;
+}
+/* .form-group input{
+    width: 200%;
+    margin-right: 10%;
+
+} */
+ .vikasSelectDoctorButton{
+    /* width: 20%; */
+    margin-left: 1%;
+    float: left;
+}
+.vikasConfirmAppointmentButton{
+    margin-bottom: 10px;
+    color: black;
+    /* background-color:rgb(30, 218, 108); */
+    width: 00px;
+    height: 35px;
+    margin-left: 40%;
+}
