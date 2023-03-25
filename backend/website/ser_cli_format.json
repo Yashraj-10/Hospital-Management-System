@@ -1,0 +1,363 @@
+/add_test_result:
+client:
+{
+    "test_appointment_result_id" : "LK112",
+    "report_link" : "www.link.com",
+    "result" : "P",
+    "comment" : "Nirbhay has bawasir",
+    "access_token" : "eqre"
+}
+
+/add_treatment:
+client:
+{
+    "doc_appointment_id" : "APP1",
+    "treatment" : "Give 10 doses of paracetamol",
+    "access_token" : "eqreqerfqefwewefr"
+}
+
+/login
+client:
+{
+    "user_id" : "F1234",
+    "password" : "asdfghjkl"
+}
+
+server:
+{
+    "access_token" : "efwgrrwfergeg",
+    "message" : "Login Success"
+}
+
+/appointments
+client:
+{
+    "doc_id" : "D1",
+    "access_token" : "eqreqefrwgwr"
+}
+
+server:
+[
+    {
+        "doc_appointment_id": "APP1",
+        "end_time": "2018-04-24 10:47:00",
+        "patient_name": "Astitva",
+        "start_time": "2018-04-24 10:47:00"
+    },
+    {
+        "doc_appointment_id": "APP2",
+        "end_time": "2018-04-24 11:32:00",
+        "patient_name": "Nirbhay",
+        "start_time": "2018-04-24 10:50:00"
+    }
+]
+
+/patient?doc_id=doc_id
+server:
+[
+    {
+        "age": 4,
+        "conditions": "fever",
+        "doc_appointment_id": "APP1",
+        "patient_id": "P2        ",
+        "patient_name": "Astitva",
+        "start_time": "2018-04-24 10:47:00",
+        "treatment": ""
+    },
+    {
+        "age": 4,
+        "conditions": "bawasir",
+        "doc_appointment_id": "APP2",
+        "patient_id": "P1        ",
+        "patient_name": "Nirbhay",
+        "start_time": "2018-04-24 10:50:00",
+        "treatment": "Cold water treatment"
+    }
+]
+
+
+/patient?select_string=s
+1. If s is patient_id
+server:
+[
+    {
+        "patient_info": {
+            "address": "gaya",
+            "age": 4,
+            "conditions": "bawasir",
+            "email": "abc",
+            "patient_id": "P1        ",
+            "patient_name": "Nirbhay"
+        },
+        "prev_appointments": [
+            {
+                "docType": "OPD",
+                "doc_appointment_id": "APP2",
+                "doc_email": "Strange@",
+                "doc_id": "D1        ",
+                "doc_name": "Strange",
+                "doc_number": "9112        ",
+                "start_time": "2018-04-24 10:50:00",
+                "symptoms": "Bawasir",
+                "treatment": "Cold water treatment"
+            }
+        ],
+        "prev_tests": [
+            {
+                "comment": null,
+                "report_link": null,
+                "result": null,
+                "start_time": "2018-04-24 10:47:00",
+                "test_appointment_result_id": "LK112",
+                "test_id": "T1",
+                "test_name": "Bawasir Operation"
+            }
+        ]
+    }
+]
+
+2. If s is patient_name or part of it
+server:
+[
+    {
+        "age": 4,
+        "conditions": "bawasir",
+        "patient_id": "P1        ",
+        "patient_name": "Nirbhay"
+    },
+    {
+        "age": 4,
+        "conditions": "fever",
+        "patient_id": "P2        ",
+        "patient_name": "Astitva"
+    }
+]
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+// DBA Data
+
+/users  //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "KGP",
+        "name": "Vikas Basti",
+        "ph_number": "8830475325  ",
+        "type": "doc",
+        "user_id": "DOC1"
+    },
+    {
+        "address": "Delhi",
+        "name": "Yashraj",
+        "ph_number": "916393746715",
+        "type": "dba",
+        "user_id": "DBA1"
+    },
+    {
+        "address": "Delhi",
+        "name": "Astitva",
+        "ph_number": "910987654321",
+        "type": "fdo",
+        "user_id": "FDO2"
+    }
+]
+
+/user_type_count    //-----------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+{
+    "DBA": 1,
+    "DEO": 0,
+    "DOC": 1,
+    "FDO": 1
+}
+
+/user/dba   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+{
+    "address": "Delhi",
+    "name": "Yashraj",
+    "ph_number": "916393746715",
+    "type": "dba",
+    "user_id": "DBA1"
+}
+
+/user/doc   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "New york",
+        "name": "Strange",
+        "ph_number": "919789874947",
+        "type": "doc",
+        "user_id": "DOC2"
+    },
+    {
+        "address": "Mumbai",
+        "name": "Hulk",
+        "ph_number": "918978558023",
+        "type": "doc",
+        "user_id": "DOC4"
+    },
+    {
+        "address": "Gotham",
+        "name": "Batman",
+        "ph_number": "918115639852",
+        "type": "doc",
+        "user_id": "DOC3"
+    },
+    {
+        "address": "KGP",
+        "name": "Vikas Basti",
+        "ph_number": "918830475325",
+        "type": "doc",
+        "user_id": "DOC1"
+    }
+]
+
+/user/deo   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "Kharagpur",
+        "name": "Rishi",
+        "ph_number": "911928754098",
+        "type": "deo",
+        "user_id": "DEO2"
+    }
+]
+
+/user/fdo   //-----------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "Delhi",
+        "name": "Astitva",
+        "ph_number": "910987654321",
+        "type": "fdo",
+        "user_id": "FDO2"
+    }
+]
+
+/user?search_string=    //----------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw"
+}
+server:
+[
+    {
+        "address": "KGP",
+        "name": "Vikas Basti",
+        "ph_number": "918830475325",
+        "type": "doc",
+        "user_id": "DOC1"
+    }
+]
+
+/users/add  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw",
+    "name": "Rishi",
+    "ph_number": "911928754098",
+    "type": "deo",
+    "password": "rajrishi",
+    "address": "Kharagpur"
+}
+server:
+{
+    "message": "User added successfully",
+    "user_id": "DEO2"
+}
+
+/users/delete  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw",
+    "user_id": "DEO1"
+}
+server:
+{
+    "message": "User deleted successfully"
+}
+
+/users/update_pass  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "dbaeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAyNDEzMiwianRpIjoiOWJmMzQzNjQtMjI0MS00MzgzLTg4MWQtMTA2YzRjZTY0ZjA2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkRCQTEiLCJuYmYiOjE2NzgwMjQxMzIsImV4cCI6MTY3ODAyNTAzMn0.3_90V2-pFRNgK-egKzT39kAjIrI0Dl3m9kybmb8NTrw",
+    "user_id": "DBA1",
+    "password": "jarhasy"
+}
+server:
+{
+    "message": "Password updated successfully"
+}
+
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------
+// FDO Data
+
+/add_patient  //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "fdoeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAzMjQ4MiwianRpIjoiMTFmYmYzZTktODVmZi00M2U1LTlmMTEtODk4YWFlYjc0Yzk0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZETzIiLCJuYmYiOjE2NzgwMzI0ODIsImV4cCI6MTY3ODAzMzM4Mn0.0oEuQpFUCirgkVNpJcKVd13Fw_JsBWuZhmGOMpZ8sCE",
+    "patient_name": "Rishi Raj",
+    "ph_number": "919162839286",
+    "address": "KGP",
+    "conditions": "",
+    "dob": "2002-05-26",
+    "gender": "Male",
+    "email": "rishiraj45035@gmail.com"
+}
+server:
+{
+    "message": "Patient added successfully",
+    "patient_id": "P3"
+}
+
+/admit //--------------------------------------------------------------------------------------------------
+client:
+{
+    "access_token": "fdoeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY3ODAzMjQ4MiwianRpIjoiMTFmYmYzZTktODVmZi00M2U1LTlmMTEtODk4YWFlYjc0Yzk0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IkZETzIiLCJuYmYiOjE2NzgwMzI0ODIsImV4cCI6MTY3ODAzMzM4Mn0.0oEuQpFUCirgkVNpJcKVd13Fw_JsBWuZhmGOMpZ8sCE",
+    "patient_id": "P3",
+    "room_type": "CCU",
+    "admit_date": "2023-03-06"
+}
+server:
+{
+    "message": "Patient admitted successfully",
+    "room_no": "C102"
+}
+
+/discharge //--------------------------------------------------------------------------------------------------
+
+
+
+/
