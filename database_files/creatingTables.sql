@@ -151,23 +151,57 @@ INSERT INTO Room VALUES ('A302', 'AC Ward');
 INSERT INTO Room VALUES ('A303', 'AC Ward');
 INSERT INTO Room VALUES ('A304', 'AC Ward');
 
--- patient insertions
-INSERT INTO Patients VALUES ('P3', 'Thor', '1934-03-4 10:47', 'abc', 'Asgard', 'Broken Bone');
-INSERT INTO Patients VALUES ('P4', 'Iron Man', '1960-03-4 10:47', 'abc', 'New York', 'Lung puncture');
-INSERT INTO Patients VALUES ('P5', 'Captain', '1928-03-4 10:47', 'abc', 'Germany', 'Broken Heart');
-INSERT INTO Patients VALUES ('P6', 'Black Panther','1980-03-4 10:47', 'abc', 'Wakanda', 'Throat Pain');
-INSERT INTO Patients VALUES ('P7', 'Black Widow', '1990-03-4 10:47', 'abc', 'Delhi', 'Accident');
+-- patient insertions -- final
+INSERT INTO Patients VALUES ('P5', 'Thor', '1934-03-04', 'abc', 'Asgard', 'Broken Bone');
+INSERT INTO Patients VALUES ('P6', 'Iron Man', '1980-03-04', 'abc', 'New York', 'Lung puncture');
+INSERT INTO Patients VALUES ('P7', 'Captain', '1928-03-04', 'abc', 'Germany', 'Broken Heart');
+INSERT INTO Patients VALUES ('P8', 'Black Panther','2010-03-04', 'abc', 'Wakanda', 'Throat Pain');
+INSERT INTO Patients VALUES ('P9', 'Black Widow', '1990-03-04', 'abc', 'Delhi', 'Accident');
+INSERT INTO Users VALUES ('DOC5', 'Superman', '9112', 'abc', 'doc', 'Gotham'); 
+INSERT INTO Doctors VALUES ('DOC5', 'OPD', 'adityachoudhary.01m@gmail.com','DOC5');
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC5', '10001200,13001400', '2023-03-12'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC5', '10001200,13001400', '2023-03-19'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC5', '10001200,13001400', '2023-03-26'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC5', '10001200,13001400', '2023-04-03'); 
+INSERT INTO doc_slots (doc_id, doc_slot, doc_date) VALUES ('DOC5', '10001200,13001400', '2023-04-10');
+INSERT INTO doc_appointment VALUES ('DA3', 'DOC1', 'P4', '2023-03-05 10:00:00', '2023-03-5 10:15:00', '1', 'Fever', 'Calpol, Injection');
+INSERT INTO doc_appointment VALUES ('DA4', 'DOC1', 'P3', '2023-03-05 10:15:00', '2023-03-05 10:30:00', '1', 'Fever', 'Cetrezine');
+INSERT INTO doc_appointment VALUES ('DA5', 'DOC1', 'P3', '2023-03-05 10:30:00', '2023-03-05 10:45:00', '1', 'Fever', 'Paracetamol');
+INSERT INTO doc_appointment VALUES ('DA6', 'DOC1', 'P6', '2023-03-13 10:15:00', '2023-03-13 10:30:00', '0', 'Diarrhea', '');
+INSERT INTO doc_appointment VALUES ('DA7', 'DOC1', 'P7', '2023-03-15 14:00:00', '2023-03-15 14:15:00', '0', 'Stomach Ache', '');
+INSERT INTO doc_appointment VALUES ('DA8', 'DOC2', 'P5', '2023-03-19 14:15:00', '2023-03-19 14:30:00', '0', 'Fever', '');
+INSERT INTO doc_appointment VALUES ('DA9', 'DOC2', 'P5', '2023-03-19 14:30:00', '2023-03-19 14:45:00', '0', 'Fever', ' Cold water treatment');
+INSERT INTO doc_appointment VALUES ('DA10', 'DOC2', 'P4', '2023-03-19 14:45:00', '2023-03-19 15:00:00', '0', 'Fever', '');
+INSERT INTO doc_appointment VALUES ('DA11', 'DOC3', 'P6', '2023-03-06 15:00:00', '2023-03-06 15:15:00', '1', 'Fever', '');
+INSERT INTO doc_appointment VALUES ('DA12', 'DOC3', 'P6', '2023-03-06 15:15:00', '2023-03-06 15:30:00', '1', 'Fever', 'Blood test, CBC, Medicine');
+INSERT INTO doc_appointment VALUES ('DA13', 'DOC3', 'P2', '2023-03-06 15:30:00', '2023-03-06 15:45:00', '1', 'Fever', 'Medicine and rest');
+INSERT INTO doc_appointment VALUES ('DA14', 'DOC3', 'P1', '2023-03-18 16:00:00', '2023-03-18 16:00:15', '0', 'Persisting Chest Pain', '');
+INSERT INTO doc_appointment VALUES ('DA15', 'DOC3', 'P1', '2023-03-18 16:30:00', '2023-03-18 16:45:00', '0', 'Still Persisting Pain in the stomach', '');
+INSERT INTO Admit VALUES ('P1', 'B100', '2018-04-24', '2018-04-30');
+INSERT INTO Admit VALUES ('P1', 'B100', '2020-04-24', '2020-04-30');
+INSERT INTO Admit VALUES ('P4', 'A200', '2023-03-1', NULL);
+INSERT INTO Admit VALUES ('P2', 'A301', '2020-04-24', '2020-04-30');
+INSERT INTO Admit VALUES ('P2', 'A201', '2022-03-1', NULL);
+INSERT INTO Admit VALUES ('P3', 'C101', '2020-04-24', '2020-04-30');
+INSERT INTO Admit VALUES ('P3', 'C101', '2023-03-1', NULL);
+INSERT INTO Admit VALUES ('P5', 'B102', '2020-04-24', '2020-04-30');
+INSERT INTO test_appointment VALUES ('TAR6', 'T1', 'P1', '2018-04-24 10:47','2018-04-24 10:53','1',NULL,NULL,NULL);
+INSERT INTO test_appointment VALUES ('TAR1', 'T3', 'P3', '2018-04-24 10:47','2018-04-24 10:53','1',NULL,NULL,NULL);
+INSERT INTO test_appointment VALUES ('TAR2', 'T4', 'P3', '2018-04-24 10:47','2018-04-24 10:53','1',NULL,NULL,NULL);
+INSERT INTO test_appointment VALUES ('TAR3', 'T1', 'P5', '2018-04-24 10:47','2018-04-24 10:53','1',NULL,NULL,NULL);
+INSERT INTO test_appointment VALUES ('TAR4', 'T5', 'P5', '2018-04-24 10:47','2018-04-24 10:53','1',NULL,NULL,NULL);
+INSERT INTO test_appointment VALUES ('TAR5', 'T4', 'P6', '2018-04-24 10:47','2018-04-24 10:53','1',NULL,NULL, NULL);
+
+
 
 -- Doctors insertion
 INSERT INTO Users VALUES ('DOC2', 'Strange', '9112', 'abc', 'doc', 'New york'); 
-INSERT INTO Doctors VALUES ('DOC2', 'OPD', 'Strange@','DOC2');
+INSERT INTO Doctors VALUES ('DOC2', 'OPD', 'adityachoudhary.01m@gmail.com','DOC2');
 INSERT INTO Users VALUES ('DOC4', 'Hulk', '9112', 'abc', 'doc', 'Mumbai'); 
-INSERT INTO Doctors VALUES ('DOC4', 'Heart Surgeon', 'Hulk@','DOC4');
+INSERT INTO Doctors VALUES ('DOC4', 'Heart Surgeon', 'adityachoudhary.01m@gmail.com','DOC4');
 INSERT INTO Users VALUES ('DOC3', 'Batman', '9112', 'abc', 'doc', 'Gotham'); 
-INSERT INTO Doctors VALUES ('DOC3', 'OPD', 'Batman@','DOC3');
+INSERT INTO Doctors VALUES ('DOC3', 'OPD', 'adityachoudhary.01m@gmail.com','DOC3');
 
-INSERT INTO Users VALUES ('DOC4', 'Superman', '9112', 'abc', 'doc', 'Gotham'); 
-INSERT INTO Doctors VALUES ('DOC4', 'OPD', 'Batman@','DOC4');
 
 -- fdo insertions
 INSERT INTO Users VALUES ('F1235', 'Rishi', '9112', 'abc', 'fdo', 'Aurangabad'); 
@@ -187,47 +221,17 @@ INSERT INTO Test VALUES ('T4', 'Dengue');
 INSERT INTO Test VALUES ('T5', 'MRI');
 
 -- appointment insertions
-INSERT INTO doc_appointment VALUES ('APP1', 'D1', 'P2', '2018-04-24 10:47', '2018-04-24 10:47', '1', 'Fever', '.');
-INSERT INTO doc_appointment VALUES ('APP2', 'D1', 'P1', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Bawasir', 'Cold water treatment');
 
-INSERT INTO doc_appointment VALUES ('APP3', 'D1', 'P4', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', '');
-INSERT INTO doc_appointment VALUES ('APP4', 'D1', 'P3', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', '');
-INSERT INTO doc_appointment VALUES ('APP5', 'D1', 'P3', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', 'Paracetamol');
-INSERT INTO doc_appointment VALUES ('APP6', 'D1', 'P6', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', 'Paracetamol,Cetrazine');
-
-INSERT INTO doc_appointment VALUES ('APP7', 'D2', 'P7', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', '');
-INSERT INTO doc_appointment VALUES ('APP8', 'D2', 'P5', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', '');
-INSERT INTO doc_appointment VALUES ('APP9', 'D2', 'P5', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', ' Cold water treatment');
-INSERT INTO doc_appointment VALUES ('APP10', 'D2', 'P4', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', '');
-
-INSERT INTO doc_appointment VALUES ('APP11', 'D3', 'P6', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', '');
-INSERT INTO doc_appointment VALUES ('APP12', 'D3', 'P6', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', 'Blood test, CBC, Medicine');
-INSERT INTO doc_appointment VALUES ('APP13', 'D3', 'P2', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Fever', '');
-INSERT INTO doc_appointment VALUES ('APP14', 'D3', 'P1', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Persisting Bawaseer', '');
-INSERT INTO doc_appointment VALUES ('APP15', 'D3', 'P1', '2018-04-24 10:50', '2018-04-24 11:32', '1', 'Still Persisting', '');
 
 
 -- Admit Insertions
-INSERT INTO Admit VALUES ('P1', 'B100', '2018-04-24', '2018-04-30');
-INSERT INTO Admit VALUES ('P1', 'B100', '2020-04-24', '2020-04-30');
-INSERT INTO Admit VALUES ('P1', 'A200', '2023-03-1', NULL);
-INSERT INTO Admit VALUES ('P2', 'A301', '2020-04-24', '2020-04-30');
-INSERT INTO Admit VALUES ('P2', 'A201', '2022-03-1', NULL);
-INSERT INTO Admit VALUES ('P3', 'C101', '2020-04-24', '2020-04-30');
-INSERT INTO Admit VALUES ('P3', 'C101', '2023-03-1', NULL);
-INSERT INTO Admit VALUES ('P5', 'B102', '2020-04-24', '2020-04-30');
+
 
 
 -- test_appointments insertions
 -- problems while inserting
 
-INSERT INTO test_appointment VALUES ('LK112', 'T1', 'P1', '2018-04-24 10:47','2018-04-24 10:53','0',NULL,NULL,"Very bad health");
 
-INSERT INTO test_appointment VALUES ('TA1', 'T3', 'P3', '2018-04-24 10:47','2018-04-24 10:53','0',NULL,NULL,NULL);
-INSERT INTO test_appointment VALUES ('TA2', 'T4', 'P3', '2018-04-24 10:47','2018-04-24 10:53','0',NULL,NULL,NULL);
-INSERT INTO test_appointment VALUES ('TA3', 'T1', 'P5', '2018-04-24 10:47','2018-04-24 10:53','0',NULL,NULL,NULL);
-INSERT INTO test_appointment VALUES ('TA4', 'T5', 'P5', '2018-04-24 10:47','2018-04-24 10:53','0',NULL,NULL,NULL);
-INSERT INTO test_appointment VALUES ('TA5', 'T4', 'P6', '2018-04-24 10:47','2018-04-24 10:53','0',NULL,NULL, NULL);
 
 
 --- doc_slots

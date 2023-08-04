@@ -4,7 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
-
+temp.py
 # testing
 /coverage
 
@@ -34,3 +34,4 @@ ReactREADME.md
 /backend/website/__pycache__
 /backend/check.py
 
+/Frontend/node_modules/
