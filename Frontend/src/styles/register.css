@@ -1,0 +1,359 @@
+.vikasRegFormContainer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+.vikasRegRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.vikasRegCol1 {
+    width: 25%;
+    text-align: left;
+
+}
+
+.vikasRegCol2 {
+    width: 200px;
+}
+
+.vikasRegCol2 input {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+}
+
+.vikasRegCol2 select {
+    width: 224px;
+    align-items: left;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+}
+
+.vikasRegDate {
+    width: 100px;
+    align-items: left;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+}
+
+.vikasRegCol2 .vikasRegDOB {
+    width: 200px;
+    align-items: left;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+}
+
+.vikasRegHead {
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: underline;
+}
+
+.vikasRegButton button[type="submit"] {
+    position: relative;
+    display: inline-block;
+    padding: 12px 50px;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    background: #49383c;
+    color: rgb(247, 245, 245);
+    border-radius: 5px;
+    height: 50px;
+    box-shadow: 0 0 1px #042142,
+        0 0 1px #042142,
+        0 0 1px #042142,
+        0 0 1px #042142;
+    cursor: pointer;
+}
+
+.vikasRegCol2 .vikasAdmitTextBox{
+    margin-left: 25px;
+    width: 200px;
+    align-items: left;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+}
+
+.vikasAdmitFormContainer{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+.vikasAdmitFormContainer .vikasRegCol1{
+    margin-left: 100px;
+}
+
+.admitRoomType{
+    width: 200px;
+    align-items: left;
+    padding: 10px;
+    text-align: center;
+    margin-left:15px;
+}
+
+/* add test results container extra css */
+.vikasTestResultsContainer{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+.vikasTestResultsContainer .vikasRegCol1{
+    margin-left: 40px;
+}
+
+.vikasTestResultsContainer .vikasRegCol1 {
+    width: 30%;
+    text-align: left;
+}
+
+.vikasTestResultsContainer .vikasATRSelectBox{
+    width: 322px;
+    align-items: left;
+    padding: 10px;
+    margin-left:25px;
+}
+
+.vikasTestResultsContainer .vikasRegCol2 input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+}
+
+.vikasTestResultsContainer .vikasATRCommentBox{
+    width: 300px;
+    align-items: left;
+    padding: 10px;
+    margin-left:25px;
+    outline: none;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+.vikasTestResultsContainer button[type="submit"] {
+    position: relative;
+    display: inline-block;
+    padding: 12px 50px;
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    background: #49383c;
+    color: rgb(247, 245, 245);
+    border-radius: 5px;
+    height: 50px;
+    /* margin-left: 100px; */
+    box-shadow: 0 0 1px #042142,
+        0 0 1px #042142,
+        0 0 1px #042142,
+        0 0 1px #042142;
+    cursor: pointer;
+}
+
+.vikasRegCol3{
+    width: 302px;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    outline: none;
+    align-items: center;
+    margin-left: 22px;
+}
+
+/* Add treatment Container extra css */
+.vikasAddTreatmentContainer{
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 600px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+.vikasAddTreatmentContainer .vikasRegCol2 input{
+    width: 400px;
+}
+.tagContainer {
+    /* display: flex; */
+    overflow: scroll;
+    width: 100%;
+    padding-left: 14px;
+    /* border: 1px grey solid; */
+    border-radius: 5px;
+    color: black
+  }
+  
+  .tagContainer input {
+    width: 95%;
+    /* min-width: 50%; */
+    border: 1px solid grey;
+    /* border-radius: 5px; */
+    padding: 14px;
+    padding-left: 14px;
+    
+  }
+  
+  .tag {
+    /* display: flex; */
+    align-items: center;
+    margin: 7px 0;
+    margin-right: 10px;
+    padding: 0 10px;
+    padding-right: 5px;
+    /* border: 1px solid rgb(51, 219, 219); */
+    /* border-radius: 5px; */
+    background-color: rgb(27, 160, 201);
+    border-bottom: 1px solid black;
+    white-space: nowrap;
+    color: white;
+  }
+  
+  .tag button {
+    display: flex;
+    padding: 6px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    color: white;
+    cursor: pointer;
+  }
+  .verticalTag{
+    display: flex;
+    align-items: center;
+    margin: 7px 0;
+    margin-right: 10px;
+    margin-left: 20px;
+    padding: 0 10px;
+    padding-right: 5px;
+    white-space: nowrap;
+    color: white;
+  }
+  .vikasDeleteTag{
+    /* display: flex; */
+    padding: 6px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    color: rgb(233, 16, 16);
+  }
+
+  .tagRow{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  }
+  .tagCol{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+  }
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile+label{
+display:inline-block;
+padding:0.35em 1.2em;
+border:0.1em solid green;
+margin:0 0.3em 0.3em 0;
+border-radius:0.12em;
+box-sizing: border-box;
+text-decoration:none;
+font-family:'Roboto',sans-serif;
+font-weight:300;
+color:green;
+text-align:center;
+transition: all 0.2s;
+}
+.inputfile:focus + label,
+.inputfile + label:hover{
+color:#000000;
+background-color:green;
+}
+@media all and (max-width:30em){
+.inputfile{
+display:block;
+margin:0.4em auto;
+}
+}
+
+.PatientDetailsContainer .vikasRegFormContainer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+    margin-top: 70px;
+    max-width: 1200px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+.PatientDetailsContainer .DetailsContainer{
+    text-align: center;
+    align-items: center;
+    margin-left: 35%;
+}

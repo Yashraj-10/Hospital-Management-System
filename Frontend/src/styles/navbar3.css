@@ -1,0 +1,106 @@
+.navbar3 {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 0 2rem;
+
+    box-shadow: 0 0 10px rgb(61, 60, 60);
+    z-index: 1;
+    position: relative;
+    height: 60px;
+  }
+  .vikasHName {
+    font-size: larger;
+    margin-left: 1%;
+    font-weight: 1000;
+    text-transform: uppercase;
+    color: #195a09;
+    margin-right: 81%;
+  }
+  
+  .navbar3 .vikasHName2 {
+    /* text-align: center; */
+    font-size: larger;
+    margin-left: 1%;
+    font-weight: 1000;
+    text-transform: uppercase;
+    color: #195a09;
+    margin-right: 62%;
+  }
+  .vikasmyHomeNav button{
+    background: #dd0000;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 5%;
+    width: 150%;
+    height: 40px;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    text-transform: uppercase;
+    /* font-weight: 600; */
+  }
+  .navbar3 .vikasmyHomeNav2 button{
+    background: #dd0000;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 321.01px;
+    width: 80px;
+    height: 40px;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    text-transform: uppercase;
+    /* font-weight: 600; */
+  }
+
+  .navbar3 .vikasmyHome button:hover{
+    background-color: rgb(169, 246, 246);
+  }
+  .navbar3 .vikasmyHomeNav button:hover{
+    background-color: rgb(169, 246, 246);
+  }
+  .navbar3 .vikasmyHomeNav2 button:hover{
+    background-color: rgb(169, 246, 246);
+  }
+  .navbar3 .vikasChangePass button:hover{
+    background-color: rgb(169, 246, 246);
+  }
+  .navbar3 .vikasChangePass{
+    margin-right: 1%;
+  }
+  .navbar3 .vikasChangePass button {
+    background: #dd0000;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 50px;
+    width: 100%;
+    /* font-weight: 400; */
+    font-size: small;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .navbar3 .vikasmyHome button {
+    background: #dd0000;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 60px;
+    width: 100%;
+    height: 40px;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    text-transform: uppercase;
+    /* font-weight: 600; */
+  }
+
+  .logo{
+    cursor: pointer;
+  }
+
